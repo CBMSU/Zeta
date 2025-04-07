@@ -39,12 +39,15 @@ header {
 }
 
 #finance {
+    z-index: -1;
+    position: absolute;
     margin-right: auto;
     height: 100vh;
     width: 50vw;
 }
 
 #login-box {
+    z-index: 1;
     display: flex;
     margin-top: 40vh;
     margin-left: auto;
