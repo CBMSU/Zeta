@@ -1,0 +1,81 @@
+.bg-body-color{
+    background: #412884;
+    background-color: #412884;
+}
+
+.bg-logo-color, .bg-logo-color:hover, .bg-logo-color:focus, .bg-light-logo-color:hover, .bg-light-logo-color:focus {
+    background: #412884;
+    color: #fff;
+    border-color: #412884;
+}
+
+.bg-light-logo-color{
+    border-color: #412884;
+    background: #fff;
+    color: #412884;
+}
+
+.btnGerarCodBarras{
+    border-top-right-radius: 0.35rem !important;
+    border-bottom-right-radius: 0.35rem !important;
+}
+
+
+.color-logo, .color-logo.btn:hover {
+    color: #412884;
+}
+
+.bg-light-logo-color {
+    background: #fff;
+}
+
+.sidebar-brand.logo-txt{
+    font-weight: normal;
+    text-transform: none;
+    height: normal;
+    line-height: normal;
+}
+
+
+.autocomplete {
+	position: relative;
+	display: inline-block;
+}
+.autocomplete-items {
+	position: absolute;
+	z-index: 99;
+	top: 100%;
+	left: 0;
+	right: 0;
+}
+
+.drawingBuffer{
+    display:none;
+}
+
+.shadow{
+    box-shadow: 0 .15rem 0.75rem 0 rgba(58,59,69,.15) !important;
+}
+
+
+/* ########## LOADING ########## */
+
+#loading-overlay {
+    position: absolute;
+    width: 100%;
+    height:100%;
+    left: 0;
+    top: 0;
+    display: none;
+    align-items: center;
+    background-color: #fff;
+    z-index: 999;
+    opacity: 0.5;
+}
+.spinner-loading{ 
+    position:absolute;
+    left:50%;
+    margin-left:-20px;
+    top:50%;
+    margin-top:-20px;z-index:4;
+}
