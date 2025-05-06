@@ -85,3 +85,49 @@
     top:50%;
     margin-top:-20px;z-index:4;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.filterbtn {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #eee;
+  }
+    
+  .filter {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .filter-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 7px;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+  
+  .filter-content a {
+    color: black;
+    padding: 6px 8px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .filter a:hover {background-color: #ddd;}
+  
+  .show {display: block;}

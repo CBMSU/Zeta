@@ -1,6 +1,6 @@
 $(document).ready(function () {
        
-    const ctx = document.getElementById('graficoRepassesPeiodo').getContext('2d');
+    const ctx = document.getElementById('graficoRepassesPeriodo').getContext('2d');
 
     const data = {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -22,6 +22,7 @@ $(document).ready(function () {
     new Chart(ctx, {
         type: 'line',
         data: data,
+        maintainAspectRatio: false,
         options: {
             responsive: true,
             interaction: {
@@ -55,3 +56,16 @@ $(document).ready(function () {
     });
 
 });
+
+
+// INÍCIO - SCRIPT BOTÃO DE FILTRO
+
+$("#filter_btn").click(() => {
+    $("#filter_table").toggle() // abre/fecha filtros ao clicar no botao
+})
+
+$("#filter_btn").on("blur", () => {
+    $("#filter_table").hide() // fecha filtro ao tirar o foco do botao
+})
+
+// FIM - SCRIPT BOTÃO DE FILTRO

@@ -349,20 +349,34 @@
                         </div>
                     </div>
 
-                    <!-- Content Row -->
+                    <!-- Row Graph -->
 
                     <div class="row justify-content-md-center">
-
                         <div class="col-12 col-md-11 mt-0 text-dark">
-                            
-                            <canvas id="graficoRepassesPeiodo" class="mt-2" style="position: relative; height:40vh; width:80vw"></canvas>
-                            
+                            <canvas id="graficoRepassesPeriodo" class="mt-2" style="position: relative; height:40vh; width:80vw"></canvas>
                         </div>
-                    
                     </div>
 
+                    <!-- Row Filter -->
+
+
+                    <div class="row justify-content-md-center mt-4">
+                        <div class="col-12 col-md-11 mt-0 text-dark">
+                            <div class="filter">
+                                <button id="filter_btn" class="filterbtn btn-sm px-3 py-2"><i class="fas fa-filter mr-3"></i> Filtrar</button>
+                                <div id="filter_table" class="filter-content">
+                                  <a href="#">Data</a>
+                                  <a href="#">Adquirente</a>
+                                  <a href="#">Valor</a>
+                                  <a href="#">Diferença</a>
+                                  <a href="#">Status</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
