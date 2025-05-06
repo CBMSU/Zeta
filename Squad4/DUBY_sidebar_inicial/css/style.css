@@ -3,10 +3,16 @@
     background-color: #412884;
 }
 
-.bg-logo-color, .bg-logo-color:hover, .bg-logo-color:focus, .bg-light-logo-color:hover, .bg-light-logo-color:focus {
+.bg-logo-color, .bg-logo-color:hover, .bg-logo-color:focus {
     background: #412884;
     color: #fff;
     border-color: #412884;
+}
+
+.bg-logo-second-color {
+    background: #6541c6;
+    color: #fff;
+    border-color: #6541c6;
 }
 
 .bg-light-logo-color{
