@@ -98,7 +98,9 @@ $("#filter_btn").on("blur", () => {
     }
 
     $("#dropdown").css({"background-color": corStatus});
-    // $("#dropdown").css({"color": corStatus });    
+
+    $("#btnSalvarStatusConcilicao").removeClass("d-none");
+    $("#rowObservacaoStatus").removeClass("d-none"); 
 
   })
 // }
