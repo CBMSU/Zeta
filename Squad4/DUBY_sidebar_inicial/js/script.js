@@ -69,3 +69,38 @@ $("#filter_btn").on("blur", () => {
 })
 
 // FIM - SCRIPT BOTÃO DE FILTRO
+
+
+// INÍCIO - TROCA STATUS DE CONCILIAÇÃO
+
+// function trocaStatus(){
+  $('.spanstatus').click((e) => {
+    var statusSelecionado = e.target.innerHTML;
+
+    document.querySelector("#htmlBtnDropdown").innerHTML = statusSelecionado
+
+    var tipoStatus = e.target.attributes.name.value;
+    console.log(tipoStatus)
+    var corStatus;
+
+    switch(tipoStatus){
+        case "status1":
+            corStatus = "#FF5052";
+            break;
+        case "status2":
+            corStatus = "#2C85DE";
+            break;
+        case "status3":
+            corStatus = "#00C72C";
+            break;
+        default:
+            corStatus = "#000";
+    }
+
+    $("#dropdown").css({"background-color": corStatus});
+    // $("#dropdown").css({"color": corStatus });    
+
+  })
+// }
+
+// FIM - TROCA STATUS DE CONCILIAÇÃO

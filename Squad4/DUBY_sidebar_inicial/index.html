@@ -352,16 +352,15 @@
                     <!-- Row Graph -->
 
                     <div class="row justify-content-md-center">
-                        <div class="col-12 col-md-11 mt-0 text-dark">
+                        <div class="col-12 col-lg-11 mt-0 text-dark">
                             <canvas id="graficoRepassesPeriodo" class="mt-2" style="position: relative; height:40vh; width:80vw"></canvas>
                         </div>
                     </div>
 
                     <!-- Row Filter -->
 
-
                     <div class="row justify-content-md-center mt-4">
-                        <div class="col-12 col-md-11 mt-0 text-dark">
+                        <div class="col-12 col-lg-11 mt-0 text-dark">
                             <div class="filter">
                                 <button id="filter_btn" class="filterbtn btn-sm px-3 py-2"><i class="fas fa-filter mr-3"></i> Filtrar</button>
                                 <div id="filter_table" class="filter-content">
@@ -374,7 +373,133 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- Row Grid -->
+                    <!-- CABEÇALHO -->
+                    <div class="row justify-content-md-center align-items-center mt-3 mb-1 font-weight-bold text-dark">
+                        <div class="col-6 col-lg-2 mt-0">
+                            Data
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            Adquirente
+                        </div>
+
+                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block">
+                            Valor Esperado
+                        </div>
+
+                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block">
+                            Diferença
+                        </div>
+
+                        <div class="col-4 col-lg-1 mt-0">
+                            Status
+                        </div>
+
+                        <div class="col-2 col-lg-1 mt-0">
+                        </div>
+
+                        <!-- DIVIDER  -->
+                        <div class="col-12 col-lg-11 mt-0">
+                            <hr class="mt-2 mb-0"/>
+                        </div>
+                    </div>
+
+                    <!-- Content Grid -->
+                    <div class="row justify-content-md-center align-items-center mt-2 mb-2">
+                        <div class="col-6 col-lg-2 mt-0">
+                            01/03/2025
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            AdiqCard Solutions
+                        </div>
+
+                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block">
+                            R$ 250.000,00
+                        </div>
+
+                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block">
+                            R$ 0,00
+                        </div>
+
+                        <div class="col-4 col-lg-1 mt-0">
+                            <span class="badge badge-success">Conciliado</span>
+                        </div>
+                        
+                        <div class="col-2 col-lg-1 mt-0 text-center">
+                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliacaoModal"></i>
+                        </div>
+                        
+                        <!-- DIVIDER  -->
+                        <div class="col-12 col-lg-11 mt-0">
+                            <hr class="mt-2 mb-0"/>
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-md-center align-items-center mt-2 mb-2">
+                        <div class="col-6 col-lg-2 mt-0">
+                            05/03/2025
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            PayMax Digital
+                        </div>
+
+                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block">
+                            R$ 300.000,00
+                        </div>
+
+                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block">
+                            - R$ 15.000,00
+                        </div>
+
+                        <div class="col-4 col-lg-1 mt-0">
+                            <span class="badge badge-danger">Divergente</span>
+                        </div>
+
+                        <div class="col-2 col-lg-1 mt-0 text-center">
+                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliacaoModal"></i>
+                        </div>
+                        
+                        <!-- DIVIDER  -->
+                        <div class="col-12 col-lg-11 mt-0">
+                            <hr class="mt-2 mb-0"/>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mt-2 mb-2">
+                        <div class="col-6 col-lg-2 mt-0">
+                            12/03/2025
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            Veloz Pagamentos
+                        </div>
+
+                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block">
+                            R$ 180.000,00
+                        </div>
+
+                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block">
+                            R$ 0,00
+                        </div>
+
+                        <div class="col-4 col-lg-1 mt-0">
+                            <span class="badge badge-success">Conciliado</span>
+                        </div>
+
+                        <div class="col-2 col-lg-1 mt-0 text-center">
+                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliacaoModal"></i>
+                        </div>
+
+                        <!-- DIVIDER  -->
+                        <div class="col-12 col-lg-11 mt-0">
+                            <hr class="mt-2 mb-0"/>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -403,20 +528,111 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deseja realmente sair?</h5>
+                    <h5 class="modal-title" id="logoutModalLabel">Deseja realmente sair?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Confirme se realmente deseja sair da conta.</div>
                 <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" href="#" id="btnLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Info Conciliação -->
+    <div class="modal fade" id="infoConciliacaoModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliacaoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoConciliacaoModalLabel">Descrição da Conciliação</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Data
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Status
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            05/03/2025
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            <div class="dropdown">
+                                <button id="dropdown" class="btn btn-sm btn-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span id="htmlBtnDropdown">Pendente</span>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown">
+                                        <span class="dropdown-item spanstatus" name="status1">Pendente</span>
+                                        <span class="dropdown-item spanstatus" name="status2">Em análise</span>
+                                        <span class="dropdown-item spanstatus" name="status3">Solicionado</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Banco
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Adquirente
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            PayMax Digital
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            PokemonBank
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Esperado
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Recebido
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            R$ 300.000,00
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            R$ 285.000,00
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" href="login.html" id="btnLogout">Logout</button>
+                    <button class="btn btn-outline-secondary" href="#" id="btnLogout">Tá bão</button>
                 </div>
             </div>
         </div>
