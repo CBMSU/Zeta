@@ -429,7 +429,7 @@
                         </div>
                         
                         <div class="col-2 col-lg-1 mt-0 text-center">
-                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliacaoModal"></i>
+                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliadoModal"></i>
                         </div>
                         
                         <!-- DIVIDER  -->
@@ -492,7 +492,7 @@
                         </div>
 
                         <div class="col-2 col-lg-1 mt-0 text-center">
-                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliacaoModal"></i>
+                            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoConciliadoModal"></i>
                         </div>
 
                         <!-- DIVIDER  -->
@@ -527,7 +527,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+    <!-- Modal Logout-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -547,7 +547,7 @@
         </div>
     </div>
 
-    <!-- Logout Info Conciliação -->
+    <!-- Modal Info Conciliação Divergente -->
     <div class="modal fade" id="infoConciliacaoModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliacaoModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -592,11 +592,11 @@
                     <!--  -->
                     <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
                         <div class="col-6 col-lg-5 mt-0">
-                            Banco
+                            Adquirente
                         </div>
 
                         <div class="col-6 col-lg-5 mt-0">
-                            Adquirente
+                            Banco
                         </div>
                     </div>
 
@@ -708,8 +708,159 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <button class="btn btn-success d-none" href="#" id="btnSalvarStatusConcilicao">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Info Conciliação Conciliado -->
+    <div class="modal fade" id="infoConciliadoModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliadoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoConciliadoModalLabel">Descrição da Conciliação</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Data
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Status
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            01/03/2025
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            <div class="dropdown">
+                                <button id="dropdown2" class="btn btn-sm btn-secondary border-0" type="button" style="background-color: #00C72C;">
+                                    <span id="htmlBtnDropdown2">Conciliado</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Adquirente
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Banco
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            AdiqCard Solutions
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            PokemonBank
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Esperado
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Recebido
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            R$ 250.000,00
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            R$ 250.000,00
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Diferença
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Bandeira
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            R$ 0,00
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            -
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Número da Parcela
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Total de Parcelas
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            -
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            -
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Juros Vigente
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Tipo de Operação
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0">
+                            2%
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Pix
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>

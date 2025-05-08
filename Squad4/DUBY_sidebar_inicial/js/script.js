@@ -103,6 +103,7 @@ $("#filter_btn").on("blur", () => {
     $("#rowObservacaoStatus").removeClass("d-none"); 
 
   })
+
 // }
 
 // FIM - TROCA STATUS DE CONCILIAÇÃO
