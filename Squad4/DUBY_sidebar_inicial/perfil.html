@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/duby2.ico">
+
+    <title>Duby</title>
+
+    <link href="css/fontawesomefree.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+     <!-- Script -->
+     <script src="js/perfil.js" type="module"></script>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion bg-logo-color" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center logo-txt" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <img src="img/logo-duby-conceito.png" alt="" class=" w-75">
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Início -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Início</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Busca -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Busca</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Conciliação -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConciliacao"
+                aria-expanded="true" aria-controls="collapseConciliacao">
+                    <!-- <i class="fa fa-fw fa-handshake"></i> -->
+                    <i class="fa fa-fw fa-hands-helping"></i>
+                    <span>Conciliação</span></a>
+                <div id="collapseConciliacao" class="collapse" aria-labelledby="headingAdquirentes" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Nova</a>
+                        <a class="collapse-item" href="#">Consulta</a>
+                        <a class="collapse-item" href="#">Relatório</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Adquirentes -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdquirentes"
+                aria-expanded="true" aria-controls="collapseAdquirentes">
+                    <i class="fa fa-fw fa-id-badge"></i>
+                    <span>Adquirentes</span></a>
+                <div id="collapseAdquirentes" class="collapse" aria-labelledby="headingAdquirentes" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Novo</a>
+                        <a class="collapse-item" href="#">Consulta</a>
+                        <a class="collapse-item" href="#">Relatório</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Bancos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBancos"
+                    aria-expanded="true" aria-controls="collapseBancos">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Bancos</span>
+                </a>
+                <div id="collapseBancos" class="collapse" aria-labelledby="headingBancos" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Novo</a>
+                        <a class="collapse-item" href="#">Consulta</a>
+                        <a class="collapse-item" href="#">Relatório</a>
+                    </div>
+                </div>
+            </li>
+
+            <div class="mt-auto">
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block my-0">
+            
+                <!-- Nav Item - Instrução de Uso -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInstrucao"
+                        aria-expanded="true" aria-controls="collapseInstrucao">
+                        <i class="fas fa-fw fa-question-circle"></i>
+                        <span>Instrução de Uso</span>
+                    </a>
+                    <div id="collapseInstrucao" class="collapse" aria-labelledby="headingInstrucao" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="#">Glossário</a>
+                            <a class="collapse-item" href="#">Licença</a>
+                        </div>
+                    </div>
+                </li>
+            
+                <!-- Sidebar Toggler -->
+                <div class="text-center">
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                </div>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 color-logo">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">1</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Notificações
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">17 maio, 2022</div>
+                                        Em progresso.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar notificações</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">1</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Mensagens
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                            alt="...">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Em progresso.</div>
+                                        <div class="small text-gray-500">Igor Merten · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Ler mensagens</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="userEmail"></span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="perfil.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Sair
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-1">
+                        <h1 class="h3 mb-0 text-dark">Perfil</h1>
+                    </div>
+
+                    <!-- Content Row - DADOS DA LOJA -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                                <h5 class="h5 mb-0 text-dark font-weight-bold">Dados da Loja</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="nome-loja">Nome</label>
+                                <input type="text" class="form-control" id="nome-loja" placeholder="Nome da sua loja">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone-loja">Telefone</label>
+                                <input type="text" class="form-control" id="telefone-loja" placeholder="Telefone da sua loja (apenas números)">
+                            </div>
+                            <div class="form-group">
+                                <label for="cnpj-loja">CNPJ</label>
+                                <input type="text" class="form-control" id="cnpj-loja" placeholder="CNPJ da sua loja (apenas números)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER  -->
+                     <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6 my-3">
+                            <hr class="mt-2 mb-0 border-dark"/>
+                        </div>
+                    </div>
+
+                    <!-- ENDEREÇO DA LOJA -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-3 mt-2">
+                                <h5 class="h5 mb-0 text-dark font-weight-bold">Endereço da Loja</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label for="cep-loja">CEP</label>
+                                <input type="text" class="form-control" id="cep-loja" placeholder="CEP da sua loja (apenas números)">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="estado-loja">Estado</label>
+                                <select class="form-control" id="estado-loja">
+                                    <option></option>
+                                    <option>Alagoas</option>
+                                    <option>Amapá</option>
+                                    <option>Amazonas</option>
+                                    <option>Bahia</option>
+                                    <option>Ceará</option>
+                                    <option>Distrito Federal</option>
+                                    <option>Espirito Santo</option>
+                                    <option>Goiás</option>
+                                    <option>Maranhão</option>
+                                    <option>Mato Grosso do Sul</option>
+                                    <option>Mato Grosso</option>
+                                    <option>Minas Gerais</option>
+                                    <option>Pará</option>
+                                    <option>Paraíba</option>
+                                    <option>Paraná</option>
+                                    <option>Pernambuco</option>
+                                    <option>Piauí</option>
+                                    <option>Rio de Janeiro</option>
+                                    <option>Rio Grande do Norte</option>
+                                    <option>Rio Grande do Sul</option>
+                                    <option>Rondônia</option>
+                                    <option>Roraima</option>
+                                    <option>Santa Catarina</option>
+                                    <option>São Paulo</option>
+                                    <option>Sergipe</option>
+                                    <option>Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label for="cidade-loja">Cidade</label>
+                                <select class="form-control" id="cidade-loja">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="bairro-loja">Bairro</label>
+                                <input type="text" class="form-control" id="bairro-loja" placeholder="Bairro">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-8 col-lg-5 col-xl-5">
+                            <div class="form-group">
+                                <label for="logradouro-loja">Logradouro</label>
+                                <input type="text" class="form-control" id="logradouro-loja" placeholder="Avenida/Rua">
+                            </div>
+                        </div>
+                        <div class="col-4 col-lg-2 col-xl-1">
+                            <div class="form-group">
+                                <label for="numero-loja">Número</label>
+                                <input type="text" class="form-control" id="numero-loja" placeholder="Número">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="complemento-loja">Complemento</label>
+                                <input type="text" class="form-control" id="complemento-loja" placeholder="Complemento">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER  -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6 my-3">
+                            <hr class="mt-2 mb-0 border-dark"/>
+                        </div>
+                    </div>
+
+                    <!-- CONTATO DO REPRESENTANTE LEGAL -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-3 mt-2">
+                                <h5 class="h5 mb-0 text-dark font-weight-bold">Contato do Representante Legal</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="nome-representante-loja">Nome</label>
+                                <input type="text" class="form-control" id="nome-representante-loja" placeholder="Nome do Responsável">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label for="sobrenome-representante-loja">Sobrenome</label>
+                                <input type="text" class="form-control" id="sobrenome-representante-loja" placeholder="Sobrenome do Responsável">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="email-representante-loja">E-mail</label>
+                                <input type="text" class="form-control" id="email-representante-loja" placeholder="E-mail do Responsável">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="celular-representante-loja">Celular</label>
+                                <input type="text" class="form-control" id="celular-representante-loja" placeholder="Celular do Responsável (apenas números)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="cpf-representante-loja">CPF</label>
+                                <input type="text" class="form-control" id="cpf-representante-loja" placeholder="CPF do Responsável (apenas números)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="rg-representante-loja">RG</label>
+                                <input type="text" class="form-control" id="rg-representante-loja" placeholder="RG do Responsável (apenas números)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER  -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6 my-2">
+                            <hr class="mt-2 mb-0 border-dark"/>
+                        </div>
+                    </div>
+
+                    <!-- BOTÕES DE AÇÃO -->
+
+                    <div class="row justify-content-md-center my-2">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group text-right">
+                                <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                <button class="btn btn-save-duby" type="button" data-dismiss="modal">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; DUBY</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Modal Logout-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Deseja realmente sair?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Confirme se realmente deseja sair da conta.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" href="#" id="btnLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/comportamento_sidebar.js"></script>
+
+</body>
+
+</html>
