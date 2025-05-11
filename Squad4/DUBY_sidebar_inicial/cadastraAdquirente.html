@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/style.css">
 
      <!-- Script -->
-     <script src="js/perfil.js" type="module"></script>
+     <script src="js/cadastraAdquirente.js" type="module"></script>
 </head>
 
 <body id="page-top">
@@ -247,138 +247,74 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-1">
-                        <h1 class="h3 mb-0 text-dark">Perfil</h1>
+                        <h1 class="h3 mb-0 text-dark">Cadastro de adquirente</h1>
                     </div>
 
-                    <!-- Content Row - DADOS DA LOJA -->
+                    <!-- Content Row - DADOS DO ADQUIRENTE -->
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="d-sm-flex align-items-center justify-content-between mb-3">
-                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-store mr-2"></i>Dados da loja</h5>
+                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-hand-holding-usd mr-2"></i>Dados do adquirente</h5>
                             </div>
                         </div>
                     </div>
+
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group">
-                                <label for="nome-loja">Nome</label>
-                                <input type="text" class="form-control" id="nome-loja" placeholder="Nome da sua loja">
+                                <label for="nome-adquirente">Nome</label>
+                                <input type="text" class="form-control" id="nome-adquirente" placeholder="Nome do adquirente">
                             </div>
+
                             <div class="form-group">
-                                <label for="telefone-loja">Telefone</label>
-                                <input type="text" class="form-control" id="telefone-loja" placeholder="Telefone da sua loja (apenas números)">
+                                <label for="descricao-adquirente">Descrição</label>
+                                <textarea class="form-control" id="descricao-adquirente" placeholder="Descrição do adquirente"></textarea>
                             </div>
+
                             <div class="form-group">
-                                <label for="cnpj-loja">CNPJ</label>
-                                <input type="text" class="form-control" id="cnpj-loja" placeholder="CNPJ da sua loja (apenas números)">
+                                <label for="chave-api-adquirente">API</label>
+                                <input type="text" class="form-control" id="chave-api-adquirente" placeholder="Chave da API">
                             </div>
+
+                            <div class="form-group">
+                                <label for="identidade-adquirente">Identidade</label>
+                                <input type="text" class="form-control" id="identidade-adquirente" placeholder="Identidade da loja">
+                            </div>
+
+                            <div class="form-group mb-0">
+                                <label for="identidade-adquirente">Formas de pagamento</label>
+                            </div>
+
+                            <div class="form-group mt-0">
+                                <button class="btn btn-sm btn-outline-duby" type="button" data-toggle="modal" data-target="#formaPagamentoModal">
+                                    <div class="align-items-center">
+                                        <i class="fas fa-plus-circle plus-info-conciliacao mr-1"></i>Adicionar
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="check-boleto">
+                                <label class="form-check-label" for="check-boleto"> Permite boleto </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="check-pix">
+                                <label class="form-check-label" for="check-pix"> Permite PIX </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="check-credito">
+                                <label class="form-check-label" for="check-credito"> Permite cartão de débito </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="check-debito">
+                                <label class="form-check-label" for="check-debito"> Permite cartão de crédito </label>
+                            </div> -->
+
                         </div>
                     </div>
 
                     <!-- DIVIDER  -->
                      <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6 my-3">
-                            <hr class="my-0 border-dark"/>
-                        </div>
-                    </div>
-
-                    <!-- ENDEREÇO DA LOJA -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="d-sm-flex align-items-center justify-content-between mb-3 mt-2">
-                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-map-marker-alt mr-1"></i> Endereço da loja</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-4 col-xl-3">
-                            <div class="form-group">
-                                <label for="cep-loja">CEP</label>
-                                <input type="text" class="form-control" id="cep-loja" placeholder="CEP da sua loja (apenas números)">
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="estado-loja">Estado</label>
-                                <select class="form-control" id="estado-loja">
-                                    <option></option>
-                                    <option>Alagoas</option>
-                                    <option>Amapá</option>
-                                    <option>Amazonas</option>
-                                    <option>Bahia</option>
-                                    <option>Ceará</option>
-                                    <option>Distrito Federal</option>
-                                    <option>Espirito Santo</option>
-                                    <option>Goiás</option>
-                                    <option>Maranhão</option>
-                                    <option>Mato Grosso do Sul</option>
-                                    <option>Mato Grosso</option>
-                                    <option>Minas Gerais</option>
-                                    <option>Pará</option>
-                                    <option>Paraíba</option>
-                                    <option>Paraná</option>
-                                    <option>Pernambuco</option>
-                                    <option>Piauí</option>
-                                    <option>Rio de Janeiro</option>
-                                    <option>Rio Grande do Norte</option>
-                                    <option>Rio Grande do Sul</option>
-                                    <option>Rondônia</option>
-                                    <option>Roraima</option>
-                                    <option>Santa Catarina</option>
-                                    <option>São Paulo</option>
-                                    <option>Sergipe</option>
-                                    <option>Tocantins</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-4 col-xl-3">
-                            <div class="form-group">
-                                <label for="cidade-loja">Cidade</label>
-                                <select class="form-control" id="cidade-loja">
-                                    <option></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="bairro-loja">Bairro</label>
-                                <input type="text" class="form-control" id="bairro-loja" placeholder="Bairro">
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-8 col-lg-5 col-xl-5">
-                            <div class="form-group">
-                                <label for="logradouro-loja">Logradouro</label>
-                                <input type="text" class="form-control" id="logradouro-loja" placeholder="Avenida/Rua">
-                            </div>
-                        </div>
-                        <div class="col-4 col-lg-2 col-xl-1">
-                            <div class="form-group">
-                                <label for="numero-loja">Número</label>
-                                <input type="text" class="form-control" id="numero-loja" placeholder="Número">
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="complemento-loja">Complemento</label>
-                                <input type="text" class="form-control" id="complemento-loja" placeholder="Complemento">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DIVIDER  -->
-                    <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6 my-3">
                             <hr class="my-0 border-dark"/>
                         </div>
@@ -508,6 +444,88 @@
         </div>
     </div>
 
+    <!-- Modal Adicionar forma de pagamento -->
+    <div class="modal fade" id="formaPagamentoModal" tabindex="-1" role="dialog" aria-labelledby="formaPagamentoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formaPagamentoLabel">Adicionar forma de pagamento</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row justify-content-md-center align-items-center text-dark ">
+                        <div class="col-12 col-lg-5 mt-0">
+                            <div class="form-group">
+                                <label for="tipo-pagamento" class="font-weight-bold">Tipo</label>
+                                <select class="form-control" id="tipo-pagamento">
+                                    <option></option>
+                                    <option value="1">Boleto</option>
+                                    <option value="2">Pix</option>
+                                    <option value="3">Crédito</option>
+                                    <option value="4">Débito</option>
+                                </select>
+                                <div class="invalid-feedback text-left" id="tipoNulo">
+                                    Informe o tipo de forma de pagamento.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-5 mt-0">
+                            <div class="form-group">
+                                <label for="taxa-forma-pagamento" class="font-weight-bold">Taxa (%)</label>
+                                <input type="text" class="form-control" id="taxa-forma-pagamento" placeholder="Taxa por operação">
+                                <div class="invalid-feedback text-left" id="taxaNulo">
+                                    Informe a taxa de vigência.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center text-dark ">
+                        <div class="col-12 col-lg-5 mt-0">
+                            <div class="form-group">
+                                <label for="tipo-pagamento" class="font-weight-bold">Início da Vigência</label>
+                                <input type="text" class="form-control" name="dataInicio" id="dataInicioTaxa" readonly='true' style="background-color: #fff;" placeholder="Data inicial da vigência" />
+                                <div class="invalid-feedback text-left" id="dataInicioNulo">
+                                    Informe a data inicial de vigência.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-5 mt-0">
+                            <div class="form-group">
+                                <label for="taxa-forma-pagamento" class="font-weight-bold">Fim da Vigência</label>
+                                <input type="text" class="form-control" name="dataFim" id="dataFimTaxa" readonly='true' style="background-color: #fff;" placeholder="Data final da vigência" />
+                                <div class="invalid-feedback text-left" id="dataFimNulo">
+                                    Informe a data final de vigência.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-12 col-lg-10 mt-0">
+                            Observação
+                        </div>
+
+                        <div class="col-12 col-lg-10 mt-0">
+                            <textarea class="form-control" name="observacaoTrocaStatus" id="observacaoTaxa"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-save-duby" href="#" id="adicionarFormaDePagamento">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -517,6 +535,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/comportamento_sidebar.js"></script>
+
+    <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="js/datepicker_files/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="js/datepicker_files/bootstrap-datepicker3.css"/>
+
+        <script src="js/datepicker_files/bootstrap-datepicker.pt-BR.min.js"></script>
 
 </body>
 
