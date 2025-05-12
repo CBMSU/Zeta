@@ -13,7 +13,7 @@ function parametrosData() {
         startDate: '01/01/2015',
         datesDisabled: '+1d',
         endDate: '+1d',
-        orientation: "top"
+        orientation: "auto"
     }).on('hide', function(e) {
         e.target.blur()
     });
@@ -30,7 +30,7 @@ function parametrosData() {
             datesDisabled: false,
             endDate: '+10y',
             startDate: e.target.value,
-            orientation: "top"
+            orientation: "auto"
         }).on('hide', function(e) {
             e.target.blur()
         });
@@ -45,7 +45,7 @@ function parametrosData() {
         datesDisabled: '+0d',
         endDate: '+0d',
         startDate: '-0d',
-        orientation: "top"
+        orientation: "auto"
     }).on('hide', function(e) {
         e.target.blur()
     });
