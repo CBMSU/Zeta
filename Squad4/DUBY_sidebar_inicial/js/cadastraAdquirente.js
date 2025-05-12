@@ -13,7 +13,7 @@ function parametrosData() {
         startDate: '01/01/2015',
         datesDisabled: '+1d',
         endDate: '+1d',
-        orientation: "auto"
+        orientation: "top"
     }).on('hide', function(e) {
         e.target.blur()
     });
@@ -30,7 +30,7 @@ function parametrosData() {
             datesDisabled: false,
             endDate: '+10y',
             startDate: e.target.value,
-            orientation: "auto"
+            orientation: "top"
         }).on('hide', function(e) {
             e.target.blur()
         });
@@ -45,7 +45,7 @@ function parametrosData() {
         datesDisabled: '+0d',
         endDate: '+0d',
         startDate: '-0d',
-        orientation: "auto"
+        orientation: "top"
     }).on('hide', function(e) {
         e.target.blur()
     });
@@ -121,7 +121,7 @@ $("#adicionarFormaDePagamento").click(() => {
         return false;
 
     console.log("Acrescenta forma de pagamento.")
-    
+    limpaFormModalTaxa()
     
 })
 
@@ -133,6 +133,17 @@ function limpaErrosModalTaxa(){
     for(var i = 1; i <= 12; i++){
         $("#taxa-" + i + "x-nulo").hide();
     }
+}
+
+function limpaFormModalTaxa(){
+    $("#tipo-pagamento").val("0");
+    $("#taxa-forma-pagamento").val("");
+    $("#dataInicioTaxa").val("");
+    $("#dataFimTaxa").val("");
+    for(var i = 1; i <= 12; i++){
+        $("#taxa-" + i + "x").val("");
+    }
+    $("#observacaoTaxa").val("");
 }
 
 // EVENTO AO ALTERAR TIPO PAGAMENTO
