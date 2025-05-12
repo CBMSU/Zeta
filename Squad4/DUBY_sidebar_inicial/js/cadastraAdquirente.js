@@ -27,7 +27,7 @@ function parametrosData() {
             language: 'pt-BR',
             todayHighlight: true,
             autoclose: true,
-            datesDisabled: '+1d',
+            datesDisabled: false,
             endDate: '+10y',
             startDate: e.target.value,
             orientation: "top"
@@ -59,7 +59,7 @@ function parametrosData() {
             language: 'pt-BR',
             todayHighlight: true,
             autoclose: true,
-            datesDisabled: '+1d',
+            datesDisabled: false,
             endDate: e.target.value,
             startDate: '01/01/2015',
             orientation: "top"
@@ -71,14 +71,15 @@ function parametrosData() {
     
 };
 
-
+// EVENTOS AO SALVAR MODAL DE TIPO PAGAMENTO
 $("#adicionarFormaDePagamento").click(() => {
-    limpaModalTaxa();
+    limpaErrosModalTaxa();
     var formInvalido = false;
     
     // Pega infos do HTML
     const tipo = document.getElementById('tipo-pagamento')
     const taxa = document.getElementById('taxa-forma-pagamento')
+    var taxaCredito;
     const dataInicio = document.getElementById('dataInicioTaxa')
     const dataFim = document.getElementById('dataFimTaxa')
     const observacao = document.getElementById('observacaoTaxa')
@@ -89,9 +90,20 @@ $("#adicionarFormaDePagamento").click(() => {
         formInvalido = true;
     }
 
-    if(taxa.value == "" || taxa.value == null){
+    if((taxa.value == "" || taxa.value == null) && tipo.value != 3){
         $("#taxaNulo").show();
         formInvalido = true;
+    }
+
+    if(tipo.value == 3){
+        for(var i = 1; i <= 12; i++){
+            taxaCredito = document.getElementById('taxa-' + i + 'x')
+
+            if(taxaCredito.value == "" || taxaCredito.value == null){
+                $("#taxa-" + i + "x-nulo").show();
+                formInvalido = true;
+            }
+        }
     }
 
     if(dataInicio.value == "" || dataInicio.value == null){
@@ -107,13 +119,29 @@ $("#adicionarFormaDePagamento").click(() => {
     // Caso algum campo obrigatório seja nulo, cancela o envio do form
     if(formInvalido)
         return false;
+
+    console.log("Acrescenta forma de pagamento.")
     
     
 })
 
-function limpaModalTaxa(){
+function limpaErrosModalTaxa(){
     $("#tipoNulo").hide();
     $("#taxaNulo").hide();
     $("#dataInicioNulo").hide();
     $("#dataFimNulo").hide();
+    for(var i = 1; i <= 12; i++){
+        $("#taxa-" + i + "x-nulo").hide();
+    }
 }
+
+// EVENTO AO ALTERAR TIPO PAGAMENTO
+$("#tipo-pagamento").on("change", (e) => {
+    if(e.target.value == 3){
+        $("#div-taxa-unica").addClass("d-none");
+        $("#div-taxa-prestacao").removeClass("d-none"); 
+    }else{
+        $("#div-taxa-unica").removeClass("d-none");
+        $("#div-taxa-prestacao").addClass("d-none"); 
+    }
+})
