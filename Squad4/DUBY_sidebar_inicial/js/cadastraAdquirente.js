@@ -150,9 +150,20 @@ function limpaFormModalTaxa(){
 $("#tipo-pagamento").on("change", (e) => {
     if(e.target.value == 3){
         $("#div-taxa-unica").addClass("d-none");
+
+        $("#div-bandeira").removeClass("d-none"); 
         $("#div-taxa-prestacao").removeClass("d-none"); 
+
+
+        $("#div-tipo").removeClass("col-lg-5")
+        $("#div-tipo").addClass("col-lg-10")
     }else{
         $("#div-taxa-unica").removeClass("d-none");
+
+        $("#div-bandeira").addClass("d-none");
         $("#div-taxa-prestacao").addClass("d-none"); 
+        
+        $("#div-tipo").removeClass("col-lg-10")
+        $("#div-tipo").addClass("col-lg-5")
     }
 })
