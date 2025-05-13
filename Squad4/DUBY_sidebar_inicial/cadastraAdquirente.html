@@ -480,7 +480,7 @@
                     </div>
 
                     <div class="row justify-content-md-center text-dark ">
-                        <div class="col-12 col-lg-5 mt-0">
+                        <div class="col-12 col-lg-5 mt-0" id="div-tipo">
                             <div class="form-group">
                                 <label for="tipo-pagamento" class="font-weight-bold">Tipo</label>
                                 <select class="form-control" id="tipo-pagamento">
@@ -496,9 +496,9 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-5 mt-0">
+                        <div class="col-12 col-lg-5 mt-0" id="div-taxa-unica">
 
-                            <div class="form-group" id="div-taxa-unica">
+                            <div class="form-group">
                                 <label for="taxa-forma-pagamento" class="font-weight-bold">Taxa (%)</label>
                                 <input type="text" class="form-control" id="taxa-forma-pagamento" placeholder="Taxa por operação">
                                 <div class="invalid-feedback text-left" id="taxaNulo">
@@ -506,136 +506,28 @@
                                 </div>
                             </div>
 
-                            <div class="d-none" id="div-taxa-prestacao">
-                                <label></label>
-                                <table class="table align-items-center text-center">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="w-50">Parcelas</th>
-                                            <th scope="col" class="w-50">Taxas (%)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="align-middle">
-                                        <tr>
-                                            <th scope="row" class="align-middle">1x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-1x" placeholder="Taxa 1x">
-                                                <div class="invalid-feedback text-left" id="taxa-1x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">2x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-2x" placeholder="Taxa 2x">
-                                                <div class="invalid-feedback text-left" id="taxa-2x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">3x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-3x" placeholder="Taxa 3x">
-                                                <div class="invalid-feedback text-left" id="taxa-3x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">4x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-4x" placeholder="Taxa 4x">
-                                                <div class="invalid-feedback text-left" id="taxa-4x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">5x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-5x" placeholder="Taxa 5x">
-                                                <div class="invalid-feedback text-left" id="taxa-5x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">6x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-6x" placeholder="Taxa 6x">
-                                                <div class="invalid-feedback text-left" id="taxa-6x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">7x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-7x" placeholder="Taxa 7x">
-                                                <div class="invalid-feedback text-left" id="taxa-7x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">8x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-8x" placeholder="Taxa 8x">
-                                                <div class="invalid-feedback text-left" id="taxa-8x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">9x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-9x" placeholder="Taxa 9x">
-                                                <div class="invalid-feedback text-left" id="taxa-9x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">10x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-10x" placeholder="Taxa 10x">
-                                                <div class="invalid-feedback text-left" id="taxa-10x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">11x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-11x" placeholder="Taxa 11x">
-                                                <div class="invalid-feedback text-left" id="taxa-11x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="align-middle">12x</th>
-                                            <td>
-                                                <input type="text" class="form-control" id="taxa-12x" placeholder="Taxa 12x">
-                                                <div class="invalid-feedback text-left" id="taxa-12x-nulo">
-                                                    Campo obrigatório.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        </div>
+
+                        <div class="col-12 col-lg-5 mt-0 d-none" id="div-bandeira">
+                            <div class="form-group">
+                                <label for="tipo-pagamento" class="font-weight-bold">Bandeira</label>
+                                <select class="form-control" id="bandeira-pagamento">
+                                    <option value="0"></option>
+                                    <option value="1">Visa</option>
+                                    <option value="2">Mastercard</option>
+                                    <option value="3">Elo</option>
+                                    <option value="4">AmericanExpress</option>
+                                    <option value="5">Hipercard</option>
+                                </select>
+                                <div class="invalid-feedback text-left" id="tipoNulo">
+                                    Informe o tipo de forma de pagamento.
+                                </div>
                             </div>
                         </div>
 
-                        
-                    </div>
-
-                    <!-- DIV APENAS PARA CRÉDITO -->
-                    <!-- <div class="row justify-content-md-center align-items-center text-dark d-none" id="">
-                        <div class="col-12 col-lg-7 mt-0 text-center">
-                            <table class="table align-items-center">
+                        <div class="col-12 col-lg-5 mt-0 d-none" id="div-taxa-prestacao">
+                            <label></label>
+                            <table class="table align-items-center text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="w-50">Parcelas</th>
@@ -646,7 +538,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">1x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-1x" placeholder="Taxa 1x">
+                                            <input type="text" class="form-control" id="taxa-1x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-1x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -655,7 +547,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">2x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-2x" placeholder="Taxa 2x">
+                                            <input type="text" class="form-control" id="taxa-2x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-2x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -664,7 +556,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">3x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-3x" placeholder="Taxa 3x">
+                                            <input type="text" class="form-control" id="taxa-3x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-3x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -673,7 +565,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">4x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-4x" placeholder="Taxa 4x">
+                                            <input type="text" class="form-control" id="taxa-4x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-4x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -682,7 +574,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">5x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-5x" placeholder="Taxa 5x">
+                                            <input type="text" class="form-control" id="taxa-5x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-5x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -691,7 +583,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">6x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-6x" placeholder="Taxa 6x">
+                                            <input type="text" class="form-control" id="taxa-6x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-6x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -700,7 +592,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">7x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-7x" placeholder="Taxa 7x">
+                                            <input type="text" class="form-control" id="taxa-7x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-7x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -709,7 +601,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">8x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-8x" placeholder="Taxa 8x">
+                                            <input type="text" class="form-control" id="taxa-8x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-8x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -718,7 +610,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">9x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-9x" placeholder="Taxa 9x">
+                                            <input type="text" class="form-control" id="taxa-9x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-9x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -727,7 +619,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">10x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-10x" placeholder="Taxa 10x">
+                                            <input type="text" class="form-control" id="taxa-10x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-10x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -736,7 +628,7 @@
                                     <tr>
                                         <th scope="row" class="align-middle">11x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-11x" placeholder="Taxa 11x">
+                                            <input type="text" class="form-control" id="taxa-11x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-11x-nulo">
                                                 Campo obrigatório.
                                             </div>
@@ -745,8 +637,137 @@
                                     <tr>
                                         <th scope="row" class="align-middle">12x</th>
                                         <td>
-                                            <input type="text" class="form-control" id="taxa-12x" placeholder="Taxa 12x">
+                                            <input type="text" class="form-control" id="taxa-12x" placeholder="Taxa">
                                             <div class="invalid-feedback text-left" id="taxa-12x-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- DIV APENAS PARA CRÉDITO -->
+                     <!-- TABELA VISA -->
+                    <!-- <div class="row justify-content-md-center align-items-center text-dark d-none" id="div-taxa-prestacao">
+                        <div class="col-12 col-lg-3 mt-0 text-center px-2">
+                            <table class="table align-items-center">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">VISA</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="w-50">Parcelas</th>
+                                        <th scope="col" class="w-50">Taxas</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <th scope="row" class="align-middle">1x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-1x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-1x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">2x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-2x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-2x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">3x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-3x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-3x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">4x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-4x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-4x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">5x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-5x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-5x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">6x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-6x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-6x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">7x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-7x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-7x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">8x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-8x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-8x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">9x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-9x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-9x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">10x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-10x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-10x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">11x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-11x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-11x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">12x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-12x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-12x-mastercard-nulo">
                                                 Campo obrigatório.
                                             </div>
                                         </td>
@@ -754,7 +775,257 @@
                                 </tbody>
                                 </table>
                         </div>
-                    </div> -->
+
+                         TABELA MASTERCARD
+                        <div class="col-12 col-lg-3 mt-0 text-center px-2">
+                            <table class="table align-items-center">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">MASTERCARD</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="w-50">Parcelas</th>
+                                        <th scope="col" class="w-50">Taxas</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <th scope="row" class="align-middle">1x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-1x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-1x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">2x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-2x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-2x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">3x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-3x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-3x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">4x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-4x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-4x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">5x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-5x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-5x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">6x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-6x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-6x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">7x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-7x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-7x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">8x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-8x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-8x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">9x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-9x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-9x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">10x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-10x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-10x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">11x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-11x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-11x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">12x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-12x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-12x-mastercard-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                </table> 
+                        </div>
+
+                        TABELA ELO 
+                        <div class="col-12 col-lg-3 mt-0 text-center px-2">
+                            <table class="table align-items-center">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">ELO</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="w-50">Parcelas</th>
+                                        <th scope="col" class="w-50">Taxas</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <th scope="row" class="align-middle">1x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-1x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-1x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">2x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-2x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-2x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">3x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-3x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-3x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">4x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-4x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-4x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">5x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-5x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-5x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">6x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-6x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-6x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">7x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-7x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-7x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">8x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-8x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-8x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">9x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-9x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-9x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">10x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-10x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-10x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">11x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-11x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-11x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="align-middle">12x</th>
+                                        <td>
+                                            <input type="text" class="form-control" id="taxa-12x" placeholder="Taxa">
+                                            <div class="invalid-feedback text-left" id="taxa-12x-elo-nulo">
+                                                Campo obrigatório.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                        </div> 
+                    </div>-->
 
                     <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
                         <div class="col-12 col-lg-10 mt-0">
