@@ -70,6 +70,17 @@
     color: #fff;
 }
 
+.btn-group.show{
+    display: inline-flex !important;
+}
+
+/* Hidden placeholder */
+select option[disabled]:first-child {
+	display: none;
+}
+
+
+
 
 
 
@@ -112,6 +123,12 @@
     padding: 7px 30px;
 }
 
+.btn-dropdown-duby, .btn-dropdown-duby:hover{
+    background-color: #fff;
+    color: #412884;
+    border-color: #412884;
+    cursor: default !important;
+}
 
 
 /* ########## LOADING ########## A FAZER!! */
