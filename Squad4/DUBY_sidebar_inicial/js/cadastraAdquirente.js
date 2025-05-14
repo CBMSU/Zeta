@@ -493,6 +493,6 @@ function showSuccess(nomeAdquirente){
         timerProgressBar: true,
         allowEscapeKey: false,
         allowOutsideClick: false,
-        backdrop: "rgba(255, 255, 255, 0.3)"
+        backdrop: "rgba(255, 255, 255, 0.5)"
     });
 }

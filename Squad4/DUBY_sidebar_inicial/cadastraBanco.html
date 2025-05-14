@@ -253,14 +253,20 @@
                             <div class="form-group">
                                 <label for="nome-banco">Nome</label>
                                 <input type="text" class="form-control" id="nome-banco" placeholder="Nome do banco">
-                            </div>
-                            <div class="form-group">
-                                <label for="telefone-banco">Telefone</label>
-                                <input type="text" class="form-control" id="telefone-banco" placeholder="Telefone do banco (apenas números)">
+                                <div class="invalid-feedback text-left" id="nomeBancoNulo">
+                                    Nome do banco obrigatório.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="cnpj-banco">CNPJ</label>
                                 <input type="text" class="form-control" id="cnpj-banco" placeholder="CNPJ do banco (apenas números)">
+                                <div class="invalid-feedback text-left" id="cnpjBancoNulo">
+                                    CNPJ do banco obrigatório.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone-banco">Telefone</label>
+                                <input type="text" class="form-control" id="telefone-banco" placeholder="Telefone do banco (apenas números)">
                             </div>
                         </div>
                     </div>
@@ -301,12 +307,18 @@
                             <div class="form-group">
                                 <label for="nome-representante-loja">Nome</label>
                                 <input type="text" class="form-control" id="nome-representante-loja" placeholder="Nome do Responsável">
+                                <div class="invalid-feedback text-left" id="nomeRepresentanteNulo">
+                                    Nome do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4 col-xl-3">
                             <div class="form-group">
                                 <label for="sobrenome-representante-loja">Sobrenome</label>
                                 <input type="text" class="form-control" id="sobrenome-representante-loja" placeholder="Sobrenome do Responsável">
+                                <div class="invalid-feedback text-left" id="sobrenomeRepresentanteNulo">
+                                    Sobrenome do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -315,7 +327,10 @@
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group">
                                 <label for="email-representante-loja">E-mail</label>
-                                <input type="text" class="form-control" id="email-representante-loja" placeholder="E-mail do Responsável">
+                                <input type="email" class="form-control" id="email-representante-loja" placeholder="E-mail do Responsável">
+                                <div class="invalid-feedback text-left" id="emailRepresentanteNulo">
+                                    Email do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -325,6 +340,9 @@
                             <div class="form-group">
                                 <label for="celular-representante-loja">Celular</label>
                                 <input type="text" class="form-control" id="celular-representante-loja" placeholder="Celular do Responsável (apenas números)">
+                                <div class="invalid-feedback text-left" id="celularRepresentanteNulo">
+                                    Celular do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -360,7 +378,7 @@
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group text-right">
                                 <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                <button class="btn btn-save-duby" type="button" data-dismiss="modal">Salvar</button>
+                                <button class="btn btn-save-duby" type="button" data-dismiss="modal" id="cadastraBanco">Salvar</button>
                             </div>
                         </div>
                     </div>
@@ -420,6 +438,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/comportamento_sidebar.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
