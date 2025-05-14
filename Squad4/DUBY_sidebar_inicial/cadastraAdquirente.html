@@ -244,12 +244,21 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                     
+                    <!-- MENSAGEM ALERTA BOOTSTRAP  -->
+                    <!-- <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="alert alert-success" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;">
+                                <strong>Sucesso!</strong> Sua mensagem de sucesso aqui.
+                            </div>
+                        </div>
+                    </div> -->
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-1">
                         <h1 class="h3 mb-0 text-dark">Cadastro de adquirente</h1>
                     </div>
-
+                    
                     <!-- Content Row - DADOS DO ADQUIRENTE -->
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6">
@@ -264,6 +273,9 @@
                             <div class="form-group">
                                 <label for="nome-adquirente">Nome</label>
                                 <input type="text" class="form-control" id="nome-adquirente" placeholder="Nome do adquirente">
+                                <div class="invalid-feedback text-left" id="nomeAdquirenteNulo">
+                                    Nome de adquirente obrigatório.
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -278,7 +290,7 @@
 
                             <div class="form-group">
                                 <label for="identidade-adquirente">Identidade</label>
-                                <input type="text" class="form-control" id="identidade-adquirente" placeholder="Identidade da loja">
+                                <input type="text" class="form-control" id="identidade-adquirente" placeholder="Identidade do adquirente">
                             </div>
 
                             <div class="form-group mb-0">
@@ -321,12 +333,18 @@
                             <div class="form-group">
                                 <label for="nome-representante-loja">Nome</label>
                                 <input type="text" class="form-control" id="nome-representante-loja" placeholder="Nome do Responsável">
+                                <div class="invalid-feedback text-left" id="nomeRepresentanteNulo">
+                                    Nome do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4 col-xl-3">
                             <div class="form-group">
                                 <label for="sobrenome-representante-loja">Sobrenome</label>
                                 <input type="text" class="form-control" id="sobrenome-representante-loja" placeholder="Sobrenome do Responsável">
+                                <div class="invalid-feedback text-left" id="sobrenomeRepresentanteNulo">
+                                    Sobrenome do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -335,7 +353,10 @@
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group">
                                 <label for="email-representante-loja">E-mail</label>
-                                <input type="text" class="form-control" id="email-representante-loja" placeholder="E-mail do Responsável">
+                                <input type="email" class="form-control" id="email-representante-loja" placeholder="E-mail do Responsável">
+                                <div class="invalid-feedback text-left" id="emailRepresentanteNulo">
+                                    Email do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -345,6 +366,9 @@
                             <div class="form-group">
                                 <label for="celular-representante-loja">Celular</label>
                                 <input type="text" class="form-control" id="celular-representante-loja" placeholder="Celular do Responsável (apenas números)">
+                                <div class="invalid-feedback text-left" id="celularRepresentanteNulo">
+                                    Celular do representante obrigatório.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -379,8 +403,7 @@
                     <div class="row justify-content-md-center my-2">
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group text-right">
-                                <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                <button class="btn btn-save-duby" type="button" data-dismiss="modal">Salvar</button>
+                                <button class="btn btn-save-duby" type="button" data-dismiss="modal" id="cadastraAdquirente">Salvar</button>
                             </div>
                         </div>
                     </div>
@@ -673,7 +696,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Bootstrap core JavaScript-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -685,10 +708,13 @@
     <script src="js/comportamento_sidebar.js"></script>
 
     <!-- Include Date Range Picker -->
-        <script type="text/javascript" src="js/datepicker_files/bootstrap-datepicker.min.js"></script>
-        <link rel="stylesheet" href="js/datepicker_files/bootstrap-datepicker3.css"/>
+    <script type="text/javascript" src="js/datepicker_files/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="js/datepicker_files/bootstrap-datepicker3.css"/>
 
-        <script src="js/datepicker_files/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="js/datepicker_files/bootstrap-datepicker.pt-BR.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

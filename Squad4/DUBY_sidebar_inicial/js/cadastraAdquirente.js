@@ -128,7 +128,7 @@ $("#salvarFormaDePagamento").click(() => {
     var taxaCredito;
     const observacao = document.getElementById('observacaoTaxa')
 
-    // Verifica se infos são nulas
+    // Verifica se infos são nulos
     if(tipo.value == 0 || tipo.value == null){
         $("#tipoNulo").show();
         formInvalido = true;
@@ -234,8 +234,8 @@ function criaTagFormaPagamento(){
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
-            <button class="dropdown-item text-dark editaFormaPagamento" name="${item.id}" href="#"><i class="far fa-edit mr-2"></i> Editar</button>
-            <a class="dropdown-item text-danger deletaFormaPagamento" href="#" name="${item.id}"><i class="fas fa-trash-alt mr-3"></i>Deletar</a>
+            <button class="dropdown-item text-dark editaFormaPagamento" name="${item.id}" href="javascript:void(0)"><i class="far fa-edit mr-2"></i> Editar</button>
+            <a class="dropdown-item text-danger deletaFormaPagamento" href="javascript:void(0)" name="${item.id}"><i class="fas fa-trash-alt mr-3"></i>Deletar</a>
         </div>
     </div>
     `).join(''); // Junta o array de strings para criar uma string única
@@ -399,4 +399,99 @@ function tipoLayout(tipo){
         $("#div-bandeira").addClass("d-none");
         $("#div-taxa-prestacao").addClass("d-none"); 
     }
+}
+
+
+// Cadastra adquirente
+$("#cadastraAdquirente").click(() => {
+    limpaErrosFormAdquirente();
+
+    var formInvalido = false;
+
+    const nomeAdquirente = document.getElementById('nome-adquirente').value;
+    const nomeRepresentante = document.getElementById('nome-representante-loja').value;
+    const sobrenomeRepresentante = document.getElementById('sobrenome-representante-loja').value;
+    const emailRepresentante = document.getElementById('email-representante-loja').value;
+    const celularRepresentante = document.getElementById('celular-representante-loja').value;
+
+    // Verifica se infos são nulos
+    if(nomeAdquirente == "" || nomeAdquirente == null){
+        $("#nomeAdquirenteNulo").show();
+        formInvalido = true;
+    }
+
+    if(nomeRepresentante == "" || nomeRepresentante == null){
+        $("#nomeRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(sobrenomeRepresentante == "" || sobrenomeRepresentante == null){
+        $("#sobrenomeRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(emailRepresentante == "" || emailRepresentante == null){
+        $("#emailRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(celularRepresentante == "" || celularRepresentante == null){
+        $("#celularRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    // Caso algum campo obrigatório seja nulo, cancela o envio do form
+    if(formInvalido)
+        return false;
+
+    showSuccess(nomeAdquirente)
+    limpaFormAdquirente()
+})
+
+function limpaErrosFormAdquirente(){
+    $("#nomeAdquirenteNulo").hide();
+    $("#nomeRepresentanteNulo").hide();
+    $("#sobrenomeRepresentanteNulo").hide();
+    $("#emailRepresentanteNulo").hide();
+    $("#celularRepresentanteNulo").hide();
+}
+
+function limpaFormAdquirente(){
+    $("#nome-adquirente").val("");
+    $("#descricao-adquirente").val("");
+    $("#chave-api-adquirente").val("");
+    $("#identidade-adquirente").val("");
+
+    $("#nome-representante-loja").val("");
+    $("#sobrenome-representante-loja").val("");
+    $("#email-representante-loja").val("");
+    $("#celular-representante-loja").val("");
+    $("#cpf-representante-loja").val("");
+    $("#rg-representante-loja").val("");
+
+    formasPagamento.forEach(forma => {
+        if(forma.tipo != 3){
+        $('#tipo-pagamento option[value="'+ forma.tipo +'"]').css("display", "block");
+    } else {
+        $("#bandeira-pagamento option[value='"+ forma.bandeira +"']").css("display", "block");
+    }
+    });
+
+    formasPagamento = [];
+    criaTagFormaPagamento();
+}
+
+function showSuccess(nomeAdquirente){
+    Swal.fire({
+        title: "<strong>Adquirente cadastrado!</strong>",
+        icon: "success",
+        html: `
+            Sucesso ao adicionar <b>${nomeAdquirente}</b>!
+        `,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false
+    });
 }

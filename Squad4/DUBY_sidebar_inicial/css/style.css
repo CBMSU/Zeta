@@ -74,6 +74,12 @@
     display: inline-flex !important;
 }
 
+.cor-duby{
+    color: #412884;
+}
+
+
+
 /* Hidden placeholder */
 select option[disabled]:first-child {
 	display: none;
