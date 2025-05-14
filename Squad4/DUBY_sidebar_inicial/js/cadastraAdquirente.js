@@ -235,14 +235,14 @@ function criaTagFormaPagamento(){
         </button>
         <div class="dropdown-menu">
             <button class="dropdown-item text-dark editaFormaPagamento" name="${item.id}" href="#"><i class="far fa-edit mr-2"></i> Editar</button>
-            <a class="dropdown-item text-danger deletaFormaPagamento" href="#"><i class="fas fa-trash-alt mr-3"></i>Deletar</a>
+            <a class="dropdown-item text-danger deletaFormaPagamento" href="#" name="${item.id}"><i class="fas fa-trash-alt mr-3"></i>Deletar</a>
         </div>
     </div>
     `).join(''); // Junta o array de strings para criar uma string única
 
     document.getElementById('div-formas-pagamento').innerHTML = html;
 
-    // Abre form de edição ao clicar no botão de tag
+    // Seleciona a forma de pagamento e abre form de edição ao clicar no botão de tag
     $(".editaFormaPagamento").click((e)=>{
         var id;
         
@@ -254,9 +254,60 @@ function criaTagFormaPagamento(){
         }
         var formaPagamento = formasPagamento.find(x => x.id === id);
         
+        // chama form de edição
         editaFormaPagamento(formaPagamento)
     })
+
+    // Seleciona a forma de pagamento e abre modal de deleção ao clicar no botão de tag
+    $(".deletaFormaPagamento").click((e)=>{
+        var id;
+        
+        if(!e.target.name || e.target.name==undefined){
+            id = e.target.parentNode.name;
+        }
+        else{
+            id = e.target.name;
+        }
+        var formaPagamento = formasPagamento.find(x => x.id === id);
+        
+        if(formaPagamento.tipo == 3){
+            document.getElementById("spanNomeFormaPagamento").innerHTML = formaPagamento.tipoTexto + " - " + formaPagamento.bandeiraTexto
+        }else{
+            document.getElementById("spanNomeFormaPagamento").innerHTML = formaPagamento.tipoTexto
+        }
+        
+        $('#deletarFormaPagamentoModal').modal('show');
+        
+        idFormaPagamento = formaPagamento.id;
+    })
 }
+
+// Chama função de deleção ao clidar no botão de delete
+$("#btnDeletarFormaPagamento").click(() => {
+    deletaFormaPagamento()
+})
+
+// Deleta forma de pagamento
+function deletaFormaPagamento(){
+    var formaSelecionada = formasPagamento.find(x => x.id === idFormaPagamento);
+    formasPagamento = formasPagamento.filter(forma => forma !== formaSelecionada)
+
+    criaTagFormaPagamento();
+
+    $('#deletarFormaPagamentoModal').modal('hide');
+
+    // Options retornam para a lista
+    if(formaSelecionada.tipo != 3){
+        $('#tipo-pagamento option[value="'+ formaSelecionada.tipo +'"]').css("display", "block");
+    } else {
+        $("#bandeira-pagamento option[value='"+ formaSelecionada.bandeira +"']").css("display", "block");
+    }
+}
+
+// Apaga global idFormaPagamento quando modal de deleção fechar
+$('#deletarFormaPagamentoModal').on('hidden.bs.modal', function () {
+    idFormaPagamento = null;
+});
 
 // Edita forma de pagamento
 function editaFormaPagamento(forma){
