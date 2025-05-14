@@ -3,8 +3,43 @@ $(document).ready(function() {
 });
 
 var formasPagamento = [];
+var idFormaPagamento = null;
 
-function parametrosData() {
+function parametrosData(dataInicio, dataFim) {
+
+    if(dataFim){
+        $('input[name="dataInicio"]').datepicker('remove');
+
+        $('input[name="dataInicio"]').datepicker({
+            format: 'dd/mm/yyyy',                
+            language: 'pt-BR',
+            todayHighlight: true,
+            autoclose: true,
+            datesDisabled: false,
+            endDate: dataFim,
+            startDate: '01/01/2015',
+            orientation: "top"
+        }).on('hide', function(e) {
+            e.target.blur()
+        });
+    }
+
+    if(dataInicio){
+        $('input[name="dataFim"]').datepicker('remove');
+
+        $('input[name="dataFim"]').datepicker({
+            format: 'dd/mm/yyyy',                
+            language: 'pt-BR',
+            todayHighlight: true,
+            autoclose: true,
+            datesDisabled: false,
+            endDate: '+10y',
+            startDate: dataInicio,
+            orientation: "top"
+        }).on('hide', function(e) {
+            e.target.blur()
+        });
+    }
 
     // Cria datepicker no DATA INICIO ao carregar documento documento
     $('input[name="dataInicio"]').datepicker({
@@ -69,13 +104,15 @@ function parametrosData() {
             e.target.blur()
         });
     })
-
     
 };
 
 // EVENTOS AO SALVAR MODAL DE TIPO PAGAMENTO
-$("#adicionarFormaDePagamento").click(() => {
+$("#salvarFormaDePagamento").click(() => {
     limpaErrosModalTaxa();
+
+    var edicao = idFormaPagamento == null || !idFormaPagamento ? false : true;
+
     var formInvalido = false;
     
     // Pega infos do HTML
@@ -132,16 +169,16 @@ $("#adicionarFormaDePagamento").click(() => {
     if(formInvalido)
         return false;
 
-    console.log("Acrescenta forma de pagamento.")
 
+    // Passou pelas restrições, segue para cadastro
     var formaPagamento = new Object();
 
-    formaPagamento.id = Math.random().toString(16).slice(2);
+    formaPagamento.id = idFormaPagamento == null || !idFormaPagamento ? Math.random().toString(16).slice(2) : idFormaPagamento;
     formaPagamento.dataInicio = dataInicio.value;
     formaPagamento.dataFim = dataFim.value;
     formaPagamento.tipo = tipo.value;
     formaPagamento.tipoTexto = tipoTexto;
-    formaPagamento.observacao = observacao;
+    formaPagamento.observacao = observacao.value;
 
     if(formaPagamento.tipo != 3){
         formaPagamento.taxa = taxa.value;
@@ -159,8 +196,36 @@ $("#adicionarFormaDePagamento").click(() => {
         }
         formaPagamento.taxaCredito = taxaCredito.value;
     }
-    formasPagamento.push(formaPagamento)
 
+    if(!edicao){
+        formasPagamento.push(formaPagamento)
+    }else{
+        formasPagamento = formasPagamento.map(formaCadastrada => {
+            if (formaCadastrada.id == formaPagamento.id) {
+                return formaPagamento;
+            }
+            return formaCadastrada;
+        });
+        idFormaPagamento = null;
+    }
+
+    criaTagFormaPagamento()
+    limpaFormModalTaxa();
+
+    // Fecha o modal
+    $('#formaPagamentoModal').modal('hide');
+
+    // Remove tipo de pagamento cadastrado ou bandeira
+    if(formaPagamento.tipo != 3){
+        $('#tipo-pagamento option[value="'+ formaPagamento.tipo +'"]').css("display", "none");
+    } else {
+        $("#bandeira-pagamento option[value='"+ formaPagamento.bandeira +"']").css("display", "none");
+    }
+
+})
+
+// Cria tags de forma de pagamento
+function criaTagFormaPagamento(){
 
     const html = formasPagamento.map(item => `
     <div class="btn-group mt-1">
@@ -169,24 +234,64 @@ $("#adicionarFormaDePagamento").click(() => {
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item text-dark" href="#"><i class="far fa-edit mr-2"></i> Editar</a>
-            <a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt mr-3"></i>Deletar</a>
+            <button class="dropdown-item text-dark editaFormaPagamento" name="${item.id}" href="#"><i class="far fa-edit mr-2"></i> Editar</button>
+            <a class="dropdown-item text-danger deletaFormaPagamento" href="#"><i class="fas fa-trash-alt mr-3"></i>Deletar</a>
         </div>
     </div>
-    `).join(''); // Join o array de strings para criar uma string única
+    `).join(''); // Junta o array de strings para criar uma string única
 
     document.getElementById('div-formas-pagamento').innerHTML = html;
 
-    limpaFormModalTaxa();
-    $('#formaPagamentoModal').modal('hide');
+    // Abre form de edição ao clicar no botão de tag
+    $(".editaFormaPagamento").click((e)=>{
+        var id;
+        
+        if(!e.target.name || e.target.name==undefined){
+            id = e.target.parentNode.name;
+        }
+        else{
+            id = e.target.name;
+        }
+        var formaPagamento = formasPagamento.find(x => x.id === id);
+        
+        editaFormaPagamento(formaPagamento)
+    })
+}
 
-    if(formaPagamento.tipo != 3){
-        $('#tipo-pagamento option[value="'+ formaPagamento.tipo +'"]').remove();
-    } else {
-        $("#bandeira-pagamento option[value='"+ formaPagamento.bandeira +"']").remove();
-    }
+// Edita forma de pagamento
+function editaFormaPagamento(forma){
+    idFormaPagamento = forma.id;
 
+    $('#formaPagamentoModal').modal('show');
+
+    document.getElementById('dataInicioTaxa').value = forma.dataInicio
+    document.getElementById('dataFimTaxa').value = forma.dataFim
+    document.getElementById('observacaoTaxa').value = forma.observacao
+    document.getElementById('tipo-pagamento').value = forma.tipo
+    $('#tipo-pagamento').prop('disabled', true);
     
+    tipoLayout(forma.tipo);
+
+
+    if(forma.tipo == 3){
+        document.getElementById('bandeira-pagamento').value = forma.bandeira
+        $('#bandeira-pagamento').prop('disabled', true)
+
+        forma.taxas.forEach(credito => {
+            document.getElementById('taxa-' + credito.parcela + 'x').value = credito.taxa
+        });
+
+    }else{
+        document.getElementById('taxa-forma-pagamento').value = forma.taxa
+    }
+    
+    parametrosData(forma.dataInicio, forma.dataFim);
+}
+
+$(".closeModalTipoPagamento").click(() => {
+    limpaErrosModalTaxa();
+    limpaFormModalTaxa();
+    idFormaPagamento = null;
 })
 
 function limpaErrosModalTaxa(){
@@ -203,7 +308,9 @@ function limpaErrosModalTaxa(){
 function limpaFormModalTaxa(){
     // APAGA INFOS
     $("#tipo-pagamento").val("0");
+    $('#tipo-pagamento').prop('disabled', false);
     $("#bandeira-pagamento").val("0");
+    $('#bandeira-pagamento').prop('disabled', false)
     $("#taxa-forma-pagamento").val("");
     $("#dataInicioTaxa").val("");
     $("#dataFimTaxa").val("");
@@ -225,22 +332,20 @@ function limpaFormModalTaxa(){
 
 // EVENTO AO ALTERAR TIPO PAGAMENTO
 $("#tipo-pagamento").on("change", (e) => {
-    if(e.target.value == 3){
+    tipoLayout(e.target.value);
+})
+
+// ALTERA LAYOUT DO MODAL DE FORMA DE CADASTRO PARA CRÉDITO OU RESETA PARA LAYOUT PADRÃO
+function tipoLayout(tipo){
+    if(tipo == 3){
         $("#div-taxa-unica").addClass("d-none");
 
         $("#div-bandeira").removeClass("d-none"); 
         $("#div-taxa-prestacao").removeClass("d-none"); 
-
-
-        // $("#div-tipo").removeClass("col-lg-5")
-        // $("#div-tipo").addClass("col-lg-10")
     }else{
         $("#div-taxa-unica").removeClass("d-none");
 
         $("#div-bandeira").addClass("d-none");
         $("#div-taxa-prestacao").addClass("d-none"); 
-        
-        // $("#div-tipo").removeClass("col-lg-10")
-        // $("#div-tipo").addClass("col-lg-5")
     }
-})
+}
