@@ -153,7 +153,6 @@ function validaCNPJ(cnpj){
 }
 
 function validaCelular(celular){
-    console.log(celular.length)
     if(celular.length == 0){
         return true;
     }

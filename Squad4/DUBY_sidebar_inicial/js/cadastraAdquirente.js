@@ -1,11 +1,11 @@
 $(document).ready(function() {
     parametrosData();
 
-    $('#celular-representante-loja').mask('(00) 00000-0000');
-    $('#cpf-representante-loja').mask('000.000.000-00', {reverse: true});
+    $('#celular-representante-adquirente').mask('(00) 00000-0000');
+    $('#cpf-representante-adquirente').mask('000.000.000-00', {reverse: true});
     
     // Apenas numeros
-    $('#rg-representante-loja').mask('0#');
+    $('#rg-representante-adquirente').mask('0#');
 });
 
 var formasPagamento = [];
@@ -415,10 +415,10 @@ $("#cadastraAdquirente").click(() => {
     var formInvalido = false;
 
     const nomeAdquirente = document.getElementById('nome-adquirente').value;
-    const nomeRepresentante = document.getElementById('nome-representante-loja').value;
-    const sobrenomeRepresentante = document.getElementById('sobrenome-representante-loja').value;
-    const emailRepresentante = document.getElementById('email-representante-loja').value;
-    const celularRepresentante = document.getElementById('celular-representante-loja').value;
+    const nomeRepresentante = document.getElementById('nome-representante-adquirente').value;
+    const sobrenomeRepresentante = document.getElementById('sobrenome-representante-adquirente').value;
+    const emailRepresentante = document.getElementById('email-representante-adquirente').value;
+    const celularRepresentante = document.getElementById('celular-representante-adquirente').value;
 
     // Verifica se infos são nulos
     if(nomeAdquirente == "" || nomeAdquirente == null){
@@ -481,12 +481,12 @@ function limpaFormAdquirente(){
     $("#chave-api-adquirente").val("");
     $("#identidade-adquirente").val("");
 
-    $("#nome-representante-loja").val("");
-    $("#sobrenome-representante-loja").val("");
-    $("#email-representante-loja").val("");
-    $("#celular-representante-loja").val("");
-    $("#cpf-representante-loja").val("");
-    $("#rg-representante-loja").val("");
+    $("#nome-representante-adquirente").val("");
+    $("#sobrenome-representante-adquirente").val("");
+    $("#email-representante-adquirente").val("");
+    $("#celular-representante-adquirente").val("");
+    $("#cpf-representante-adquirente").val("");
+    $("#rg-representante-adquirente").val("");
 
     formasPagamento.forEach(forma => {
         if(forma.tipo != 3){
@@ -515,7 +515,6 @@ function validaEmail(email){
 }
 
 function validaCelular(celular){
-    console.log(celular.length)
     if(celular.length == 0){
         return true;
     }

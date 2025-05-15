@@ -263,6 +263,9 @@
                                 <div class="invalid-feedback text-left" id="cnpjBancoNulo">
                                     CNPJ do banco obrigatório.
                                 </div>
+                                <div class="invalid-feedback text-left" id="cnpjBancoInvalido">
+                                    CNPJ inválido. Por favor, digite um CNPJ válido.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="telefone-banco">Telefone</label>
@@ -305,8 +308,8 @@
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-3 col-xl-3">
                             <div class="form-group">
-                                <label for="nome-representante-loja">Nome</label>
-                                <input type="text" class="form-control" id="nome-representante-loja" placeholder="Nome do Responsável">
+                                <label for="nome-representante-banco">Nome</label>
+                                <input type="text" class="form-control" id="nome-representante-banco" placeholder="Nome do Responsável">
                                 <div class="invalid-feedback text-left" id="nomeRepresentanteNulo">
                                     Nome do representante obrigatório.
                                 </div>
@@ -314,8 +317,8 @@
                         </div>
                         <div class="col-12 col-lg-4 col-xl-3">
                             <div class="form-group">
-                                <label for="sobrenome-representante-loja">Sobrenome</label>
-                                <input type="text" class="form-control" id="sobrenome-representante-loja" placeholder="Sobrenome do Responsável">
+                                <label for="sobrenome-representante-banco">Sobrenome</label>
+                                <input type="text" class="form-control" id="sobrenome-representante-banco" placeholder="Sobrenome do Responsável">
                                 <div class="invalid-feedback text-left" id="sobrenomeRepresentanteNulo">
                                     Sobrenome do representante obrigatório.
                                 </div>
@@ -326,22 +329,13 @@
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group">
-                                <label for="email-representante-loja">E-mail</label>
-                                <input type="email" class="form-control" id="email-representante-loja" placeholder="E-mail do Responsável">
+                                <label for="email-representante-banco">E-mail</label>
+                                <input type="email" class="form-control" id="email-representante-banco" placeholder="E-mail do Responsável">
                                 <div class="invalid-feedback text-left" id="emailRepresentanteNulo">
                                     Email do representante obrigatório.
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="celular-representante-loja">Celular</label>
-                                <input type="text" class="form-control" id="celular-representante-loja" placeholder="Celular do Responsável (apenas números)">
-                                <div class="invalid-feedback text-left" id="celularRepresentanteNulo">
-                                    Celular do representante obrigatório.
+                                <div class="invalid-feedback text-left" id="emailRepresentanteInvalido">
+                                    Email inválido. Por favor, digite um email válido.
                                 </div>
                             </div>
                         </div>
@@ -350,8 +344,14 @@
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group">
-                                <label for="cpf-representante-loja">CPF</label>
-                                <input type="text" class="form-control" id="cpf-representante-loja" placeholder="CPF do Responsável (apenas números)">
+                                <label for="celular-representante-banco">Celular</label>
+                                <input type="text" class="form-control" id="celular-representante-banco" placeholder="Celular do Responsável (apenas números)">
+                                <div class="invalid-feedback text-left" id="celularRepresentanteNulo">
+                                    Celular do representante obrigatório.
+                                </div>
+                                <div class="invalid-feedback text-left" id="celularRepresentanteInvalido">
+                                    Celular inválido. Por favor, digite um número válido.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -359,8 +359,17 @@
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-7 col-xl-6">
                             <div class="form-group">
-                                <label for="rg-representante-loja">RG</label>
-                                <input type="text" class="form-control" id="rg-representante-loja" placeholder="RG do Responsável (apenas números)">
+                                <label for="cpf-representante-banco">CPF</label>
+                                <input type="text" class="form-control" id="cpf-representante-banco" placeholder="CPF do Responsável (apenas números)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-7 col-xl-6">
+                            <div class="form-group">
+                                <label for="rg-representante-banco">RG</label>
+                                <input type="text" class="form-control" id="rg-representante-banco" placeholder="RG do Responsável (apenas números)">
                             </div>
                         </div>
                     </div>
