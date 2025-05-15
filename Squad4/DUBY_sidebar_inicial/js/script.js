@@ -1,3 +1,6 @@
+var conciliacao = null;
+var status = null;
+
 $(document).ready(function () {
 
     // CRIAÇÃO DO GRÁFICO
@@ -64,22 +67,25 @@ $(document).ready(function () {
 // INÍCIO - TROCA STATUS DE CONCILIAÇÃO
 
 $('.spanstatus').click((e) => {
-    var statusSelecionado = e.target.innerHTML;
-
-    document.querySelector("#htmlBtnDropdown").innerHTML = statusSelecionado
-
     var tipoStatus = e.target.attributes.name.value;
-    console.log(tipoStatus)
+    alteraStatus(tipoStatus);
+})
+
+function alteraStatus(tipoStatus){
+    tipoStatus = parseInt(tipoStatus);
+    var textoDrop = tipoStatus == 2 ? "Em análise" : tipoStatus == 3 ? "Solucionado" : "Pendente";
+
+    document.querySelector("#htmlBtnDropdown").innerHTML = textoDrop;
     var corStatus;
 
     switch(tipoStatus){
-        case "status1":
+        case 1:
             corStatus = "#FF5052";
             break;
-        case "status2":
+        case 2:
             corStatus = "#2C85DE";
             break;
-        case "status3":
+        case 3:
             corStatus = "#00C72C";
             break;
         default:
@@ -88,10 +94,7 @@ $('.spanstatus').click((e) => {
 
     $("#dropdown").css({"background-color": corStatus});
 
-    $("#btnSalvarStatusConcilicao").removeClass("d-none");
-    $("#rowObservacaoStatus").removeClass("d-none"); 
-
-})
+}
 
 
 // FIM - TROCA STATUS DE CONCILIAÇÃO
@@ -100,6 +103,7 @@ $('.spanstatus').click((e) => {
 var listaDivergentes = [];
 
 var divergencia1 = new Object();
+divergencia1.id = Math.random().toString(16).slice(2);
 divergencia1.data = new Date(2025, 2, 5);
 divergencia1.status = 1;
 divergencia1.adquirente = "TecnoPayments";
@@ -110,43 +114,46 @@ divergencia1.diferenca = "- R$ 15.000,00";
 divergencia1.bandeira = "Visa";
 divergencia1.parcelaNum = 1;
 divergencia1.parcelaTotal = 4;
-divergencia1.tipoOperacao = "Crédito";
-divergencia1.jurosVigente = "5%";
+divergencia1.tipo = "Crédito";
+divergencia1.taxa = "5%";
 divergencia1.observacoes = [];
 
 listaDivergentes.push(divergencia1)
 
 var divergencia2 = new Object();
+divergencia2.id = Math.random().toString(16).slice(2);
 divergencia2.data = new Date(2025, 2, 1);
-divergencia2.status = 1;
+divergencia2.status = 2;
 divergencia2.adquirente = "AdiqCard Solutions";
 divergencia2.banco = "DigimonBank";
 divergencia2.valorEsperado = "R$ 250.000,00";
 divergencia2.valorRecebido = "R$ 246.000,00";
 divergencia2.diferenca = "- R$ 4.000,00";
-divergencia2.tipoOperacao = "Pix";
-divergencia2.jurosVigente = "2%";
+divergencia2.tipo = "Pix";
+divergencia2.taxa = "2%";
 divergencia2.observacoes = [];
 
 listaDivergentes.push(divergencia2)
 
 var divergencia3 = new Object();
+divergencia3.id = Math.random().toString(16).slice(2);
 divergencia3.data = new Date(2025, 2, 12);
-divergencia3.status = 1;
+divergencia3.status = 3;
 divergencia3.adquirente = "PayMax Digital";
 divergencia3.banco = "CinderelaBank";
 divergencia3.valorEsperado = "R$ 180.000,00";
 divergencia3.valorRecebido = "R$ 140.000,00";
 divergencia3.diferenca = "- R$ 40.000,00";
-divergencia3.tipoOperacao = "Débito";
-divergencia3.jurosVigente = "3%";
+divergencia3.tipo = "Boleto";
+divergencia3.taxa = "3%";
 divergencia3.observacoes = [];
 
 listaDivergentes.push(divergencia3)
 
 var divergencia4 = new Object();
+divergencia4.id = Math.random().toString(16).slice(2);
 divergencia4.data = new Date(2025, 2, 25);
-divergencia4.status = 1;
+divergencia4.status = 2;
 divergencia4.adquirente = "MoneyAdiq";
 divergencia4.banco = "ExampleBank";
 divergencia4.valorEsperado = "R$ 500,00";
@@ -155,8 +162,8 @@ divergencia4.diferenca = "- R$ 300,00";
 divergencia4.bandeira = "Mastercard";
 divergencia4.parcelaNum = 8;
 divergencia4.parcelaTotal = 12;
-divergencia4.tipoOperacao = "Crédito";
-divergencia4.jurosVigente = "15%";
+divergencia4.tipo = "Crédito";
+divergencia4.taxa = "15%";
 divergencia4.observacoes = [];
 
 listaDivergentes.push(divergencia4)
@@ -191,7 +198,7 @@ function criaLinhaTabelaDivergentes(){
         </div>
 
         <div class="col-2 col-lg-1 mt-0 text-center">
-            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoDivergenteModal"></i>
+            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoDivergenteModal" name="${item.id}"></i>
         </div>
 
         <!-- DIVIDER  -->
@@ -203,6 +210,30 @@ function criaLinhaTabelaDivergentes(){
 
     document.getElementById('conteudoTabela').innerHTML = html;
 
+    $(".plus-info-conciliacao").click((e)=>{
+        var id = e.target.getAttribute('name');
+        var divergenciaSelecionada = listaDivergentes.find(x => x.id === id);
+        
+        mostraInfoConciliacao(divergenciaSelecionada)
+    })
+
+}
+
+function mostraInfoConciliacao(divergenciaSelecionada){
+    document.getElementById('div-data-conciliacao').innerHTML = divergenciaSelecionada.data.toLocaleDateString()
+    alteraStatus(divergenciaSelecionada.status)
+    console.log(divergenciaSelecionada.status)
+    // document.getElementById('div-status-conciliacao').innerHTML = divergenciaSelecionada.data
+    document.getElementById('div-adquirente-conciliacao').innerHTML = divergenciaSelecionada.adquirente
+    document.getElementById('div-banco-conciliacao').innerHTML = divergenciaSelecionada.banco
+    document.getElementById('div-valorEsperado-conciliacao').innerHTML = divergenciaSelecionada.valorEsperado
+    document.getElementById('div-valorRecebido-conciliacao').innerHTML = divergenciaSelecionada.valorRecebido
+    document.getElementById('div-diferenca-conciliacao').innerHTML = divergenciaSelecionada.diferenca
+    document.getElementById('div-bandeira-conciliacao').innerHTML = divergenciaSelecionada.bandeira ? divergenciaSelecionada.bandeira : "-";
+    document.getElementById('div-parcelaNum-conciliacao').innerHTML = divergenciaSelecionada.parcelaNum ? divergenciaSelecionada.parcelaNum : "-";
+    document.getElementById('div-parcelaTotal-conciliacao').innerHTML = divergenciaSelecionada.parcelaTotal ? divergenciaSelecionada.parcelaTotal : "-";
+    document.getElementById('div-tipo-conciliacao').innerHTML = divergenciaSelecionada.tipo
+    document.getElementById('div-taxa-conciliacao').innerHTML = divergenciaSelecionada.taxa
 }
 
 // FIM - Criação de infos tabela divergentes

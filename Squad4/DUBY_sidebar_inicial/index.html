@@ -460,8 +460,7 @@
                     </div>
 
                     <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            05/03/2025
+                        <div class="col-6 col-lg-5 mt-0" id="div-data-conciliacao">
                         </div>
 
                         <div class="col-6 col-lg-5 mt-0">
@@ -469,9 +468,9 @@
                                 <button id="dropdown" class="btn btn-sm btn-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span id="htmlBtnDropdown">Pendente</span>
                                     <div class="dropdown-menu" aria-labelledby="dropdown">
-                                        <span class="dropdown-item spanstatus" name="status1">Pendente</span>
-                                        <span class="dropdown-item spanstatus" name="status2">Em análise</span>
-                                        <span class="dropdown-item spanstatus" name="status3">Solicionado</span>
+                                        <span class="dropdown-item spanstatus" name="1">Pendente</span>
+                                        <span class="dropdown-item spanstatus" name="2">Em análise</span>
+                                        <span class="dropdown-item spanstatus" name="3">Solicionado</span>
                                     </div>
                                 </button>
                             </div>
@@ -490,12 +489,10 @@
                     </div>
 
                     <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            PayMax Digital
+                        <div class="col-6 col-lg-5 mt-0" id="div-adquirente-conciliacao">
                         </div>
 
-                        <div class="col-6 col-lg-5 mt-0">
-                            PokemonBank
+                        <div class="col-6 col-lg-5 mt-0" id="div-banco-conciliacao">
                         </div>
                     </div>
                     <!--  -->
@@ -511,12 +508,10 @@
                     </div>
 
                     <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            R$ 300.000,00
+                        <div class="col-6 col-lg-5 mt-0" id="div-valorEsperado-conciliacao">
                         </div>
 
-                        <div class="col-6 col-lg-5 mt-0">
-                            R$ 285.000,00
+                        <div class="col-6 col-lg-5 mt-0" id="div-valorRecebido-conciliacao">
                         </div>
                     </div>
                     <!--  -->
@@ -532,12 +527,10 @@
                     </div>
 
                     <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0 text-danger">
-                            - R$ 15.000,00
+                        <div class="col-6 col-lg-5 mt-0 text-danger" id="div-diferenca-conciliacao">
                         </div>
 
-                        <div class="col-6 col-lg-5 mt-0">
-                            Visa
+                        <div class="col-6 col-lg-5 mt-0" id="div-bandeira-conciliacao">
                         </div>
                     </div>
                     <!--  -->
@@ -553,12 +546,10 @@
                     </div>
 
                     <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            1
+                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaNum-conciliacao">
                         </div>
 
-                        <div class="col-6 col-lg-5 mt-0">
-                            4
+                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaTotal-conciliacao">
                         </div>
                     </div>
                     <!--  -->
@@ -574,17 +565,15 @@
                     </div>
 
                     <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            5%
+                        <div class="col-6 col-lg-5 mt-0" id="div-taxa-conciliacao">
                         </div>
 
-                        <div class="col-6 col-lg-5 mt-0">
-                            Crédito
+                        <div class="col-6 col-lg-5 mt-0" id="div-tipo-conciliacao">
                         </div>
                     </div>
                     <!--  -->
                     <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold d-none" id="rowObservacaoStatus">
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold" id="rowObservacaoStatus">
                         <div class="col-12 col-lg-10 mt-0">
                             Observação
                         </div>
@@ -598,158 +587,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-success d-none" href="#" id="btnSalvarStatusConcilicao">Salvar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal Info Conciliação Conciliado -->
-    <div class="modal fade" id="infoConciliadoModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliadoModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="infoConciliadoModalLabel">Descrição da Conciliação</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Data
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Status
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            01/03/2025
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            <div class="dropdown">
-                                <button id="dropdown2" class="btn btn-sm btn-secondary border-0" type="button" style="background-color: #00C72C;">
-                                    <span id="htmlBtnDropdown2">Conciliado</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Adquirente
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Banco
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            AdiqCard Solutions
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            PokemonBank
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Valor Esperado
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Valor Recebido
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            R$ 250.000,00
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            R$ 250.000,00
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Diferença
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Bandeira
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            R$ 0,00
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            -
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Número da Parcela
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Total de Parcelas
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            -
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            -
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Juros Vigente
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Tipo de Operação
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0">
-                            2%
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Pix
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-success" href="#" id="btnSalvarStatusConcilicao">Salvar</button>
                 </div>
             </div>
         </div>
