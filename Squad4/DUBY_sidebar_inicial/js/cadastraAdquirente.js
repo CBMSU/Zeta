@@ -1,5 +1,11 @@
 $(document).ready(function() {
     parametrosData();
+
+    $('#celular-representante-loja').mask('(00) 00000-0000');
+    $('#cpf-representante-loja').mask('000.000.000-00', {reverse: true});
+    
+    // Apenas numeros
+    $('#rg-representante-loja').mask('0#');
 });
 
 var formasPagamento = [];
@@ -435,8 +441,18 @@ $("#cadastraAdquirente").click(() => {
         formInvalido = true;
     }
 
+    if(!validaEmail(emailRepresentante)){
+        $("#emailRepresentanteInvalido").show();
+        formInvalido = true;
+    }
+
     if(celularRepresentante == "" || celularRepresentante == null){
         $("#celularRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(!validaCelular(celularRepresentante)){
+        $("#celularRepresentanteInvalido").show();
         formInvalido = true;
     }
 
@@ -454,6 +470,9 @@ function limpaErrosFormAdquirente(){
     $("#sobrenomeRepresentanteNulo").hide();
     $("#emailRepresentanteNulo").hide();
     $("#celularRepresentanteNulo").hide();
+
+    $("#emailRepresentanteInvalido").hide();
+    $("#celularRepresentanteInvalido").hide();
 }
 
 function limpaFormAdquirente(){
@@ -481,6 +500,31 @@ function limpaFormAdquirente(){
     criaTagFormaPagamento();
 }
 
+// FUNÇÕES DE VALIDAÇÃO
+function validaEmail(email){
+    if(email.length == 0){
+        return true;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailRegex.test(email)) {
+        return true; // Email válido
+    }
+    return false;
+}
+
+function validaCelular(celular){
+    console.log(celular.length)
+    if(celular.length == 0){
+        return true;
+    }
+
+    var valido = celular.length != 15 ?  false : true;
+    return valido;
+}
+
+// MOSTRA MENSAGEM DE SUCESSO AO CADASTRAR
 function showSuccess(nomeAdquirente){
     Swal.fire({
         title: "<strong>Adquirente cadastrado!</strong>",
