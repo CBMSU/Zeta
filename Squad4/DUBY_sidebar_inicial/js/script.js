@@ -1,5 +1,4 @@
-var conciliacao = null;
-var status = null;
+var idDivergencia = null;
 
 $(document).ready(function () {
 
@@ -164,12 +163,16 @@ divergencia4.parcelaNum = 8;
 divergencia4.parcelaTotal = 12;
 divergencia4.tipo = "Crédito";
 divergencia4.taxa = "15%";
-divergencia4.observacoes = [];
+divergencia4.observacoes = [
+    {usuario: "Pedro Cardozo", data: new Date(2025, 4, 11, 11, 10, 38), observacao: "Gabriel, colaborador da MoneyAdiq, pediu 3 dias úteis para revisão do caso."}, 
+    {usuario: "Pedro Cardozo", data: new Date(2025, 4, 12, 17, 39, 55), observacao: "Gabriel pediu comprovantes de pagamento para verificar conflito."}, 
+    {usuario: "Pedro Cardozo", data: new Date(2025, 4, 15, 15, 25, 8), observacao: "Andressa, gerente da MoneyAdiq, informa que ocorreu um equívoco e fará estorno do valor até dia 20/04."}
+];
 
 listaDivergentes.push(divergencia4)
 
 $(document).ready(function () {    
-    listaDivergentes.sort((a,b) => (Date.parse(a.data) > Date.parse(b.data)) ? 1 : ((Date.parse(b.data) > Date.parse(a.data)) ? -1 : 0))
+    listaDivergentes.sort((a,b) => (a.data > b.data) ? 1 : ((b.data > a.data) ? -1 : 0))
     criaLinhaTabelaDivergentes()
 })
 
@@ -213,30 +216,49 @@ function criaLinhaTabelaDivergentes(){
     $(".plus-info-conciliacao").click((e)=>{
         var id = e.target.getAttribute('name');
         var divergenciaSelecionada = listaDivergentes.find(x => x.id === id);
-        
+        idDivergencia = id;
+
         mostraInfoConciliacao(divergenciaSelecionada)
     })
 
 }
 
 function mostraInfoConciliacao(divergenciaSelecionada){
-    document.getElementById('div-data-conciliacao').innerHTML = divergenciaSelecionada.data.toLocaleDateString()
-    alteraStatus(divergenciaSelecionada.status)
-    console.log(divergenciaSelecionada.status)
-    // document.getElementById('div-status-conciliacao').innerHTML = divergenciaSelecionada.data
-    document.getElementById('div-adquirente-conciliacao').innerHTML = divergenciaSelecionada.adquirente
-    document.getElementById('div-banco-conciliacao').innerHTML = divergenciaSelecionada.banco
-    document.getElementById('div-valorEsperado-conciliacao').innerHTML = divergenciaSelecionada.valorEsperado
-    document.getElementById('div-valorRecebido-conciliacao').innerHTML = divergenciaSelecionada.valorRecebido
-    document.getElementById('div-diferenca-conciliacao').innerHTML = divergenciaSelecionada.diferenca
+    document.getElementById('div-data-conciliacao').innerHTML = divergenciaSelecionada.data.toLocaleDateString();
+    alteraStatus(divergenciaSelecionada.status);
+    document.getElementById('div-adquirente-conciliacao').innerHTML = divergenciaSelecionada.adquirente;
+    document.getElementById('div-banco-conciliacao').innerHTML = divergenciaSelecionada.banco;
+    document.getElementById('div-valorEsperado-conciliacao').innerHTML = divergenciaSelecionada.valorEsperado;
+    document.getElementById('div-valorRecebido-conciliacao').innerHTML = divergenciaSelecionada.valorRecebido;
+    document.getElementById('div-diferenca-conciliacao').innerHTML = divergenciaSelecionada.diferenca;
     document.getElementById('div-bandeira-conciliacao').innerHTML = divergenciaSelecionada.bandeira ? divergenciaSelecionada.bandeira : "-";
     document.getElementById('div-parcelaNum-conciliacao').innerHTML = divergenciaSelecionada.parcelaNum ? divergenciaSelecionada.parcelaNum : "-";
     document.getElementById('div-parcelaTotal-conciliacao').innerHTML = divergenciaSelecionada.parcelaTotal ? divergenciaSelecionada.parcelaTotal : "-";
-    document.getElementById('div-tipo-conciliacao').innerHTML = divergenciaSelecionada.tipo
-    document.getElementById('div-taxa-conciliacao').innerHTML = divergenciaSelecionada.taxa
+    document.getElementById('div-tipo-conciliacao').innerHTML = divergenciaSelecionada.tipo;
+    document.getElementById('div-taxa-conciliacao').innerHTML = divergenciaSelecionada.taxa;
+
+    const html = divergenciaSelecionada.observacoes.map(item => `
+        <hr class="mt-3 mb-0 border-gray"/>
+        <div class="mt-2">
+            <p class="my-0 text-dark">${item.observacao}</p>
+            <p class="my-0 mt-1 small"><span class="text-dark font-weight-bold">${item.usuario}</span> - ${item.data.toLocaleString()}</p>
+        </div>
+    `).join(''); 
+
+    document.getElementById('observacoes-cadastradas').innerHTML = html;
+
 }
 
+$('#infoDivergenteModal').on('hide.bs.modal', function () {
+    idDivergencia = null;
+});
+
 // FIM - Criação de infos tabela divergentes
+// Inicio - salvar status conciliacao
+$("#btnSalvarStatusConcilicao").click(() => {
+    console.log(idDivergencia)
+})
+// Fim - salvar status conciliacao
 // INÍCIO - ORDER BY TABELA DIVERGENTES
 
 $(".spanOrderBy").click((e) => {
