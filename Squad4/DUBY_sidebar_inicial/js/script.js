@@ -366,7 +366,7 @@ $(".spanOrderBy").click((e) => {
     if(orderUp){
         switch (tipoOrder){
             case "adquirente":
-                listaDivergentes.sort((a,b) => (a.adquirente > b.adquirente) ? 1 : ((b.adquirente > a.adquirente) ? -1 : 0))
+                listaDivergentes.sort((a,b) => (a.adquirente.toUpperCase() > b.adquirente.toUpperCase()) ? 1 : ((b.adquirente.toUpperCase() > a.adquirente.toUpperCase()) ? -1 : 0))
                 break;
             case "valorEsperado":
                 listaDivergentes.sort((a,b) => (Number(a.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(b.valorEsperado.replace(/[^0-9-]+/g,""))) ? 1 : ((Number(b.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(a.valorEsperado.replace(/[^0-9-]+/g,""))) ? -1 : 0))
@@ -381,7 +381,7 @@ $(".spanOrderBy").click((e) => {
     } else {
         switch (tipoOrder){
             case "adquirente":
-                listaDivergentes.sort((a,b) => (a.adquirente > b.adquirente) ? -1 : ((b.adquirente > a.adquirente) ? 1 : 0))
+                listaDivergentes.sort((a,b) => (a.adquirente.toUpperCase() > b.adquirente.toUpperCase()) ? -1 : ((b.adquirente.toUpperCase() > a.adquirente.toUpperCase()) ? 1 : 0))
                 break;
             case "valorEsperado":
                 listaDivergentes.sort((a,b) => (Number(a.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(b.valorEsperado.replace(/[^0-9-]+/g,""))) ? -1 : ((Number(b.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(a.valorEsperado.replace(/[^0-9-]+/g,""))) ? 1 : 0))

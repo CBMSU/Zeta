@@ -77,7 +77,7 @@ listaBancos.push(banco5)
 // Inicio - Cria tabela de resultado de busca
 function criaLinhaTabelaBanco(dados){
 
-    const html = dados.map(item => `
+    var html = dados.map(item => `
     <div class="row justify-content-md-center align-items-center mt-2 mb-2">
         <div class="col-8 col-lg-3 mt-0">
             ${item.nome_banco}
@@ -104,6 +104,16 @@ function criaLinhaTabelaBanco(dados){
     </div>
     `).join(''); 
 
+    if(dados.length == 0){
+        html = `
+        <div class="row justify-content-md-center mt-3 mb-3">
+            <div class="col-12 col-lg-11 my-0 text-center font-weight-bold text-dark bg-gray py-3">
+                Nenhum banco encontrado.
+            </div>
+        </div>
+        `
+    }
+
     document.getElementById('conteudoTabela').innerHTML = html;
 
     $(".edita-banco").click((e)=>{
@@ -112,19 +122,155 @@ function criaLinhaTabelaBanco(dados){
         var bancoSelecionado = listaBancos.find(x => x.id_banco === id);
         idBanco = id;
 
-        console.log(bancoSelecionado)
+        montaTelaEdicao(bancoSelecionado);
+    })
 
-        // mostraInfoConciliacao(divergenciaSelecionada)
+    $(".deleta-banco").click((e)=>{
+        var id = e.target.getAttribute('name');
+        var bancoSelecionado = listaBancos.find(x => x.id_banco === id);
+        
+        document.getElementById("spanNomeBanco").innerHTML = bancoSelecionado.nome_banco
+        $('#deletaBancoModal').modal('show');
+        
+        idBanco = id;
     })
 
 }
 // Fim - Cria tabela de resultado de busca
 
+
+// Chama função de deleção ao clidar no botão de delete
+$("#btnDeletaBanco").click(() => {
+    deletaBanco();
+})
+
+// Deleta banco
+function deletaBanco(){
+    var bancoSelecionado = listaBancos.find(x => x.id_banco === idBanco);
+    listaBancos = listaBancos.filter(item => item !== bancoSelecionado)
+
+    buscaBancos();
+
+    $('#deletaBancoModal').modal('hide');
+}
+
+// Inicio - Monta modal de edição
+function montaTelaEdicao(banco){
+    document.getElementById("nome-banco").value = banco.nome_banco;
+    document.getElementById("cnpj-banco").value = banco.cnpj_banco;
+    document.getElementById("telefone-banco").value = banco.telefone_banco;
+    document.getElementById("agencia-banco").value = banco.agencia_banco
+    document.getElementById("id-banco").value = banco.id_banco;
+    document.getElementById("nome-representante-banco").value = banco.nome_representante_banco; 
+    document.getElementById("sobrenome-representante-banco").value = banco.sobrenome_representante_banco;
+    document.getElementById("email-representante-banco").value = banco.email_representante_banco;
+    document.getElementById("celular-representante-banco").value = banco.celular_representante_banco;
+    document.getElementById("cpf-representante-banco").value = banco.cpf_representante_banco;
+    document.getElementById("rg-representante-banco").value = banco.rg_representante_banco;
+}
+// Fim - Monta modal de edição
+
+$("#editaBanco").click(() => {
+    salvaEdicaoBanco();
+})
+
+function salvaEdicaoBanco(){
+    limpaErrosFormBanco()
+    var banco = new Object();
+    var formInvalido = false;
+
+    banco.nome_banco = document.getElementById("nome-banco").value;
+    banco.cnpj_banco = document.getElementById("cnpj-banco").value;
+    banco.telefone_banco = document.getElementById("telefone-banco").value;
+    banco.agencia_banco = document.getElementById("agencia-banco").value;
+    banco.id_banco = document.getElementById("id-banco").value;
+    banco.nome_representante_banco = document.getElementById("nome-representante-banco").value;
+    banco.sobrenome_representante_banco = document.getElementById("sobrenome-representante-banco").value;
+    banco.email_representante_banco = document.getElementById("email-representante-banco").value;
+    banco.celular_representante_banco = document.getElementById("celular-representante-banco").value;
+    banco.cpf_representante_banco = document.getElementById("cpf-representante-banco").value;
+    banco.rg_representante_banco = document.getElementById("rg-representante-banco").value;
+
+    // Verifica se infos são nulos
+    if(banco.nome_banco == "" || banco.nome_banco == null){
+        $("#nomeBancoNulo").show();
+        formInvalido = true;
+    }
+
+    if(banco.cnpj_banco == "" || banco.cnpj_banco == null){
+        $("#cnpjBancoNulo").show();
+        formInvalido = true;
+    }
+
+    if(!validaCNPJ(banco.cnpj_banco)){
+        $("#cnpjBancoInvalido").show();
+        formInvalido = true;
+    }
+
+    if(banco.nome_representante_banco == "" || banco.nome_representante_banco == null){
+        $("#nomeRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(banco.sobrenome_representante_banco == "" || banco.sobrenome_representante_banco == null){
+        $("#sobrenomeRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(banco.email_representante_banco == "" || banco.email_representante_banco == null){
+        $("#emailRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(!validaEmail(banco.email_representante_banco)){
+        $("#emailRepresentanteInvalido").show();
+        formInvalido = true;
+    }
+
+    if(banco.celular_representante_banco == "" || banco.celular_representante_banco == null){
+        $("#celularRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(!validaCelular(banco.celular_representante_banco)){
+        $("#celularRepresentanteInvalido").show();
+        formInvalido = true;
+    }
+
+    if(formInvalido){
+        return false;
+    }
+
+    listaBancos = listaBancos.map(item => {
+        if (item.id_banco == banco.id_banco) {
+            return banco;
+        }
+        return item;
+    });
+
+    // Fecha o modal
+    $('#editaBancoModal').modal('hide');
+
+    showSuccess(banco.nome_banco)
+    buscaBancos()
+}
+
 $(document).ready(function () {    
-    listaBancos.sort((a,b) => (a.nome_banco > b.nome_banco) ? 1 : ((b.nome_banco > a.nome_banco) ? -1 : 0))
+    listaBancos.sort((a,b) => (a.nome_banco.toUpperCase() > b.nome_banco.toUpperCase()) ? 1 : ((b.nome_banco.toUpperCase() > a.nome_banco.toUpperCase()) ? -1 : 0))
     listaBusca = listaBancos;
     criaLinhaTabelaBanco(listaBancos)
 })
+
+$(document).ready(function() {
+    $('#cnpj-banco').mask('00.000.000/0000-00', {reverse: true});
+    $('#telefone-banco').mask('(00) 00000-0000');
+
+    $('#celular-representante-banco').mask('(00) 00000-0000');
+    $('#cpf-representante-banco').mask('000.000.000-00', {reverse: true});
+    
+    // Apenas numeros
+    $('#rg-representante-banco').mask('0#');
+});
 
 // Inicio - Função de ordenação
 $(".spanOrderBy").click((e) => {
@@ -164,10 +310,10 @@ $(".spanOrderBy").click((e) => {
                 listaBusca.sort((a,b) => (Number(a.cnpj_banco.replace(/[^\d]/g, "")) > Number(b.cnpj_banco.replace(/[^\d]/g, ""))) ? 1 : ((Number(b.cnpj_banco.replace(/[^\d]/g, "")) > Number(a.cnpj_banco.replace(/[^\d]/g, ""))) ? -1 : 0))
                 break;
             case "representante":
-                listaBusca.sort((a,b) => (a.nome_representante_banco > b.nome_representante_banco) ? 1 : ((b.nome_representante_banco > a.nome_representante_banco) ? -1 : 0))
+                listaBusca.sort((a,b) => (a.nome_representante_banco.toUpperCase() > b.nome_representante_banco.toUpperCase()) ? 1 : ((b.nome_representante_banco.toUpperCase() > a.nome_representante_banco.toUpperCase()) ? -1 : 0))
                 break;
             default:
-                listaBusca.sort((a,b) => (a.nome_banco > b.nome_banco) ? 1 : ((b.nome_banco > a.nome_banco) ? -1 : 0))
+                listaBusca.sort((a,b) => (a.nome_banco.toUpperCase() > b.nome_banco.toUpperCase()) ? 1 : ((b.nome_banco.toUpperCase() > a.nome_banco.toUpperCase()) ? -1 : 0))
                 break
         }
     } else {
@@ -176,10 +322,10 @@ $(".spanOrderBy").click((e) => {
                 listaBusca.sort((a,b) => (Number(a.cnpj_banco.replace(/[^\d]/g, "")) > Number(b.cnpj_banco.replace(/[^\d]/g, ""))) ? -1 : ((Number(b.cnpj_banco.replace(/[^\d]/g, "")) > Number(a.cnpj_banco.replace(/[^\d]/g, ""))) ? 1 : 0))
                 break;
             case "representante":
-                listaBusca.sort((a,b) => (a.nome_representante_banco > b.nome_representante_banco) ? -1 : ((b.nome_representante_banco > a.nome_representante_banco) ? 1 : 0))
+                listaBusca.sort((a,b) => (a.nome_representante_banco.toUpperCase() > b.nome_representante_banco.toUpperCase()) ? -1 : ((b.nome_representante_banco.toUpperCase() > a.nome_representante_banco.toUpperCase()) ? 1 : 0))
                 break;
             default:
-                listaBusca.sort((a,b) => (a.nome_banco > b.nome_banco) ? -1 : ((b.nome_banco > a.nome_banco) ? 1 : 0))
+                listaBusca.sort((a,b) => (a.nome_banco.toUpperCase() > b.nome_banco.toUpperCase()) ? -1 : ((b.nome_banco.toUpperCase() > a.nome_banco.toUpperCase()) ? 1 : 0))
                 break
         }
     }
@@ -192,13 +338,88 @@ $("#formBuscaBancos").on("submit", () => {
     buscaBancos();
 })
 
+// Faz busca com filtro
 function buscaBancos(){
     listaBusca = [];
+    console.log(listaBancos)
     var val = document.getElementById("nomeBancoBusca").value;
     listaBancos.map(item => {
         if(item.nome_banco.toUpperCase().includes(val.toUpperCase())){
             listaBusca.push(item)
         }
     })
+
+    listaBusca.sort((a,b) => (a.nome_banco.toUpperCase() > b.nome_banco.toUpperCase()) ? 1 : ((b.nome_banco.toUpperCase() > a.nome_banco.toUpperCase()) ? -1 : 0))
+    
+    $(".spanOrderBy i").removeClass("fa-sort-down");
+    $(".spanOrderBy i").removeClass("fa-sort-up");
+    $(".spanOrderBy i").addClass("fa-sort");
+    
+    $("#defaultOrderBy").removeClass("fa-sort");
+    $("#defaultOrderBy").addClass("fa-sort-down");
+
     criaLinhaTabelaBanco(listaBusca)
+}
+
+// Limpa modal
+function limpaErrosFormBanco(){
+    $("#nomeBancoNulo").hide();
+    $("#cnpjBancoNulo").hide();
+    $("#nomeRepresentanteNulo").hide();
+    $("#sobrenomeRepresentanteNulo").hide();
+    $("#emailRepresentanteNulo").hide();
+    $("#celularRepresentanteNulo").hide();
+
+    $("#emailRepresentanteInvalido").hide();
+    $("#celularRepresentanteInvalido").hide();
+    $("#cnpjBancoInvalido").hide();
+}
+
+// FUNÇÕES DE VALIDAÇÃO
+function validaEmail(email){
+    if(email.length == 0){
+        return true;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailRegex.test(email)) {
+        return true; // Email válido
+    }
+    return false;
+}
+
+function validaCelular(celular){
+    if(celular.length == 0){
+        return true;
+    }
+
+    var valido = celular.length != 15 ?  false : true;
+    return valido;
+}
+
+function validaCNPJ(cnpj){
+    if(cnpj.length == 0){
+        return true;
+    }
+
+    var valido = cnpj.length != 18 ?  false : true;
+    return valido;
+}
+
+// MOSTRA MENSAGEM DE SUCESSO AO CADASTRAR
+function showSuccess(nomeBanco){
+    Swal.fire({
+        title: "<strong>Banco editado!</strong>",
+        icon: "success",
+        html: `
+            Sucesso ao editar <b>${nomeBanco}</b>!
+        `,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        backdrop: "rgba(255, 255, 255, 0.5)"
+    });
 }

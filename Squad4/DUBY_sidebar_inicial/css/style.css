@@ -90,7 +90,9 @@
 
 .show {display: block;}
 
-
+.bg-gray{
+    background-color: #efefef;
+}
 
 
 /* Hidden placeholder */
