@@ -63,45 +63,6 @@ $(document).ready(function () {
 
 });
 
-
-// INÍCIO - TROCA STATUS DE CONCILIAÇÃO
-
-$('.spanstatus').click((e) => {
-    var tipoStatus = e.target.attributes.name.value;
-    alteraStatus(tipoStatus);
-})
-
-function alteraStatus(tipoStatus){
-    tipoStatus = parseInt(tipoStatus);
-    var textoDrop = tipoStatus == 2 ? "Em análise" : tipoStatus == 3 ? "Solucionado" : "Pendente";
-
-    document.getElementById("htmlBtnDropdown").setAttribute('name', tipoStatus);
-
-    document.querySelector("#htmlBtnDropdown").innerHTML = textoDrop;
-    var corStatus;
-
-    switch(tipoStatus){
-        case 1:
-            corStatus = "#FF5052";
-            break;
-        case 2:
-            corStatus = "#2C85DE";
-            break;
-        case 3:
-            corStatus = "#00C72C";
-            break;
-        default:
-            corStatus = "#000";
-    }
-
-    $("#dropdown").css({"background-color": corStatus});
-
-}
-
-
-// FIM - TROCA STATUS DE CONCILIAÇÃO
-// INÍCIO - Criação de infos tabela divergentes
-
 var listaDivergentes = [];
 
 var divergencia1 = new Object();
@@ -140,7 +101,7 @@ listaDivergentes.push(divergencia2)
 var divergencia3 = new Object();
 divergencia3.id = Math.random().toString(16).slice(2);
 divergencia3.data = new Date(2025, 2, 12);
-divergencia3.status = 3;
+divergencia3.status = 1;
 divergencia3.adquirente = "PayMax Digital";
 divergencia3.banco = "CinderelaBank";
 divergencia3.valorEsperado = "R$ 180.000,00";
@@ -173,6 +134,8 @@ divergencia4.observacoes = [
 ];
 
 listaDivergentes.push(divergencia4)
+
+// Inicio - Mostra infos tabela
 
 $(document).ready(function () {    
     listaDivergentes.sort((a,b) => (a.data > b.data) ? 1 : ((b.data > a.data) ? -1 : 0))
@@ -226,9 +189,66 @@ function criaLinhaTabelaDivergentes(){
 
 }
 
+// Fim - Mostra infos tabela
+// INÍCIO - TROCA STATUS DE CONCILIAÇÃO
+
+$('.spanstatus').click((e) => {
+    var tipoStatus = e.target.attributes.name.value;
+    alteraStatus(tipoStatus);
+})
+
+function alteraStatus(tipoStatus){
+    tipoStatus = parseInt(tipoStatus);
+    var textoDrop = tipoStatus == 2 ? "Em análise" : tipoStatus == 3 ? "Solucionado" : "Pendente";
+
+    tipoStatus == 3 ? $("#valorRecebidoStatus").removeClass("d-none") : $("#valorRecebidoStatus").addClass("d-none");
+
+    document.getElementById("htmlBtnDropdown").setAttribute('name', tipoStatus);
+
+    document.querySelector("#htmlBtnDropdown").innerHTML = textoDrop;
+    var corStatus;
+
+    switch(tipoStatus){
+        case 1:
+            corStatus = "#FF5052";
+            break;
+        case 2:
+            corStatus = "#2C85DE";
+            break;
+        case 3:
+            corStatus = "#00C72C";
+            break;
+        default:
+            corStatus = "#000";
+    }
+
+    $("#dropdown").css({"background-color": corStatus});
+
+}
+
+
+// FIM - TROCA STATUS DE CONCILIAÇÃO
+// INÍCIO - Criação de infos modal
+
 function mostraInfoConciliacao(divergenciaSelecionada){
     document.getElementById('div-data-conciliacao').innerHTML = divergenciaSelecionada.data.toLocaleDateString();
+
     alteraStatus(divergenciaSelecionada.status);
+
+    if (divergenciaSelecionada.status == 3){
+        $("#dropdown").removeClass("dropdown-toggle").prop("disabled", true);
+        $("#rowObservacaoStatus").addClass("d-none");
+        divergenciaSelecionada.valorRecebidoSolucionado ? 
+            document.getElementById('span-valor-recebido-solucionado').innerHTML = "R$ " + divergenciaSelecionada.valorRecebidoSolucionado :
+            document.getElementById('span-valor-recebido-solucionado').innerHTML = "-"
+        $("#valor-recebido-solucionado").removeClass("d-none");
+        $("#valorRecebidoStatus").addClass("d-none")
+    } else {
+        $("#dropdown").addClass("dropdown-toggle").prop("disabled", false);
+        $("#rowObservacaoStatus").removeClass("d-none");
+        $("#valor-recebido-solucionado").addClass("d-none");
+    }
+
     document.getElementById('div-adquirente-conciliacao').innerHTML = divergenciaSelecionada.adquirente;
     document.getElementById('div-banco-conciliacao').innerHTML = divergenciaSelecionada.banco;
     document.getElementById('div-valorEsperado-conciliacao').innerHTML = divergenciaSelecionada.valorEsperado;
@@ -240,9 +260,11 @@ function mostraInfoConciliacao(divergenciaSelecionada){
     document.getElementById('div-tipo-conciliacao').innerHTML = divergenciaSelecionada.tipo;
     document.getElementById('div-taxa-conciliacao').innerHTML = divergenciaSelecionada.taxa;
 
+    divergenciaSelecionada.observacoes.sort((a,b) => (a.data > b.data) ? -1 : ((b.data > a.data) ? 1 : 0))
+
     const html = divergenciaSelecionada.observacoes.map(item => `
-        <hr class="mt-3 mb-0 border-gray"/>
-        <div class="mt-2">
+        <hr class="my-0 border-gray"/>
+        <div class="my-3">
             <p class="my-0 text-dark">${item.observacao}</p>
             <p class="my-0 mt-1 small"><span class="text-dark font-weight-bold">${item.usuario}</span> - ${item.data.toLocaleString()}</p>
         </div>
@@ -255,14 +277,28 @@ function mostraInfoConciliacao(divergenciaSelecionada){
 $('#infoDivergenteModal').on('hide.bs.modal', function () {
     idDivergencia = null;
     document.getElementById("observacao-conciliacao").value = "";
+    document.getElementById("valor-recebido-conciliacao").value = "";
+    $("#btnSalvarStatusConcilicao").removeClass("d-none");
 });
 
-// FIM - Criação de infos tabela divergentes
+// FIM - Criação de infos modal
 // Inicio - salvar status conciliacao
+
 $("#btnSalvarStatusConcilicao").click(() => {
+    $("#valorRecebidoConciliacaoNulo").hide();
     var divergencia = listaDivergentes.find(x => x.id === idDivergencia);
 
-    divergencia.status = document.getElementById("htmlBtnDropdown").getAttribute('name');
+    divergencia.status = parseInt(document.getElementById("htmlBtnDropdown").getAttribute('name'));
+
+    if(divergencia.status == 3){
+        var valorRecebidoSolucionado = document.getElementById("valor-recebido-conciliacao").value;
+        if(valorRecebidoSolucionado == 0 || valorRecebidoSolucionado == null){
+            $("#valorRecebidoConciliacaoNulo").show();
+            return false;
+        }
+        divergencia.valorRecebidoSolucionado = valorRecebidoSolucionado;
+    }
+
     var textoObservacao = document.getElementById("observacao-conciliacao").value;
 
     if(textoObservacao && textoObservacao != "" && textoObservacao != null && textoObservacao != undefined){
@@ -285,7 +321,12 @@ $("#btnSalvarStatusConcilicao").click(() => {
     mostraInfoConciliacao(divergencia)
     
     showSuccess(divergencia.adquirente)
-    // console.log(listaDivergentes)
+    
+    if(divergencia.status == 3){
+        listaDivergentes = listaDivergentes.filter(item => item !== divergencia);
+        criaLinhaTabelaDivergentes();
+        $("#btnSalvarStatusConcilicao").addClass("d-none");
+    }
 
 })
 // Fim - salvar status conciliacao

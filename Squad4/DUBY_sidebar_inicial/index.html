@@ -447,7 +447,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pb-0">
                     <!--  -->
                     <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
                         <div class="col-6 col-lg-5 mt-0">
@@ -573,7 +573,20 @@
                     </div>
                     <!--  -->
                     <!--  -->
-                    <div class="row justify-content-md-center align-items-center" id="rowObservacaoStatus">
+                    <div class="row justify-content-md-center my-2 d-none" id="valorRecebidoStatus">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group mb-0">
+                                <label for="valor-recebido-conciliacao" class="text-dark font-weight-bold mb-0">Valor recebido</label>
+                                <input type="text" class="form-control mt-0" id="valor-recebido-conciliacao" placeholder="Valor recebido (apenas números)" inputmode="numeric">
+                                <div class="invalid-feedback text-left" id="valorRecebidoConciliacaoNulo">
+                                    Valor recebido obrigatório.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center mb-3" id="rowObservacaoStatus">
                         <div class="col-12 col-lg-10 mt-0 text-dark font-weight-bold">
                             Observação
                         </div>
@@ -582,23 +595,22 @@
                             <textarea class="form-control" name="observacaoTrocaStatus" id="observacao-conciliacao"></textarea>
                         </div>
                     </div>
-
-                    <div class="row justify-content-md-center mt-2 mb-0 d-none">
-                        <div class="col-12 col-lg-10">
-                            <div class="form-group mb-0">
-                                <label for="valor-recebido-conciliacao" class="text-dark font-weight-bold mb-0">Valor recebido</label>
-                                <input type="text" class="form-control mt-0" id="valor-recebido-conciliacao" placeholder="Valor recebido" inputmode="numeric">
+    
+                    <div class="row justify-content-md-center mt-0 d-none" id="valor-recebido-solucionado">
+                        <div class="col-12 col-lg-10 mt-0">
+                            <hr class="my-0 border-gray"/>
+                            <div class="my-3">
+                                <p class="my-0 mt-1"><span class="text-dark font-weight-bold">Valor recebido após contato:</span> <span id="span-valor-recebido-solucionado" class="text-success"> - </span></p>
                             </div>
                         </div>
                     </div>
 
                     <div class="row justify-content-md-center mt-0">
-                        <div class="col-12 col-lg-10">
+                        <div class="col-12 col-lg-10 mt-0">
                             <div id="observacoes-cadastradas">
                             </div>
                         </div>
                     </div>
-
 
                 </div>
                 <div class="modal-footer">
