@@ -1,3 +1,22 @@
+var dados_usuario = new Object();
+dados_usuario.id = Math.random().toString(16).slice(2);
+dados_usuario.nome_loja = "Borracharia Três Irmãos";
+dados_usuario.cnpj_loja = "14.350.750/0001-72";
+dados_usuario.telefone_loja = "(79) 99122-4897";
+dados_usuario.cep_loja = "49000-470";
+dados_usuario.estado_loja = "25";
+dados_usuario.cidade_loja = "1";
+dados_usuario.bairro_loja = "Aruana";
+dados_usuario.logradouro_loja = "Rua Marechal Deodoro";
+dados_usuario.complemento_loja = "Próximo à Pinguim";
+dados_usuario.numero_loja = "12";
+dados_usuario.nome_representante = "João";
+dados_usuario.sobrenome_representante = "Silva Brino";
+dados_usuario.email_representante = "joao_brino@tresirmaos.com";
+dados_usuario.celular_representante = "(79) 98925-2426";
+dados_usuario.cpf_representante = "056.605.545-72";
+dados_usuario.rg_representante = "7519682";
+
 $(document).ready(function(){	
 
     $('#cnpj-loja').mask('00.000.000/0000-00', {reverse: true});
@@ -10,6 +29,23 @@ $(document).ready(function(){
     
     // Apenas numeros
     $('#rg-representante-loja').mask('0#');
+
+    document.getElementById("nome-loja").value = dados_usuario.nome_loja
+    document.getElementById("cnpj-loja").value = dados_usuario.cnpj_loja
+    document.getElementById("telefone-loja").value = dados_usuario.telefone_loja
+    document.getElementById("cep-loja").value = dados_usuario.cep_loja
+    document.getElementById("estado-loja").value = dados_usuario.estado_loja
+    document.getElementById("cidade-loja").value = dados_usuario.cidade_loja
+    document.getElementById("bairro-loja").value = dados_usuario.bairro_loja
+    document.getElementById("logradouro-loja").value = dados_usuario.logradouro_loja
+    document.getElementById("numero-loja").value = dados_usuario.numero_loja
+    document.getElementById("complemento-loja").value = dados_usuario.complemento_loja
+    document.getElementById("nome-representante-loja").value = dados_usuario.nome_representante
+    document.getElementById("sobrenome-representante-loja").value = dados_usuario.sobrenome_representante
+    document.getElementById("email-representante-loja").value = dados_usuario.email_representante
+    document.getElementById("celular-representante-loja").value = dados_usuario.celular_representante
+    document.getElementById("cpf-representante-loja").value = dados_usuario.cpf_representante
+    document.getElementById("rg-representante-loja").value = dados_usuario.rg_representante    
 });
 
 // Edita perfil
@@ -77,7 +113,7 @@ $("#btnEditaPerfil").click(() => {
         return false;
 
     showSuccess(nomeLoja)
-    limpaFormLoja()
+    // limpaFormLoja()
 })
 
 function limpaErrosFormLoja(){
