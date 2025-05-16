@@ -579,7 +579,21 @@
                         </div>
 
                         <div class="col-12 col-lg-10 mt-0">
-                            <textarea class="form-control" name="observacaoTrocaStatus"></textarea>
+                            <textarea class="form-control" name="observacaoTrocaStatus" id="observacao-conciliacao"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center mt-2 mb-0 d-none">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group mb-0">
+                                <label for="valor-recebido-conciliacao" class="text-dark font-weight-bold mb-0">Valor recebido</label>
+                                <input type="text" class="form-control mt-0" id="valor-recebido-conciliacao" placeholder="Valor recebido" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center mt-0">
+                        <div class="col-12 col-lg-10">
                             <div id="observacoes-cadastradas">
                             </div>
                         </div>
@@ -605,6 +619,11 @@
     <!-- Custom scripts for all pages-->
     <script src="js/comportamento_sidebar.js"></script>
 
+    <!-- Sweet alert -->
+    <script src="js/sweetalert2_11.js"></script>
+
+    <!-- Maks inputs -->
+     <script src="js/jquery.mask.min.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 var idDivergencia = null;
 
 $(document).ready(function () {
+    $('#valor-recebido-conciliacao').mask("#.##0,00", {reverse: true});
 
     // CRIAÇÃO DO GRÁFICO
     const ctx = document.getElementById('graficoRepassesPeriodo').getContext('2d');
@@ -73,6 +74,8 @@ $('.spanstatus').click((e) => {
 function alteraStatus(tipoStatus){
     tipoStatus = parseInt(tipoStatus);
     var textoDrop = tipoStatus == 2 ? "Em análise" : tipoStatus == 3 ? "Solucionado" : "Pendente";
+
+    document.getElementById("htmlBtnDropdown").setAttribute('name', tipoStatus);
 
     document.querySelector("#htmlBtnDropdown").innerHTML = textoDrop;
     var corStatus;
@@ -251,12 +254,39 @@ function mostraInfoConciliacao(divergenciaSelecionada){
 
 $('#infoDivergenteModal').on('hide.bs.modal', function () {
     idDivergencia = null;
+    document.getElementById("observacao-conciliacao").value = "";
 });
 
 // FIM - Criação de infos tabela divergentes
 // Inicio - salvar status conciliacao
 $("#btnSalvarStatusConcilicao").click(() => {
-    console.log(idDivergencia)
+    var divergencia = listaDivergentes.find(x => x.id === idDivergencia);
+
+    divergencia.status = document.getElementById("htmlBtnDropdown").getAttribute('name');
+    var textoObservacao = document.getElementById("observacao-conciliacao").value;
+
+    if(textoObservacao && textoObservacao != "" && textoObservacao != null && textoObservacao != undefined){
+        var observacao = new Object();
+        observacao.usuario = "Pedro Cardozo";
+        observacao.data = new Date();
+        observacao.observacao = textoObservacao;
+
+        divergencia.observacoes.push(observacao)
+    }
+
+    listaDivergentes = listaDivergentes.map(divergenteCadastrado => {
+        if (divergenteCadastrado.id == divergencia.id) {
+            return divergencia;
+        }
+        return divergenteCadastrado;
+    });
+
+    document.getElementById("observacao-conciliacao").value = "";
+    mostraInfoConciliacao(divergencia)
+    
+    showSuccess(divergencia.adquirente)
+    // console.log(listaDivergentes)
+
 })
 // Fim - salvar status conciliacao
 // INÍCIO - ORDER BY TABELA DIVERGENTES
@@ -338,4 +368,22 @@ function converteData(data){
     const partes = data.split("/");
     const novaData = new Date(partes[2], partes[1] - 1, partes[0]);
     return novaData;
+}
+
+
+// MOSTRA MENSAGEM DE SUCESSO AO ALTERAR STATUS / CADASTRAR OBSERVAÇÃO
+function showSuccess(nomeAdquirente){
+    Swal.fire({
+        title: "<strong>Status atualizado!</strong>",
+        icon: "success",
+        html: `
+            Sucesso ao atualizar o status da conciliação do adquirente <b>${nomeAdquirente}</b>!
+        `,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        backdrop: "rgba(255, 255, 255, 0.5)"
+    });
 }
