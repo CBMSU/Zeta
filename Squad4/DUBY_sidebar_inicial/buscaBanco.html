@@ -21,11 +21,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Chart.js-->
-     <script src="js/chart.js"></script>
-
      <!-- Script -->
-     <script src="js/script.js" type="module"></script>
+     <script src="js/buscaBanco.js" type="module"></script>
 </head>
 
 <body id="page-top">
@@ -239,151 +236,64 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-dark">Dashboard</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-3">
+                        <h1 class="h3 mb-0 text-dark">Bancos cadastrados</h1>
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Repasses Mensais Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <!-- <div class="card border-left-primary shadow h-100 py-2"> -->
-                            <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="small font-weight-bold mb-1">
-                                                Total de Repasses Mensais
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold my-3">
-                                                R$ 1.452.000,00
-                                            </div>
-                                            <div class="small">
-                                                <span class="text-success font-weight-bold"><i class="fas fa-caret-up"></i> 7%</span> vs ano anterior
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Percentual divergências Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <!-- <div class="card border-left-success shadow h-100 py-2"> -->
-                            <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="small font-weight-bold mb-1">
-                                                Percentual de Divergências
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold my-3">
-                                                7,2%
-                                            </div>
-                                            <div class="small">
-                                                <span class="text-danger font-weight-bold"><i class="fas fa-caret-up"></i> 2%</span> vs ano anterior
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Repasses divergentes Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <!-- <div class="card border-left-info shadow h-100 py-2"> -->
-                            <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="small font-weight-bold mb-1">
-                                                Total de Repasses Divergentes
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold my-3">
-                                                R$ 104.544,00
-                                            </div>
-                                            <div class="small">
-                                                <span class="text-danger font-weight-bold"><i class="fas fa-caret-up"></i> 16%</span> vs ano anterior
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Taxa Média Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <!-- <div class="card border-left-warning shadow h-100 py-2"> -->
-                            <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="small font-weight-bold mb-1">
-                                                Taxa Média Aplicada
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold my-3">
-                                                2,8%
-                                            </div>
-                                            <div class="small">
-                                                <span class="text-danger font-weight-bold"><i class="fas fa-caret-down"></i> 10%</span> vs ano anterior
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
+                    <!-- Content Row - Filtro busca de banco -->
+                     <div class="row justify-content-lg-center">
+                        <div class="col-12 col-lg-9">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-filter mr-2"></i>Filtro</h5>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Row Graph -->
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-11 mt-0 text-dark">
-                            <canvas id="graficoRepassesPeriodo" class="mt-2" style="position: relative; height:40vh; width:80vw"></canvas>
+                    <div class="row justify-content-lg-center">
+                        <div class="form-group col-lg-9 mb-0">
+                            <form method="post" id="formBuscaBancos" autocomplete="off" onsubmit="return false;">
+                                <label class="mb-0" for="nomeBancoBusca">Nome do banco</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nomeBancoBusca" id="nomeBancoBusca"
+                                        maxlength="13" autocomplete="off" />
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-save-duby px-3" id="btnNumCodBarras"><i
+                                                class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
-                    <!-- Row Grid -->
-                    <!-- CABEÇALHO -->
-                    <div class="row justify-content-md-center align-items-center mt-4 mb-1 font-weight-bold text-dark">
-                        <div class="col-6 col-lg-2 mt-0">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort-down" name="data"></i></span> Data
+                    <!-- Content Row - Resultado da busca -->
+                    <!-- DIVIDER -->
+                    <div class="row justify-content-lg-center mt-4 mb-3">
+                        <div class="col-12 col-lg-11 my-0">
+                            <hr class="my-0"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-lg-center align-items-center my-0 font-weight-bold text-dark text-left">
+                        <div class="col-6 col-lg-3 mt-0">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort-down" name="nome"></i></span> Nome
                         </div>
 
                         <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="adquirente"></i></span> Adquirente
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="cnpj"></i></span> CNPJ
                         </div>
 
-                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="valorEsperado"></i></span> Valor Esperado
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="representante"></i></span> Representante
                         </div>
 
-                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="diferenca"></i></span> Diferença
+                        <div class="col-2 col-lg-2 mt-0">
                         </div>
+                    </div>
 
-                        <div class="col-4 col-lg-1 mt-0">
-                            Status
-                        </div>
-
-                        <div class="col-2 col-lg-1 mt-0">
-                        </div>
-
-                        <!-- DIVIDER  -->
-                        <div class="col-12 col-lg-11 mt-0">
-                            <hr class="mt-2 mb-0"/>
+                    <!-- DIVIDER -->
+                    <div class="row justify-content-md-center mt-3 mb-3">
+                        <div class="col-12 col-lg-11 my-0">
+                            <hr class="my-0"/>
                         </div>
                     </div>
 
@@ -436,178 +346,148 @@
         </div>
     </div>
 
-    <!-- Modal Info Conciliação Divergente -->
-    <div class="modal fade" id="infoDivergenteModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliacaoModalLabel"
+    <!-- Modal Edita banco-->
+    <div class="modal fade" id="editaBancoModal" tabindex="-1" role="dialog" aria-labelledby="editaBancoModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="infoConciliacaoModalLabel">Descrição da Conciliação</h5>
+                    <h5 class="modal-title" id="editaBancoModalLabel">Edição de banco</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body pb-0">
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Data
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Status
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0" id="div-data-conciliacao">
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            <div class="dropdown">
-                                <button id="dropdown" class="btn btn-sm btn-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span id="htmlBtnDropdown">Pendente</span>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown">
-                                        <span class="dropdown-item spanstatus" name="1">Pendente</span>
-                                        <span class="dropdown-item spanstatus" name="2">Em análise</span>
-                                        <span class="dropdown-item spanstatus" name="3">Solicionado</span>
-                                    </div>
-                                </button>
+                <div class="modal-body">
+                    <!-- Content Row - DADOS DO BANCO -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-university mr-2"></i>Dados do banco</h5>
                             </div>
                         </div>
                     </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Adquirente
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Banco
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0" id="div-adquirente-conciliacao">
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0" id="div-banco-conciliacao">
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Valor Esperado
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Valor Recebido
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0" id="div-valorEsperado-conciliacao">
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0" id="div-valorRecebido-conciliacao">
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Diferença
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Bandeira
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0 text-danger" id="div-diferenca-conciliacao">
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0" id="div-bandeira-conciliacao">
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Número da Parcela
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Total de Parcelas
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaNum-conciliacao">
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaTotal-conciliacao">
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
-                        <div class="col-6 col-lg-5 mt-0">
-                            Juros Vigente
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0">
-                            Tipo de Operação
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center align-items-center mb-3">
-                        <div class="col-6 col-lg-5 mt-0" id="div-taxa-conciliacao">
-                        </div>
-
-                        <div class="col-6 col-lg-5 mt-0" id="div-tipo-conciliacao">
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center my-2 d-none" id="valorRecebidoStatus">
+                    <div class="row justify-content-md-center">
                         <div class="col-12 col-lg-10">
-                            <div class="form-group mb-0">
-                                <label for="valor-recebido-conciliacao" class="text-dark font-weight-bold mb-0">Valor recebido</label>
-                                <input type="text" class="form-control mt-0" id="valor-recebido-conciliacao" placeholder="Valor recebido (apenas números)" inputmode="numeric">
-                                <div class="invalid-feedback text-left" id="valorRecebidoConciliacaoNulo">
-                                    Valor recebido obrigatório.
+                            <div class="form-group">
+                                <label for="nome-banco">Nome</label>
+                                <input type="text" class="form-control" id="nome-banco" placeholder="Nome do banco">
+                                <div class="invalid-feedback text-left" id="nomeBancoNulo">
+                                    Nome do banco obrigatório.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cnpj-banco">CNPJ</label>
+                                <input type="text" class="form-control" id="cnpj-banco" placeholder="CNPJ do banco (apenas números)" inputmode="numeric">
+                                <div class="invalid-feedback text-left" id="cnpjBancoNulo">
+                                    CNPJ do banco obrigatório.
+                                </div>
+                                <div class="invalid-feedback text-left" id="cnpjBancoInvalido">
+                                    CNPJ inválido. Por favor, digite um CNPJ válido.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone-banco">Telefone</label>
+                                <input type="text" class="form-control" id="telefone-banco" placeholder="Telefone do banco (apenas números)" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-5">
+                            <div class="form-group">
+                                <label for="nome-banco">Agência bancária</label>
+                                <input type="text" class="form-control" id="agencia-banco" placeholder="Agencia do banco (apenas números)" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="form-group">
+                                <label for="nome-banco">Banco central ID</label>
+                                <input type="text" class="form-control" id="id-banco" placeholder="Banco central ID (apenas números)" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER  -->
+                     <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10 my-3">
+                            <hr class="my-0 border-dark"/>
+                        </div>
+                    </div>
+
+                    <!-- CONTATO DO REPRESENTANTE LEGAL -->
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-3 mt-2">
+                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-user mr-1"></i> Contato do representante legal</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-5">
+                            <div class="form-group">
+                                <label for="nome-representante-banco">Nome</label>
+                                <input type="text" class="form-control" id="nome-representante-banco" placeholder="Nome do Responsável">
+                                <div class="invalid-feedback text-left" id="nomeRepresentanteNulo">
+                                    Nome do representante obrigatório.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="form-group">
+                                <label for="sobrenome-representante-banco">Sobrenome</label>
+                                <input type="text" class="form-control" id="sobrenome-representante-banco" placeholder="Sobrenome do Responsável">
+                                <div class="invalid-feedback text-left" id="sobrenomeRepresentanteNulo">
+                                    Sobrenome do representante obrigatório.
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="row justify-content-md-center align-items-center mb-3" id="rowObservacaoStatus">
-                        <div class="col-12 col-lg-10 mt-0 text-dark font-weight-bold">
-                            Observação
-                        </div>
 
-                        <div class="col-12 col-lg-10 mt-0">
-                            <textarea class="form-control" name="observacaoTrocaStatus" id="observacao-conciliacao"></textarea>
-                        </div>
-                    </div>
-    
-                    <div class="row justify-content-md-center mt-0 d-none" id="valor-recebido-solucionado">
-                        <div class="col-12 col-lg-10 mt-0">
-                            <hr class="my-0 border-gray"/>
-                            <div class="my-3">
-                                <p class="my-0 mt-1"><span class="text-dark font-weight-bold">Valor recebido após contato:</span> <span id="span-valor-recebido-solucionado" class="text-success"> - </span></p>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group">
+                                <label for="email-representante-banco">E-mail</label>
+                                <input type="email" class="form-control" id="email-representante-banco" placeholder="E-mail do Responsável">
+                                <div class="invalid-feedback text-left" id="emailRepresentanteNulo">
+                                    Email do representante obrigatório.
+                                </div>
+                                <div class="invalid-feedback text-left" id="emailRepresentanteInvalido">
+                                    Email inválido. Por favor, digite um email válido.
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row justify-content-md-center mt-0">
-                        <div class="col-12 col-lg-10 mt-0">
-                            <div id="observacoes-cadastradas">
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group">
+                                <label for="celular-representante-banco">Celular</label>
+                                <input type="text" class="form-control" id="celular-representante-banco" placeholder="Celular do Responsável (apenas números)" inputmode="numeric">
+                                <div class="invalid-feedback text-left" id="celularRepresentanteNulo">
+                                    Celular do representante obrigatório.
+                                </div>
+                                <div class="invalid-feedback text-left" id="celularRepresentanteInvalido">
+                                    Celular inválido. Por favor, digite um número válido.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group">
+                                <label for="cpf-representante-banco">CPF</label>
+                                <input type="text" class="form-control" id="cpf-representante-banco" placeholder="CPF do Responsável (apenas números)" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group">
+                                <label for="rg-representante-banco">RG</label>
+                                <input type="text" class="form-control" id="rg-representante-banco" placeholder="RG do Responsável (apenas números)" inputmode="numeric">
                             </div>
                         </div>
                     </div>
@@ -615,7 +495,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-success" href="#" id="btnSalvarStatusConcilicao">Salvar</button>
+                    <button class="btn btn-success" href="#" id="editaBanco">Salvar</button>
                 </div>
             </div>
         </div>

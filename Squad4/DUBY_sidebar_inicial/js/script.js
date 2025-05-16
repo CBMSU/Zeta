@@ -397,14 +397,9 @@ $(".spanOrderBy").click((e) => {
 
     criaLinhaTabelaDivergentes();
     
-    // $(el).removeClass("fa-sort");
-    // $(el).addClass("fa-sort-down");
-
 })
 
 // FIM - ORDER BY TABELA DIVERGENTES
-
-
 function converteData(data){
     const partes = data.split("/");
     const novaData = new Date(partes[2], partes[1] - 1, partes[0]);

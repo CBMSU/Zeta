@@ -57,7 +57,7 @@
     box-shadow: 0 .15rem 0.75rem 0 rgba(58,59,69,.15) !important;
 }
 
-.plus-info-conciliacao:hover{
+.plus-info-conciliacao:hover, .btnActions:hover{
     cursor: pointer;
 }
 
@@ -77,6 +77,11 @@
 .cor-duby{
     color: #412884;
 }
+
+.cor-secundaria-duby{
+    color: #6541c6;
+}
+
 
 .spanOrderBy:hover{
     cursor: pointer;
