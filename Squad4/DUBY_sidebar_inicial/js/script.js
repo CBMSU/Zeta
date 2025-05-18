@@ -167,7 +167,7 @@ function criaLinhaTabelaDivergentes(){
         </div>
 
         <div class="col-2 col-lg-1 mt-0 text-center">
-            <i class="fas fa-plus-circle text-info plus-info-conciliacao" data-toggle="modal" data-target="#infoDivergenteModal" name="${item.id}"></i>
+            <i class="fas fa-eye cor-secundaria-duby plus-info-conciliacao" data-toggle="modal" data-target="#infoDivergenteModal" name="${item.id}"></i>
         </div>
 
         <!-- DIVIDER  -->

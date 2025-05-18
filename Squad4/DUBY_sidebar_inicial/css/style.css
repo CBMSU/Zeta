@@ -78,8 +78,16 @@
     color: #412884;
 }
 
+.cor-duby:hover{
+    color: #6541c6;
+}
+
 .cor-secundaria-duby{
     color: #6541c6;
+}
+
+.cor-secundaria-duby:hover{
+    color: #412884;
 }
 
 
@@ -100,8 +108,42 @@ select option[disabled]:first-child {
 	display: none;
 }
 
+.modal-backdrop + .modal-backdrop {
+  z-index: 1055;
+}
+.modal.show + .modal-backdrop {
+  z-index: 1050;
+}
 
+#formaPagamentoModal, #deletarFormaPagamentoModal {
+  z-index: 1060;
+}
 
+/* @media (min-width: 768px) {
+  #formaPagamentoModal {
+    padding-left: 0 !important;
+    padding-right: 15px !important;
+  }
+} */
+
+@media (min-width: 768px) {
+  .formaComScroll {
+    padding-left: 0 !important;
+    padding-right: 15px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .formaSemScroll {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+#editaAdquirenteModal {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 
 
 

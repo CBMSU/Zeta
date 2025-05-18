@@ -93,7 +93,7 @@ function criaLinhaTabelaBanco(dados){
 
         <div class="col-4 col-lg-2 mt-0 text-center">
             <i class="fas fa-edit cor-secundaria-duby btnActions mr-1 edita-banco" data-toggle="modal" data-target="#editaBancoModal" name="${item.id_banco}"></i>
-            <i class="fas fa-trash-alt text-danger btnActions deleta-banco" data-toggle="modal" data-target="#infoDivergenteModal" name="${item.id_banco}"></i>
+            <i class="fas fa-trash-alt text-danger btnActions deleta-banco" data-toggle="modal" data-target="#deletaBancoModal" name="${item.id_banco}"></i>
         </div>
 
     </div>
@@ -341,7 +341,7 @@ $("#formBuscaBancos").on("submit", () => {
 // Faz busca com filtro
 function buscaBancos(){
     listaBusca = [];
-    console.log(listaBancos)
+    
     var val = document.getElementById("nomeBancoBusca").value;
     listaBancos.map(item => {
         if(item.nome_banco.toUpperCase().includes(val.toUpperCase())){
