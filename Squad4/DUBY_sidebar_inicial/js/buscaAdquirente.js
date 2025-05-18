@@ -3,6 +3,12 @@ $(document).ready(function () {
     listaBusca = listaAdquirentes;
     criaLinhaTabelaAdquirente(listaAdquirentes)
     parametrosData();
+
+    $('#celular-representante-adquirente').mask('(00) 00000-0000');
+    $('#cpf-representante-adquirente').mask('000.000.000-00', {reverse: true});
+    
+    // Apenas numeros
+    $('#rg-representante-adquirente').mask('0#');
 })
 
 var listaAdquirentes = [];
@@ -432,8 +438,6 @@ function criaLinhaTabelaAdquirente(dados){
     $(".deleta-adquirente").click((e)=>{
         var id = e.target.getAttribute('name');
         var adquirenteSelecionado = listaAdquirentes.find(x => x.id === id);
-
-        console.log(adquirenteSelecionado)
         
         document.getElementById("spanNomeAdquirente").innerHTML = adquirenteSelecionado.nome_adquirente
         $('#deletaAdquirenteModal').modal('show');
@@ -457,6 +461,8 @@ function deletaAdquirente(){
     buscaAdquirentes();
 
     $('#deletaAdquirenteModal').modal('hide');
+
+    showSuccessDeletaAdquirente(adquirenteSelecionado.nome_adquirente)
 }
 
 // Inicio - Função de ordenação
@@ -642,7 +648,6 @@ function montaTelaEdicao(adquirente){
 
 // Edita forma de pagamento
 function editaFormaPagamento(forma){
-    console.log(forma)
     document.getElementById('dataInicioTaxa').value = forma.inicio_vigencia.toLocaleDateString()
     document.getElementById('dataFimTaxa').value = forma.fim_vigencia.toLocaleDateString()
     document.getElementById('observacaoTaxa').value = forma.observacao
@@ -972,4 +977,160 @@ function buscaAdquirentes(){
     $("#defaultOrderBy").addClass("fa-sort-down");
 
     criaLinhaTabelaAdquirente(listaBusca)
+}
+
+$("#editaAdquirente").click(() => {
+    salvaEdicaoAdquirente();
+})
+
+function salvaEdicaoAdquirente(){
+    limpaErrosFormAdquirente()
+    var adquirente = new Object();
+    var formInvalido = false;
+
+    adquirente.nome_adquirente = document.getElementById("nome-adquirente").value;
+    adquirente.descricao_adquirente = document.getElementById("descricao-adquirente").value;
+    adquirente.api_adquirente = document.getElementById("chave-api-adquirente").value;
+    adquirente.identidade_adquirente = document.getElementById("identidade-adquirente").value;
+    
+    adquirente.nome_representante_adquirente = document.getElementById("nome-representante-adquirente").value;
+    adquirente.sobrenome_representante_adquirente = document.getElementById("sobrenome-representante-adquirente").value;
+    adquirente.email_representante_adquirente = document.getElementById("email-representante-adquirente").value;
+    adquirente.celular_representante_adquirente = document.getElementById("celular-representante-adquirente").value;
+    adquirente.cpf_representante_adquirente = document.getElementById("cpf-representante-adquirente").value;
+    adquirente.rg_representante_adquirente = document.getElementById("rg-representante-adquirente").value;
+
+    // Verifica se infos são nulos
+    if(adquirente.nome_adquirente == "" || adquirente.nome_adquirente == null){
+        $("#nomeAdquirenteNulo").show();
+        formInvalido = true;
+    }
+
+    if(adquirente.nome_representante_adquirente == "" || adquirente.nome_representante_adquirente == null){
+        $("#nomeRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(adquirente.sobrenome_representante_adquirente == "" || adquirente.sobrenome_representante_adquirente == null){
+        $("#sobrenomeRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(adquirente.email_representante_adquirente == "" || adquirente.email_representante_adquirente == null){
+        $("#emailRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(!validaEmail(adquirente.email_representante_adquirente)){
+        $("#emailRepresentanteInvalido").show();
+        formInvalido = true;
+    }
+
+    if(adquirente.celular_representante_adquirente == "" || adquirente.celular_representante_adquirente == null){
+        $("#celularRepresentanteNulo").show();
+        formInvalido = true;
+    }
+
+    if(!validaCelular(adquirente.celular_representante_adquirente)){
+        $("#celularRepresentanteInvalido").show();
+        formInvalido = true;
+    }
+
+    if(formInvalido){
+        return false;
+    }
+
+    var adquirenteSelecionado = listaAdquirentes.find(item => item.id == idAdquirente);
+
+    adquirenteSelecionado.nome_adquirente = adquirente.nome_adquirente;
+    adquirenteSelecionado.descricao_adquirente = adquirente.descricao_adquirente;
+    adquirenteSelecionado.api_adquirente = adquirente.api_adquirente;
+    adquirenteSelecionado.identidade_adquirente = adquirente.identidade_adquirente;
+    adquirenteSelecionado.nome_representante_adquirente = adquirente.nome_representante_adquirente;
+    adquirenteSelecionado.sobrenome_representante_adquirente = adquirente.sobrenome_representante_adquirente;
+    adquirenteSelecionado.email_representante_adquirente = adquirente.email_representante_adquirente;
+    adquirenteSelecionado.celular_representante_adquirente = adquirente.celular_representante_adquirente;
+    adquirenteSelecionado.cpf_representante_adquirente = adquirente.cpf_representante_adquirente;
+    adquirenteSelecionado.rg_representante_adquirente = adquirente.rg_representante_adquirente;
+
+    // listaBancos = listaBancos.map(item => {
+    //     if (item.id_banco == adquirente.id_banco) {
+    //         return banco;
+    //     }
+    //     return item;
+    // });
+
+    // Fecha o modal
+    $('#editaAdquirenteModal').modal('hide');
+
+    showSuccessEditaAdquirente(adquirente.nome_adquirente)
+    buscaAdquirentes()
+}
+
+
+// FUNÇÕES DE VALIDAÇÃO
+function validaEmail(email){
+    if(email.length == 0){
+        return true;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailRegex.test(email)) {
+        return true; // Email válido
+    }
+    return false;
+}
+
+function validaCelular(celular){
+    if(celular.length == 0){
+        return true;
+    }
+
+    var valido = celular.length != 15 ?  false : true;
+    return valido;
+}
+
+// Limpa modal de edição adquirente
+function limpaErrosFormAdquirente(){
+    $("#nomeAdquirenteNulo").hide();
+    $("#nomeRepresentanteNulo").hide();
+    $("#sobrenomeRepresentanteNulo").hide();
+    $("#emailRepresentanteNulo").hide();
+    $("#celularRepresentanteNulo").hide();
+
+    $("#emailRepresentanteInvalido").hide();
+    $("#celularRepresentanteInvalido").hide();
+}
+
+function showSuccessEditaAdquirente(msgSucesso){
+    Swal.fire({
+        title: "<strong>Adquirente editado!</strong>",
+        icon: "success",
+        html: `
+            Sucesso ao editar <b>${msgSucesso}</b>!
+        `,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        backdrop: "rgba(255, 255, 255, 0.5)"
+    });
+}
+
+function showSuccessDeletaAdquirente(msgSucesso){
+    Swal.fire({
+        title: "<strong>Adquirente deletado!</strong>",
+        icon: "success",
+        html: `
+            Sucesso ao deletar <b>${msgSucesso}</b>!
+        `,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        backdrop: "rgba(255, 255, 255, 0.5)"
+    });
 }
