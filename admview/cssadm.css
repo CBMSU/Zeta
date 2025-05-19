@@ -89,14 +89,10 @@ nav a:hover {
   color: white;
 }
 
-.filtros button:first-of-type {
-  background-color: #3b2283;
-}
 
 .filtros button:last-of-type {
   background-color: #60b26d;
 }
-
 #localizar {
   background-color: #412884;
 }
