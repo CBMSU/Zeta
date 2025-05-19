@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMview - ZETA</title>
+    <link rel="stylesheet" href="cssadm.css" />
+</head>
+<body>  
+    <header>
+        <div class="logo">
+            <img src="imgs/logo-duby-conceito - Copia.png" alt="logoduby" id="logoduby">
+        </div>
+        <nav>
+        <a href="#">Autorização de Login</a>
+        <a href="#">Gerenciamento de Usuários</a>
+        <a href="#">Gerar Boleto</a>
+        </nav>
+    </header>
+    <main>
+        <section class="filtros">
+            <div class="nome">
+                <p>Nome</p>
+                <input type="nome" id="filtroNome" placeholder="Digite aqui o nome do usuário">
+            </div>
+            <div class="email">
+                <p>Email</p>
+                <input type="email" id="filtroEmail" placeholder="Digite aqui o email do usuário">
+            </div>
+            <div id="status">
+                <p>Status</p>
+                <select id="filtroStatus">
+                    <option value="">Todos</option>
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">inativo</option>
+                    <option value="pendente">pendente</option>
+                </select>
+            </div>
+            <div class="Localizar">
+                <p></p>
+                <button onclick="filtrarTabela()" id="localizar">Localizar</button>
+            </div>
+            <div class="exportar_lista">
+                <p></p>
+                <button >Exportar Lista (EXCEL)</button>
+            </div>
+            <div class="limparlista">
+                <p></p>
+                <button onclick="resetarFiltros()"  id="limparfiltro">Limpar Filtros</button>
+            </div>
+        </section>
+        <section class="tabela">
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>CNPJ</th>
+        <th>Celular</th>
+        <th>Status</th>
+        <th>Excluir</th>
+        <th>Alterar Senha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Fulano</td>
+        <td>fulano@email.com</td>
+        <td>12345678910</td>
+        <td>(99) 99999-9999</td>
+        <td><span class="status ativo">ATIVO</span></td>
+        <td><button class="excluir">Excluir</button></td>
+        <td><a href="#"><img src="imgs/pencil-draw.png" alt="Alterar senha" class="icone"></a></td>
+      </tr>
+      <tr>
+        <td>Beltrano</td>
+        <td>beltrano@email.com</td>
+        <td>10987654321</td>
+        <td>(88) 88888-8888</td>
+        <td><span class="status inativo">INATIVO</span></td>
+        <td><button class="excluir">Excluir</button></td>
+        <td><a href="#"><img src="imgs/pencil-draw.png" alt="Alterar senha" class="icone"></a></td>
+      </tr>
+      <tr>
+        <td>Ciclano</td>
+        <td>ciclano@email.com</td>
+        <td>98765432100</td>
+        <td>(77) 77777-7777</td>
+        <td><button class="status pendente">PENDENTE</button></td>
+        <td><button class="excluir">Excluir</button></td>
+        <td><a href="#"><img src="imgs/pencil-draw.png" alt="Alterar senha" class="icone"></a></td>
+      </tr>
+    </tbody>
+  </table>
+    </section>
+<script src="scriptadm.js"></script>
+</main>
+</body>
+</html>

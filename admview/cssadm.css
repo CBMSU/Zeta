@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  background-color: #f1f1f1;
+}
+
+/* Header  */
+header {
+  background-color: #412884;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  height: 128px;
+  position: relative;
+}
+
+#logoduby {
+  width: 320px;
+  height: 113px;
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+nav {
+  display: flex;
+  gap: 60px;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 20px;
+  color: #f6f6f6;
+  transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+/* Filtros */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.filtros div {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtros p {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px;
+  min-width: 180px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filtros button {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 18px;
+  color: white;
+}
+
+.filtros button:first-of-type {
+  background-color: #3b2283;
+}
+
+.filtros button:last-of-type {
+  background-color: #60b26d;
+}
+
+#localizar {
+  background-color: #412884;
+}
+
+/* Tabela */
+
+.tabela table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabela th,
+.tabela td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabela th {
+  background: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Status */
+
+.status {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 5px;
+  color: white;
+}
+
+.status.ativo {
+  background-color: #60b26d;
+}
+
+.status.inativo {
+  background-color: #b2bec3;
+}
+
+.status.pendente {
+  background-color: red;
+  border: none;
+  cursor: pointer;
+}
+.excluir {
+  color: #00cec9;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration: underline;
+}
+
+.icone {
+  width: 18px;
+  height: 18px;
+}
+#limparfiltro{
+  background-color: #888;
+  color: #fff;
+}
