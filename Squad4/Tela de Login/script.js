@@ -15,6 +15,11 @@ function validateEmail(email) {
   return emailPattern.test(email);
 }
 
+function validateAdmin(email) {
+  const emailAdmin = /^[a-zA-Z0-9._-]+@admin\.com$/;
+  return emailAdmin.test(email.value.trim());
+}
+
 function validateForm(event) {
   event.preventDefault();
 
@@ -33,7 +38,8 @@ function validateForm(event) {
     emailError.style.color = 'red';
     emailInput.after(emailError);
   }
-if (passwordInput.value === '') {
+  
+  if (passwordInput.value === '') {
     isValid = false;
     passwordError.textContent = 'A senha é obrigatória.';
     passwordError.style.color = 'red';
@@ -41,8 +47,15 @@ if (passwordInput.value === '') {
   }
 
   if (isValid) {
-    alert('Login bem-sucedido!');
-    form.submit();
+    console.log(validateAdmin(email))
+    if(validateAdmin(email)) {
+      window.open("../../admview/adm.html", "_self");
+      console.log(validateAdmin(email))
+    }
+    else {
+      window.open("../DUBY_sidebar_inicial/index.html", "_self");
+      console.log(validateAdmin(email))
+    }
   }
 }
 
