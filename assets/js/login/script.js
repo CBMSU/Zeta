@@ -50,11 +50,9 @@ function validateForm(event) {
     console.log(validateAdmin(email))
     if(validateAdmin(email)) {
       window.open("../../../admview/adm.html", "_self");
-      console.log(validateAdmin(email))
     }
     else {
       window.open("../../../dashboard/index.html", "_self");
-      console.log(validateAdmin(email))
     }
   }
 }
