@@ -49,11 +49,11 @@ function validateForm(event) {
   if (isValid) {
     console.log(validateAdmin(email))
     if(validateAdmin(email)) {
-      window.open("../../admview/adm.html", "_self");
+      window.open("../../../admview/adm.html", "_self");
       console.log(validateAdmin(email))
     }
     else {
-      window.open("../DUBY_sidebar_inicial/index.html", "_self");
+      window.open("../../../dashboard/index.html", "_self");
       console.log(validateAdmin(email))
     }
   }
