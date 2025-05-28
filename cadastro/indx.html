@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="../assets/css/cadastro/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Imagen do pagina ainda tenho que mudar o tamanho -->
+        <div class="imagem_de_lado">
+            <img src="../assets/imgs/cadastro/Untitled (1).png" alt="Imagem decorativa">
+        </div>
+        
+        <!-- Formulario -->
+        <div class="formulario_div1">
+            <form method="post">
+                <div class="cabeçalho_do_form">
+                    <div class="title">
+                        <h1>Cadastre-se</h1>
+                    </div>
+                    <div id="botão_de_login">
+                        <button type="button"><a href="#">Entrar</a></button>
+                    </div>
+                </div>
+                
+                <!--  -->
+                <div class="input_group">
+                    <div class="input-box">
+                        <label for="primeiro_nome">Primeiro Nome</label>
+                        <input id="primeiro_nome" type="text" name="primeiro_nome" placeholder="Digite seu primeiro nome" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input id="sobrenome" type="text" name="sobrenome" placeholder="Digite seu sobrenome" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" placeholder="Digite seu email" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="celular">Celular</label>
+                        <input id="celular" type="tel" name="celular" placeholder="(xx) xxxxx-xxxx" pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="senha">Senha</label>
+                        <input id="senha" type="password" name="senha" placeholder="Digite sua senha" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="confirmar_senha">Confirme sua Senha</label>
+                        <input id="confirmar_senha" type="password" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                    </div>
+                </div>
+                
+                <!-- Gender selection -->
+                <div class="genero-group">
+                    <div class="titulo_genero">
+                        <h6>Gênero</h6>
+                    </div>
+                    <div class="inputs_genero">
+                        <div class="input_de_genero">
+                            <input type="radio" id="feminino" name="genero" value="feminino">
+                            <label for="feminino">Feminino</label>
+                        </div>
+                        <div class="input_de_genero">
+                            <input type="radio" id="masculino" name="genero" value="masculino">
+                            <label for="masculino">Masculino</label>
+                        </div>
+                        <div class="input_de_genero">
+                            <input type="radio" id="outros" name="genero" value="outros">
+                            <label for="outros">Outros</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="botão_de_confirmação">
+                    <button type="submit">Continuar</button>
+                </div>
+                <script src="../assets/js/cadastro/script.js"></script>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

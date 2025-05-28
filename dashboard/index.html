@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../assets/imgs/dashboard/duby2.ico">
+
+    <title>Duby</title>
+    
+    <link href="../assets/css/dashboard/fontawesomefree.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="../assets/css/dashboard/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/dashboard/style.css">
+
+    <!-- Chart.js-->
+     <script src="../assets/js/dashboard/chart.js"></script>
+
+     <!-- Script -->
+     <script src="../assets/js/dashboard/script.js" type="module"></script>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion bg-logo-color toggled" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center logo-txt" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <img src="../assets/imgs/dashboard/logo-duby-conceito.png" alt="" class=" w-75">
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Início -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Início</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Busca -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="busca.html">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Busca</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Adquirentes -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdquirentes"
+                aria-expanded="true" aria-controls="collapseAdquirentes">
+                    <i class="fa fa-fw fa-id-badge"></i>
+                    <span>Adquirentes</span></a>
+                <div id="collapseAdquirentes" class="collapse" aria-labelledby="headingAdquirentes" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="cadastraAdquirente.html">Novo</a>
+                        <a class="collapse-item" href="buscaAdquirente.html">Consulta</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Bancos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBancos"
+                    aria-expanded="true" aria-controls="collapseBancos">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Bancos</span>
+                </a>
+                <div id="collapseBancos" class="collapse" aria-labelledby="headingBancos" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="cadastraBanco.html">Novo</a>
+                        <a class="collapse-item" href="buscaBanco.html">Consulta</a>
+                    </div>
+                </div>
+            </li>
+
+            <div class="mt-auto">
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block my-0">
+            
+                <!-- Nav Item - Instrução de Uso -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInstrucao"
+                        aria-expanded="true" aria-controls="collapseInstrucao">
+                        <i class="fas fa-fw fa-question-circle"></i>
+                        <span>Instrução de Uso</span>
+                    </a>
+                    <div id="collapseInstrucao" class="collapse" aria-labelledby="headingInstrucao" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="#">Glossário</a>
+                            <a class="collapse-item" href="#">Licença</a>
+                        </div>
+                    </div>
+                </li>
+            
+                <!-- Sidebar Toggler -->
+                <div class="text-center">
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                </div>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 color-logo">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-3 d-none d-lg-inline text-gray-600 small" id="userName">Olá, Pedro Cardozo </span>
+                                <img class="img-profile rounded-circle"
+                                    src="../assets/imgs/dashboard/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="perfil.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Sair
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="align-items-center justify-content-between mb-2">
+                        <div class="row">
+                            <div class="col-3 col-lg-6 mb-3">
+                                <h1 class="h3 mb-0 text-dark">Dashboard</h1>
+                            </div>
+
+                            
+                            <div class="col-9 col-lg-6 mb-3">
+                                <button class="btn btn-sm btn-outline-duby py-1 px-3 float-right" data-toggle="modal" data-target="#importarModal">
+                                    <i class="fas fa-file-import mr-2"></i> 
+                                    <span class="d-none d-lg-inline">Importar Arquivo</span>
+                                    <span class="d-lg-none">Upload</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row justify-content-md-center mb-2">
+
+                        <!-- Repasses Mensais Card -->
+                        <div class="col-12 col-lg-4 mb-4">
+                            <div class="card shadow h-100 bg-light-logo-color">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="small font-weight-bold mb-1">
+                                                Total de Repasses Mensais
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold my-3">
+                                                R$ 1.452.000,00
+                                            </div>
+                                            <div class="small">
+                                                <span class="text-success font-weight-bold"><i class="fas fa-caret-up"></i> 7%</span> vs ano anterior
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="row justify-content-md-center mt-4">
+                                        <div class="col-12 mt-0 text-dark px-2">
+                                            <canvas id="graficoRepassesPeriodo" class="" style="position: relative; height:30vh"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Percentual divergências Card  -->
+                        <div class="col-12 col-lg-4 mb-4">
+                            <div class="card shadow h-100 bg-light-logo-color">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="small font-weight-bold mb-1">
+                                                Percentual de Divergências
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold my-3">
+                                                7,2%
+                                            </div>
+                                            <div class="small">
+                                                <span class="text-danger font-weight-bold"><i class="fas fa-caret-up"></i> 2%</span> vs ano anterior
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-md-center mt-4">
+                                        <div class="col-12 mt-0 text-dark px-2">
+                                            <canvas id="graficoPercentualDivergencia" class="" style="position: relative; height:30vh"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Repasses divergentes Card  -->
+                        <div class="col-12 col-lg-4 mb-4">
+                            <div class="card shadow h-100 bg-light-logo-color">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="small font-weight-bold mb-1">
+                                                Total de Repasses Divergentes
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold my-3">
+                                                R$ 104.544,00
+                                            </div>
+                                            <div class="small">
+                                                <span class="text-danger font-weight-bold"><i class="fas fa-caret-up"></i> 16%</span> vs ano anterior
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-md-center mt-4">
+                                        <div class="col-12 mt-0 text-dark px-2">
+                                            <canvas id="graficoRepassesDivergentes" class="" style="position: relative; height:30vh"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Row Grid -->
+                    <!-- CABEÇALHO -->
+                    <div class="row justify-content-md-center align-items-center mt-2   mb-1 font-weight-bold text-dark">
+                        <div class="col-6 col-lg-2 mt-0">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort-down" name="data"></i></span> Data
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="adquirente"></i></span> Adquirente
+                        </div>
+
+                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="valorEsperado"></i></span> Valor Esperado
+                        </div>
+
+                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="diferenca"></i></span> Diferença
+                        </div>
+
+                        <div class="col-4 col-lg-1 mt-0">
+                            Status
+                        </div>
+
+                        <div class="col-2 col-lg-1 mt-0">
+                        </div>
+
+                        <!-- DIVIDER  -->
+                        <div class="col-12 col-lg-12 mt-0">
+                            <hr class="mt-2 mb-0"/>
+                        </div>
+                    </div>
+
+                    <div id="conteudoTabela">
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; DUBY</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Modal Logout-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Deseja realmente sair?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Confirme se realmente deseja sair da conta.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" href="#" id="btnLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Info Conciliação Divergente -->
+    <div class="modal fade" id="infoDivergenteModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliacaoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoConciliacaoModalLabel">Descrição da Conciliação</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body pb-0">
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Data
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Status
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-data-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            <div class="dropdown">
+                                <button id="dropdown" class="btn btn-sm btn-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span id="htmlBtnDropdown">Pendente</span>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown">
+                                        <span class="dropdown-item spanstatus" name="1">Pendente</span>
+                                        <span class="dropdown-item spanstatus" name="2">Em análise</span>
+                                        <span class="dropdown-item spanstatus" name="3">Solicionado</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Adquirente
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Banco
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-adquirente-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-banco-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Esperado
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Recebido
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-valorEsperado-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-valorRecebido-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Diferença
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Bandeira
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0 text-danger" id="div-diferenca-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-bandeira-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Número da Parcela
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Total de Parcelas
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaNum-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaTotal-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Juros Vigente
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Tipo de Operação
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-taxa-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-tipo-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center my-2 d-none" id="valorRecebidoStatus">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group mb-0">
+                                <label for="valor-recebido-conciliacao" class="text-dark font-weight-bold mb-0">Valor recebido</label>
+                                <input type="text" class="form-control mt-0" id="valor-recebido-conciliacao" placeholder="Valor recebido (apenas números)" inputmode="numeric">
+                                <div class="invalid-feedback text-left" id="valorRecebidoConciliacaoNulo">
+                                    Valor recebido obrigatório.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center mb-3" id="rowObservacaoStatus">
+                        <div class="col-12 col-lg-10 mt-0 text-dark font-weight-bold">
+                            Observação
+                        </div>
+
+                        <div class="col-12 col-lg-10 mt-0">
+                            <textarea class="form-control" name="observacaoTrocaStatus" id="observacao-conciliacao"></textarea>
+                        </div>
+                    </div>
+    
+                    <div class="row justify-content-md-center mt-0 d-none" id="valor-recebido-solucionado">
+                        <div class="col-12 col-lg-10 mt-0">
+                            <hr class="my-0 border-gray"/>
+                            <div class="my-3">
+                                <p class="my-0 mt-1"><span class="text-dark font-weight-bold">Valor recebido após contato:</span> <span id="span-valor-recebido-solucionado" class="text-success"> - </span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center mt-0">
+                        <div class="col-12 col-lg-10 mt-0">
+                            <div id="observacoes-cadastradas">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Fechar</button>
+                    <button class="btn btn-success" href="#" id="btnSalvarStatusConcilicao">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Importar Arquivo Modal-->
+    <div class="modal fade" id="importarModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg my-0" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Importar arquivo</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <label class="mb-0" for="extratoBancario">Extrato bancário</label>
+                            <div class="custom-file"><input type="file" class="custom-file-input arquivoUpload" id="extratoBancario" accept=".csv, .ofx">
+                                <label class="custom-file-label" for="extratoBancario">Procurar arquivo CSV ou OFX...</label>
+                                <div class="invalid-feedback text-left" id="extratoBancarioNulo">
+                                    O campo de extrato bancário é obrigatório.
+                                </div>
+                                <div class="invalid-feedback text-left" id="extratoBancarioInvalido">
+                                    Arquivo inválido.
+                                </div>
+                                </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <label class="mb-0" for="extratoAdquirente">Relatório adquirente</label>
+                            <div class="custom-file"><input type="file" class="custom-file-input arquivoUpload" id="extratoAdquirente" accept=".csv, .ofx">
+                                <label class="custom-file-label" for="extratoAdquirente">Procurar arquivo CSV ou OFX...</label>
+                                <div class="invalid-feedback text-left" id="extratoAdquirenteNulo">
+                                    O campo de relatorio adquirente é obrigatório.
+                                </div>
+                                <div class="invalid-feedback text-left" id="extratoAdquirenteInvalido">
+                                    Arquivo inválido.
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="mt-3 px-2" id="previewEB" style="display:none">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col-4 col-lg-4">Data</th>
+                                        <th scope="col-4 col-lg-4">Tipo</th>
+                                        <th scope="col-4 col-lg-4">Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaExtratoBancario"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 px-2" id="previewEA" style="display:none">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col-4 col-lg-4">Data Vencimento</th>
+                                        <th scope="col-4 col-lg-4">Tipo</th>
+                                        <th scope="col-4 col-lg-4">Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaExtratoAdquirente"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer mt-3">
+                    <button class="btn btn-sm btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-sm btn-save-duby" id="btnImportar" >Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../assets/js/dashboard/jquery.min.js"></script>
+    <script src="../assets/js/dashboard/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../assets/js/dashboard/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../assets/js/dashboard/comportamento_sidebar.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="../assets/js/dashboard/sweetalert2_11.js"></script>
+
+    <!-- Maks inputs -->
+    <script src="../assets/js/dashboard/jquery.mask.min.js"></script>
+
+    <!-- SO HELP ME GOD -->
+    <script src="../assets/js/dashboard/abridged.js"></script>
+</body>
+
+</html>
