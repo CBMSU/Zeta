@@ -20,9 +20,12 @@
     <!-- Styles -->
     <link href="../assets/css/dashboard/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/dashboard/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard/multiSelect.css">
 
      <!-- Script -->
-     <script src="../assets/js/dashboard/cadastraBanco.js" type="module"></script>
+     <script src="../assets/js/dashboard/busca.js" type="module"></script>
+     <script src="../assets/js/dashboard/multiSelect.js" type="module"></script>
+
 </head>
 
 <body id="page-top">
@@ -169,159 +172,135 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-1">
-                        <h1 class="h3 mb-0 text-dark">Cadastro de banco</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-3">
+                        <h1 class="h3 mb-0 text-dark">Busca</h1>
                     </div>
 
-                    <!-- Content Row - DADOS DO BANCO -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
+                    <!-- Content Row - Filtro busca de adquirente -->
+                     <div class="row justify-content-lg-center">
+                        <div class="col-12 col-lg-10">
                             <div class="d-sm-flex align-items-center justify-content-between mb-3">
-                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-university mr-2"></i>Dados do banco</h5>
+                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-filter mr-2"></i>Filtro</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="nome-banco">Nome</label>
-                                <input type="text" class="form-control" id="nome-banco" placeholder="Nome do banco">
-                                <div class="invalid-feedback text-left" id="nomeBancoNulo">
-                                    Nome do banco obrigatório.
-                                </div>
+                    <form>
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-5">
+                                <label for="inputAdquirentes">Adquirentes</label>
+                                <select id="inputAdquirentes" name="inputAdquirentes" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
+                                    <option value="Cielo" selected>Cielo</option>
+                                    <option value="Getnet" selected>Getnet</option>
+                                    <option value="PagSeguro" selected>PagSeguro</option>
+                                    <option value="Rede" selected>Rede</option>
+                                    <option value="Stone" selected>Stone</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="cnpj-banco">CNPJ</label>
-                                <input type="text" class="form-control" id="cnpj-banco" placeholder="CNPJ do banco (apenas números)" inputmode="numeric">
-                                <div class="invalid-feedback text-left" id="cnpjBancoNulo">
-                                    CNPJ do banco obrigatório.
-                                </div>
-                                <div class="invalid-feedback text-left" id="cnpjBancoInvalido">
-                                    CNPJ inválido. Por favor, digite um CNPJ válido.
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefone-banco">Telefone</label>
-                                <input type="text" class="form-control" id="telefone-banco" placeholder="Telefone do banco (apenas números)" inputmode="numeric">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="nome-banco">Agência bancária</label>
-                                <input type="text" class="form-control" id="agencia-banco" placeholder="Agencia do banco (apenas números)" inputmode="numeric">
+                            <div class="form-group col-lg-5">
+                                <label for="inputBanco">Bancos</label>
+                                <select id="inputBanco" name="inputBanco" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
+                                    <option value="Banco do Brasil" selected>Banco do Brasil</option>
+                                    <option value="Caixa" selected>Caixa</option>
+                                    <option value="Nubank" selected>Nubank</option>
+                                    <option value="Viacredi" selected>Viacredi</option>
+                                    <option value="Itaú" selected>Itaú</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-4 col-xl-3">
-                            <div class="form-group">
-                                <label for="nome-banco">Banco central ID</label>
-                                <input type="text" class="form-control" id="id-banco" placeholder="Banco central ID (apenas números)" inputmode="numeric">
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-5">
+                                <label for="inputTipo">Tipo</label>
+                                <select id="inputTipo" name="inputTipo" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
+                                    <option value="Pix" selected>Pix</option>
+                                    <option value="Boleto" selected>Boleto</option>
+                                    <option value="Crédito" selected>Crédito</option>
+                                    <option value="Débito" selected>Débito</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-5">
+                                <label for="inputBandeira">Bandeira</label>
+                                <select id="inputBandeira" name="inputBandeira" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
+                                    <option value="Visa" selected>Visa</option>
+                                    <option value="Mastercard" selected>Mastercard</option>
+                                    <option value="Elo" selected>Elo</option>
+                                    <option value="AmericanExpress" selected>AmericanExpress</option>
+                                    <option value="Hipercard" selected>Hipercard</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- DIVIDER  -->
-                     <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6 my-3">
-                            <hr class="my-0 border-dark"/>
-                        </div>
-                    </div>
-
-                    <!-- CONTATO DO REPRESENTANTE LEGAL -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="d-sm-flex align-items-center justify-content-between mb-3 mt-2">
-                                <h5 class="h5 mb-0 text-dark font-weight-bold"><i class="fas fa-user mr-1"></i> Contato do representante legal</h5>
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-10">
+                                <label for="inputAddress2">Address 2</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="nome-representante-banco">Nome</label>
-                                <input type="text" class="form-control" id="nome-representante-banco" placeholder="Nome do Responsável">
-                                <div class="invalid-feedback text-left" id="nomeRepresentanteNulo">
-                                    Nome do representante obrigatório.
-                                </div>
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-4">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputState">State</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
                             </div>
                         </div>
-                        <div class="col-12 col-lg-4 col-xl-3">
-                            <div class="form-group">
-                                <label for="sobrenome-representante-banco">Sobrenome</label>
-                                <input type="text" class="form-control" id="sobrenome-representante-banco" placeholder="Sobrenome do Responsável">
-                                <div class="invalid-feedback text-left" id="sobrenomeRepresentanteNulo">
-                                    Sobrenome do representante obrigatório.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="email-representante-banco">E-mail</label>
-                                <input type="email" class="form-control" id="email-representante-banco" placeholder="E-mail do Responsável">
-                                <div class="invalid-feedback text-left" id="emailRepresentanteNulo">
-                                    Email do representante obrigatório.
-                                </div>
-                                <div class="invalid-feedback text-left" id="emailRepresentanteInvalido">
-                                    Email inválido. Por favor, digite um email válido.
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Check me out
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="celular-representante-banco">Celular</label>
-                                <input type="text" class="form-control" id="celular-representante-banco" placeholder="Celular do Responsável (apenas números)" inputmode="numeric">
-                                <div class="invalid-feedback text-left" id="celularRepresentanteNulo">
-                                    Celular do representante obrigatório.
-                                </div>
-                                <div class="invalid-feedback text-left" id="celularRepresentanteInvalido">
-                                    Celular inválido. Por favor, digite um número válido.
-                                </div>
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-10">
+                                <button type="submit" class="btn btn-primary">Sign in</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
 
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="cpf-representante-banco">CPF</label>
-                                <input type="text" class="form-control" id="cpf-representante-banco" placeholder="CPF do Responsável (apenas números)" inputmode="numeric">
-                            </div>
+                    <!-- Content Row - Resultado da busca -->
+                    <!-- DIVIDER -->
+                    <div class="row justify-content-lg-center mt-4 mb-3">
+                        <div class="col-12 col-lg-11 my-0">
+                            <hr class="my-0"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-lg-center align-items-center my-0 font-weight-bold text-dark text-left">
+                        <div class="col-6 col-lg-3 mt-0">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort-down" name="nome" id="defaultOrderBy"></i></span> Nome
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="identidade"></i></span> Identidade
+                        </div>
+
+                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="representante"></i></span> Representante
+                        </div>
+
+                        <div class="col-2 col-lg-2 mt-0">
                         </div>
                     </div>
 
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group">
-                                <label for="rg-representante-banco">RG</label>
-                                <input type="text" class="form-control" id="rg-representante-banco" placeholder="RG do Responsável (apenas números)" inputmode="numeric">
-                            </div>
+                    <!-- DIVIDER -->
+                    <div class="row justify-content-md-center mt-3 mb-3">
+                        <div class="col-12 col-lg-11 my-0">
+                            <hr class="my-0"/>
                         </div>
                     </div>
 
-                    <!-- DIVIDER  -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-lg-7 col-xl-6 my-2">
-                            <hr class="my-0 border-dark"/>
-                        </div>
-                    </div>
-
-                    <!-- BOTÕES DE AÇÃO -->
-
-                    <div class="row justify-content-md-center my-2">
-                        <div class="col-12 col-lg-7 col-xl-6">
-                            <div class="form-group text-right">
-                                <button class="btn btn-save-duby" type="button" data-dismiss="modal" id="cadastraBanco">Salvar</button>
-                            </div>
-                        </div>
+                    <div id="conteudoTabela">
                     </div>
 
                 </div>
@@ -379,6 +358,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../assets/js/dashboard/comportamento_sidebar.js"></script>
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="../assets/js/dashboard/datepicker_files/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="../assets/js/dashboard/datepicker_files/bootstrap-datepicker3.css"/>
+
+    <script src="../assets/js/dashboard/datepicker_files/bootstrap-datepicker.pt-BR.min.js"></script>
 
     <!-- Sweet alert -->
     <script src="../assets/js/dashboard/sweetalert2_11.js"></script>
