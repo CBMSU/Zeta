@@ -444,8 +444,6 @@ $("#btnSalvarStatusConcilicao").click(() => {
 $(".spanOrderBy").click((e) => {
     var el = !e.target.firstChild ? e.target : e.target.firstChild;
 
-    el.classList.contains("fa-sort-down")
-
     var orderUp = false;
     var newOrder = true;
     if (el.classList.contains("fa-sort-down")){
@@ -549,8 +547,6 @@ $('.arquivoUpload').on('change', (e) => {
     
     $('#' + e.target.id).next('.custom-file-label').html(fileName); 
     
-    console.log(e.target.id)
-    
     lerCSV(e.target, function(data) {
         if(e.target.id == "extratoBancario"){
             criaTabelaExtratoBancario(data)
@@ -561,6 +557,15 @@ $('.arquivoUpload').on('change', (e) => {
 })
 
 function criaTabelaExtratoBancario(conteudo){
+    if(!conteudo[0].includes('date')){
+        // arquivo invalido
+        document.getElementById('extratoBancario').value = ''
+        $('#extratoBancario').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
+        $("#extratoBancarioInvalido").show();
+        $('#previewEB').hide();
+        return false;
+    }
+
     // tira cabeçalho 
     conteudo = conteudo.filter(item => item[0] !== 'date');
     conteudo = conteudo.filter(item => item[0] !== '');
@@ -582,9 +587,20 @@ function criaTabelaExtratoBancario(conteudo){
     `).join(''); 
 
     document.getElementById('tabelaExtratoBancario').innerHTML = html;
+    $('#previewEB').show();
 }
 
 function criaTabelaExtratoAdquirente(conteudo){
+    
+    if(!conteudo[0].includes('DOCUMENTO')){
+        // arquivo invalido        
+        document.getElementById('extratoAdquirente').value = ''
+        $('#extratoAdquirente').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
+        $("#extratoAdquirenteInvalido").show();
+        $('#previewEA').hide();
+        return false;
+    }
+
     // tira cabeçalho 
     conteudo = conteudo.filter(item => item[0] !== 'DOCUMENTO');
     conteudo = conteudo.filter(item => item[0] !== '');
@@ -606,6 +622,7 @@ function criaTabelaExtratoAdquirente(conteudo){
     `).join(''); 
 
     document.getElementById('tabelaExtratoAdquirente').innerHTML = html;
+    $('#previewEA').show();
 }
 
 function verificaArquivo(arquivo){
@@ -626,12 +643,19 @@ function verificaArquivo(arquivo){
     return true;
 }
 
+$('#importarModal').on('hidden.bs.modal', function () {
+    limpaFormUpload();
+});
 
 function limpaFormUpload(){
     // LIMPA INPUT FILE
     document.getElementById('extratoBancario').value = ''
+    document.getElementById('extratoAdquirente').value = ''
     $('#extratoBancario').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
     $('#extratoAdquirente').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
+
+    $('#previewEA').hide();
+    $('#previewEB').hide();
 }
 
 function limpaErrosUpload(){
@@ -649,6 +673,9 @@ $("#btnImportar").click(() => {
     var extratoBancario = document.getElementById("extratoBancario");
     var extratoAdquirente = document.getElementById("extratoAdquirente");
 
+    verificaArquivo(extratoBancario);
+    verificaArquivo(extratoAdquirente);
+
     if(!verificaArquivo(extratoBancario) || !verificaArquivo(extratoAdquirente)){
         formValido = false;
     }
@@ -659,6 +686,13 @@ $("#btnImportar").click(() => {
 
     lerCSV(extratoBancario, function(data){})
     lerCSV(extratoAdquirente, function(data){})
+
+    // Fecha o modal
+    $('#importarModal').modal('hide');
+
+    limpaFormUpload();
+    
+    
 })
 
 function lerCSV(fileInput, callback) {
@@ -705,7 +739,6 @@ function lerCSV(fileInput, callback) {
     });
 
     // retorna valores processados em forma de tabela
-    console.log(data);
     callback(data);
   };
 
@@ -715,7 +748,6 @@ function lerCSV(fileInput, callback) {
 
 function converteReal(valor){
     var novoValor = Number(valor.replace(".", "").replace(",", "."))
-    console.log(novoValor)
     novoValor = novoValor.toFixed(2)
     novoValor = novoValor.toString().replace(".", ",")
     
