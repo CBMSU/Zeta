@@ -90,11 +90,19 @@ nav a:hover {
 }
 
 
-.filtros button:last-of-type {
+.exportar_lista button{
   background-color: #60b26d;
+  align-content: inherit
+}
+.exportar_lista{
+  left: 500px;
 }
 #localizar {
   background-color: #412884;
+}
+.limparlista button {
+  background-color: #000000f6;
+  color: #fff;
 }
 
 /* Tabela */
@@ -155,7 +163,9 @@ nav a:hover {
   width: 18px;
   height: 18px;
 }
-#limparfiltro{
-  background-color: #888;
-  color: #fff;
+
+#logout{
+  cursor: pointer;
+  border: none;
+  color: #fffF;
 }
