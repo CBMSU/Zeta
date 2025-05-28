@@ -4,43 +4,39 @@ $(document).ready(function () {
     $('#valor-recebido-conciliacao').mask("#.##0,00", {reverse: true});
 
     // CRIAÇÃO DO GRÁFICO
-    const ctx = document.getElementById('graficoRepassesPeriodo').getContext('2d');
+    const ctxRP = document.getElementById('graficoRepassesPeriodo').getContext('2d');
 
-    const data = {
+    const dataRP = {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         datasets: [
             {
-            label: 'Repasse',
-            data: [1000, 2000, 1500, 2500, 1300, 500, 1400, 2200, 2500, 1000, 1500, 2000],
-            borderColor: '#412884',
-            fill: 
-            {
-                target: 'origin',
-                above: 'rgba(65, 40, 132, 0.4)',   // Cor da area acima da origem
-            },
-            stepped: "middle",
+                label: 'Repasse',
+                data: [1000, 2000, 1500, 2500, 1300, 500, 1400, 2200, 2500, 1000, 1500, 2000],
+                borderColor: '#412884',
+                // stepped: "middle",
+                borderWidth: 1.3,
             }
         ]
     };
 
-    new Chart(ctx, {
+    new Chart(ctxRP, {
         type: 'line',
-        data: data,
-        maintainAspectRatio: false,
+        data: dataRP,
         options: {
             responsive: true,
             interaction: {
                 intersect: false,
                 axis: 'x'
             },
+        maintainAspectRatio: false,
             
         plugins: {
             title: {
-                display: true,
-                text: 'Repasses por Período',
+                display: false,
+                text: 'Repasses Mensais',
                 color: "#412884",
-                align: "start",
-                font: {size : 20},
+                align: "center",
+                font: {size : 16},
                 padding: {bottom: 23}
             },
             legend: {
@@ -52,11 +48,124 @@ $(document).ready(function () {
                 displayColors: false   // remove quadrado ao lado do tooltip
             }
         },
-        scales: {
-        y: {
-            beginAtZero: true
-        }, 
-        }}
+            scales: {
+            y: {
+                beginAtZero: true
+            }, 
+            }
+        }
+    });
+
+    const ctxRD = document.getElementById('graficoPercentualDivergencia').getContext('2d');
+
+    const dataRD = {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        datasets: [
+            {
+            label: 'Percentual',
+            data: [5.1, 4.9, 4.7, 5.0, 4.5, 5.3, 4.4, 4.9, 5.0, 4.7, 5.5, 7.2],
+            backgroundColor: [
+                '#6541c6',
+                '#866ed8',
+                '#a99ae5',
+                '#cdc6f0',
+                // '#f1effb',
+                '#412884',
+                '#201147',
+                ],
+            }
+        ]
+    };
+
+    new Chart(ctxRD, {
+        type: 'pie',
+        data: dataRD,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            
+            plugins: {
+                title: {
+                    display: false,
+                    text: 'Percentual Divergências',
+                    color: "#412884",
+                    align: "center",
+                    font: {size : 16},
+                    padding: {bottom: 23}
+                },
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: true,
+                    position: 'nearest',
+                    displayColors: false   // remove quadrado ao lado do tooltip
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false
+                }, 
+            }
+        }
+    });
+
+    const ctxPD = document.getElementById('graficoRepassesDivergentes').getContext('2d');
+
+    const dataPD = {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        datasets: [
+            {
+            label: 'Repasse',
+            data: [1000, 2100, 1500, 1800, 1900, 2000, 1400, 1900, 1700, 1300, 1500, 1700],
+            backgroundColor: [
+                '#6541c6',
+                '#866ed8',
+                '#a99ae5',
+                '#cdc6f0',
+                // '#f1effb',
+                '#412884',
+                '#201147',
+                ],
+            }
+        ]
+    };
+
+    new Chart(ctxPD, {
+        type: 'bar',
+        data: dataPD,
+        options: {
+                responsive: true,
+                interaction: {
+                intersect: false,
+                axis: 'x'
+            },
+        maintainAspectRatio: false,
+            
+        plugins: {
+            title: {
+                display: false,
+                text: 'Repasses Divergentes',
+                color: "#412884",
+                align: "center",
+                font: {size : 16},
+                padding: {bottom: 23}
+            },
+            legend: {
+                display: false
+            },
+            tooltip: {
+                enabled: true,
+                position: 'nearest',
+                displayColors: false   // remove quadrado ao lado do tooltip
+            }
+        },
+            scales: {
+            y: {
+                beginAtZero: true
+            }, 
+            }
+        }
     });
 
     // FIM CRIAÇÃO DO GRÁFICO
@@ -171,7 +280,7 @@ function criaLinhaTabelaDivergentes(){
         </div>
 
         <!-- DIVIDER  -->
-        <div class="col-12 col-lg-11 mt-0">
+        <div class="col-12 col-lg-12 mt-0">
             <hr class="mt-2 mb-0"/>
         </div>
     </div>
@@ -400,12 +509,6 @@ $(".spanOrderBy").click((e) => {
 })
 
 // FIM - ORDER BY TABELA DIVERGENTES
-function converteData(data){
-    const partes = data.split("/");
-    const novaData = new Date(partes[2], partes[1] - 1, partes[0]);
-    return novaData;
-}
-
 
 // MOSTRA MENSAGEM DE SUCESSO AO ALTERAR STATUS / CADASTRAR OBSERVAÇÃO
 function showSuccess(nomeAdquirente){
@@ -422,4 +525,215 @@ function showSuccess(nomeAdquirente){
         allowOutsideClick: false,
         backdrop: "rgba(255, 255, 255, 0.5)"
     });
+}
+
+
+
+
+
+
+
+//  ###################################  UPLOAD  ######################################
+
+$('.arquivoUpload').on('change', (e) => {
+    
+    $("#" + e.target.id + "Nulo").hide()
+    $("#" + e.target.id + "Invalido").hide();
+
+    let fileName = e.target.value.split('\\').pop();
+
+    var arquivoValido = verificaArquivo(e);
+
+    if (!arquivoValido)
+        return false;
+    
+    $('#' + e.target.id).next('.custom-file-label').html(fileName); 
+    
+    console.log(e.target.id)
+    
+    lerCSV(e.target, function(data) {
+        if(e.target.id == "extratoBancario"){
+            criaTabelaExtratoBancario(data)
+        }else if(e.target.id == "extratoAdquirente"){
+            criaTabelaExtratoAdquirente(data)
+        }
+    });
+})
+
+function criaTabelaExtratoBancario(conteudo){
+    // tira cabeçalho 
+    conteudo = conteudo.filter(item => item[0] !== 'date');
+    conteudo = conteudo.filter(item => item[0] !== '');
+
+    const html = conteudo.map(item => `
+        <tr>
+            <td>
+                ${item[0]}
+            </td>
+
+            <td>
+                ${converteTipo(item[1])}
+            </td>
+
+            <td>
+                ${converteReal(item[2])}
+            </td>
+        </div>
+    `).join(''); 
+
+    document.getElementById('tabelaExtratoBancario').innerHTML = html;
+}
+
+function criaTabelaExtratoAdquirente(conteudo){
+    // tira cabeçalho 
+    conteudo = conteudo.filter(item => item[0] !== 'DOCUMENTO');
+    conteudo = conteudo.filter(item => item[0] !== '');
+
+    const html = conteudo.map(item => `
+        <tr>
+            <td>
+                ${item[5]}
+            </td>
+
+            <td>
+                ${converteTipo(item[8])}
+            </td>
+
+            <td>
+                ${converteReal(item[13])}
+            </td>
+        </div>
+    `).join(''); 
+
+    document.getElementById('tabelaExtratoAdquirente').innerHTML = html;
+}
+
+function verificaArquivo(arquivo){
+    if(arquivo.target)
+        arquivo = arquivo.target
+
+    if(!arquivo.files.length){
+        $("#" + arquivo.id + "Nulo").show()
+        return false;
+    }
+    
+    if ( !arquivo.value.endsWith('.csv') && 
+        !arquivo.value.endsWith('.ofx')) {
+        $("#" + arquivo.id + "Invalido").show();
+        return false;
+    }
+
+    return true;
+}
+
+
+function limpaFormUpload(){
+    // LIMPA INPUT FILE
+    document.getElementById('extratoBancario').value = ''
+    $('#extratoBancario').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
+    $('#extratoAdquirente').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
+}
+
+function limpaErrosUpload(){
+    // LIMPA MENSAGENS ERRO
+    $("#extratoBancarioNulo").hide()
+    $('#extratoBancarioInvalido').hide();
+    $("#extratoAdquirenteNulo").hide()
+    $('#extratoAdquirenteInvalido').hide();
+}
+
+$("#btnImportar").click(() => {
+    limpaErrosUpload();
+
+    var formValido = true;
+    var extratoBancario = document.getElementById("extratoBancario");
+    var extratoAdquirente = document.getElementById("extratoAdquirente");
+
+    if(!verificaArquivo(extratoBancario) || !verificaArquivo(extratoAdquirente)){
+        formValido = false;
+    }
+
+    if (!formValido) 
+        return false;
+    
+
+    lerCSV(extratoBancario, function(data){})
+    lerCSV(extratoAdquirente, function(data){})
+})
+
+function lerCSV(fileInput, callback) {
+  // Pega o primeiro arquivo selecionado
+  const file = fileInput.files[0];
+
+  // se o arquivo foi selecionado ou não for csv
+  if (!file || (!file.name.toLowerCase().endsWith('.csv') && !file.name.toLowerCase().endsWith('.ofx'))) {
+    $("#" + fileInput.id + "Invalido").show()
+    return false;
+  }
+
+  // Cria um leitor de arquivos
+  const reader = new FileReader();
+
+  // Quando a leitura for concluída
+  reader.onload = function (event) {
+    // Pega o conteúdo do arquivo como texto
+    const csvText = event.target.result;
+
+    // Detecta o tipo de quebra de linha sendo '\n' (Linux/Mac) ou '\r\n' (Windows)
+    const lineBreak = csvText.includes('\r\n') ? '\r\n' : '\n';
+
+    // Pega a primeira linha do CSV (normalmente o cabeçalho)
+    const header = csvText.split(lineBreak)[0];
+
+    // Conta quantas vírgulas e pontos e vírgulas existem no cabeçalho
+    const commaCount = (header.match(/,/g) || []).length;
+    const semicolonCount = (header.match(/;/g) || []).length;
+
+    // Decide qual é o separador do CSV ("," ou ";")
+    const separator = semicolonCount > commaCount ? ';' : ',';
+
+    // Divide o conteúdo em linhas
+    const lines = csvText.split(lineBreak);
+
+    // Para cada linha, divide os campos respeitando valores entre aspas
+    const data = lines.map(line => {
+      // Regex que divide pelo separador, ignorando separadores dentro de aspas
+      const regex = new RegExp(`${separator}(?=(?:[^"]*"[^"]*")*[^"]*$)`);
+
+      // Divide a linha com base na regex e remove aspas externas e espaços
+      return line.split(regex).map(campo => campo.trim().replace(/^"|"$/g, ''));
+    });
+
+    // retorna valores processados em forma de tabela
+    console.log(data);
+    callback(data);
+  };
+
+  // Inicia a leitura do arquivo como texto (UTF-8)
+  reader.readAsText(file, 'UTF-8');
+}
+
+function converteReal(valor){
+    var novoValor = Number(valor.replace(".", "").replace(",", "."))
+    console.log(novoValor)
+    novoValor = novoValor.toFixed(2)
+    novoValor = novoValor.toString().replace(".", ",")
+    
+    return "R$ " + novoValor;
+}
+
+function converteTipo(valor){
+    switch (valor.toLowerCase()){
+        case "credit":
+            return "Crédito";
+        case "debit":
+            return "Débito";
+        case "pix":
+            return "Pix";
+        case "boleto":
+            return "Boleto";
+        default:
+            return valor;
+
+    }
 }
