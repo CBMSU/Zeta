@@ -176,7 +176,7 @@
                         <h1 class="h3 mb-0 text-dark">Busca</h1>
                     </div>
 
-                    <!-- Content Row - Filtro busca de adquirente -->
+                    <!-- Content Row - Filtro busca -->
                      <div class="row justify-content-lg-center">
                         <div class="col-12 col-lg-10">
                             <div class="d-sm-flex align-items-center justify-content-between mb-3">
@@ -187,7 +187,41 @@
                     <form>
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-5">
-                                <label for="inputAdquirentes">Adquirentes</label>
+                                <label for="dataInicio" class="font-weight-bold">Data inicial</label>
+                                <input type="text" class="form-control" name="dataInicio" id="dataInicio" readonly='true' style="background-color: #fff;" placeholder="Data inicial" />
+                            </div>
+
+                            <div class="form-group col-lg-5">
+                                <label for="dataFim" class="font-weight-bold">Data final</label>
+                                <input type="text" class="form-control" name="dataFim" id="dataFim" readonly='true' style="background-color: #fff;" placeholder="Data final" />
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-5">
+                                <label for="valorInicial" class="font-weight-bold">Valor inicial</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">R$</div>
+                                    </div>
+                                    <input type="text" class="form-control" name="valorInicial" id="valorInicial" placeholder="Valor inicial" inputmode="numeric" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-5">
+                                <label for="valorFinal" class="font-weight-bold">Valor final</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">R$</div>
+                                    </div>
+                                    <input type="text" class="form-control" name="valorFinal" id="valorFinal" placeholder="Valor final" inputmode="numeric" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-5">
+                                <label for="inputAdquirentes" class="font-weight-bold">Adquirentes</label>
                                 <select id="inputAdquirentes" name="inputAdquirentes" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
                                     <option value="Cielo" selected>Cielo</option>
                                     <option value="Getnet" selected>Getnet</option>
@@ -197,7 +231,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-lg-5">
-                                <label for="inputBanco">Bancos</label>
+                                <label for="inputBanco" class="font-weight-bold">Bancos</label>
                                 <select id="inputBanco" name="inputBanco" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
                                     <option value="Banco do Brasil" selected>Banco do Brasil</option>
                                     <option value="Caixa" selected>Caixa</option>
@@ -207,9 +241,10 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-5">
-                                <label for="inputTipo">Tipo</label>
+                                <label for="inputTipo" class="font-weight-bold">Tipo</label>
                                 <select id="inputTipo" name="inputTipo" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
                                     <option value="Pix" selected>Pix</option>
                                     <option value="Boleto" selected>Boleto</option>
@@ -217,8 +252,9 @@
                                     <option value="Débito" selected>Débito</option>
                                 </select>
                             </div>
+
                             <div class="form-group col-lg-5">
-                                <label for="inputBandeira">Bandeira</label>
+                                <label for="inputBandeira" class="font-weight-bold">Bandeira</label>
                                 <select id="inputBandeira" name="inputBandeira" data-placeholder="Selecionar..." data-list-all="false" multiple data-multi-select>
                                     <option value="Visa" selected>Visa</option>
                                     <option value="Mastercard" selected>Mastercard</option>
@@ -228,42 +264,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row justify-content-md-center">
+
+                        <div class="form-row justify-content-md-center text-right">
                             <div class="form-group col-lg-10">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                            </div>
-                        </div>
-                        <div class="form-row justify-content-md-center">
-                            <div class="form-group col-lg-4">
-                                <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div>
-                        </div>
-                        <div class="form-row justify-content-md-center">
-                            <div class="form-group col-lg-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Check me out
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row justify-content-md-center">
-                            <div class="form-group col-lg-10">
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <button type="submit" class="btn btn-outline-duby"> 
+                                    <i class="fas fa-eraser mr-2"></i> Limpar
+                                </button>
+                                <button type="submit" class="btn btn-save-duby"> 
+                                    <i class="fas fa-search mr-2"></i> Buscar
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -271,32 +280,40 @@
                     <!-- Content Row - Resultado da busca -->
                     <!-- DIVIDER -->
                     <div class="row justify-content-lg-center mt-4 mb-3">
-                        <div class="col-12 col-lg-11 my-0">
+                        <div class="col-12 col-lg-12 my-0">
                             <hr class="my-0"/>
                         </div>
                     </div>
                     
-                    <div class="row justify-content-lg-center align-items-center my-0 font-weight-bold text-dark text-left">
-                        <div class="col-6 col-lg-3 mt-0">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort-down" name="nome" id="defaultOrderBy"></i></span> Nome
+                    <!-- Row Grid -->
+                    <!-- CABEÇALHO -->
+                    <div class="row justify-content-md-center align-items-center mt-2   mb-1 font-weight-bold text-dark">
+                        <div class="col-6 col-lg-2 mt-0">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort-down" name="data"></i></span> Data
                         </div>
 
-                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="identidade"></i></span> Identidade
+                        <div class="col-5 col-lg-2 mt-0 d-none d-lg-block">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="adquirente"></i></span> Adquirente
                         </div>
 
-                        <div class="col-5 col-lg-3 mt-0 d-none d-lg-block">
-                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="representante"></i></span> Representante
+                        <div class="col-12 col-lg-2 mt-0 d-none d-lg-block text-center">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="valorEsperado"></i></span> Valor Esperado
                         </div>
 
-                        <div class="col-2 col-lg-2 mt-0">
+                        <div class="col-4 col-lg-2 mt-0 d-none d-lg-block text-center">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="diferenca"></i></span> Diferença
                         </div>
-                    </div>
 
-                    <!-- DIVIDER -->
-                    <div class="row justify-content-md-center mt-3 mb-3">
-                        <div class="col-12 col-lg-11 my-0">
-                            <hr class="my-0"/>
+                        <div class="col-4 col-lg-2 mt-0 text-center">
+                            <span class="mr-2 spanOrderBy"><i class="fas fa-sort" name="status"></i></span> Status
+                        </div>
+
+                        <div class="col-2 col-lg-1 mt-0">
+                        </div>
+
+                        <!-- DIVIDER  -->
+                        <div class="col-12 col-lg-12 mt-0">
+                            <hr class="mt-2 mb-0"/>
                         </div>
                     </div>
 
@@ -344,6 +361,191 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <button class="btn btn-primary" href="#" id="btnLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Info Conciliação Divergente -->
+    <div class="modal fade" id="infoDivergenteModal" tabindex="-1" role="dialog" aria-labelledby="infoConciliacaoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoConciliacaoModalLabel">Descrição da Conciliação</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body pb-0">
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center mt-2 text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Data
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Status
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-data-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            <div class="dropdown">
+                                <button id="dropdown" class="btn btn-sm btn-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span id="htmlBtnDropdown">Pendente</span>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown">
+                                        <span class="dropdown-item spanstatus" name="1">Pendente</span>
+                                        <span class="dropdown-item spanstatus" name="2">Em análise</span>
+                                        <span class="dropdown-item spanstatus" name="3">Solicionado</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Adquirente
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Banco
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-adquirente-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-banco-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Esperado
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Valor Recebido
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-valorEsperado-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-valorRecebido-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Diferença
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Bandeira
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-diferenca-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-bandeira-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Número da Parcela
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Total de Parcelas
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaNum-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-parcelaTotal-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center text-dark font-weight-bold">
+                        <div class="col-6 col-lg-5 mt-0">
+                            Juros Vigente
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0">
+                            Tipo de Operação
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center align-items-center mb-3">
+                        <div class="col-6 col-lg-5 mt-0" id="div-taxa-conciliacao">
+                        </div>
+
+                        <div class="col-6 col-lg-5 mt-0" id="div-tipo-conciliacao">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center my-2 d-none" id="valorRecebidoStatus">
+                        <div class="col-12 col-lg-10">
+                            <div class="form-group mb-0">
+                                <label for="valor-recebido-conciliacao" class="text-dark font-weight-bold mb-0">Valor recebido</label>
+                                <input type="text" class="form-control mt-0" id="valor-recebido-conciliacao" placeholder="Valor recebido (apenas números)" inputmode="numeric">
+                                <div class="invalid-feedback text-left" id="valorRecebidoConciliacaoNulo">
+                                    Valor recebido obrigatório.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="row justify-content-md-center align-items-center mb-3" id="rowObservacaoStatus">
+                        <div class="col-12 col-lg-10 mt-0 text-dark font-weight-bold">
+                            Observação
+                        </div>
+
+                        <div class="col-12 col-lg-10 mt-0">
+                            <textarea class="form-control" name="observacaoTrocaStatus" id="observacao-conciliacao"></textarea>
+                        </div>
+                    </div>
+    
+                    <div class="row justify-content-md-center mt-0 d-none" id="valor-recebido-solucionado">
+                        <div class="col-12 col-lg-10 mt-0">
+                            <hr class="my-0 border-gray"/>
+                            <div class="my-3">
+                                <p class="my-0 mt-1"><span class="text-dark font-weight-bold">Valor recebido após contato:</span> <span id="span-valor-recebido-solucionado" class="text-success"> - </span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center mt-0">
+                        <div class="col-12 col-lg-10 mt-0">
+                            <div id="observacoes-cadastradas">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Fechar</button>
+                    <button class="btn btn-success" href="#" id="btnSalvarStatusConcilicao">Salvar</button>
                 </div>
             </div>
         </div>
