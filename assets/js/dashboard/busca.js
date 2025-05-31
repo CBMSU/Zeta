@@ -281,7 +281,7 @@ function criaLinhaTabelaConciliacao(lista){
         </div>
 
         <div class="col-4 col-lg-2 mt-0 text-center">
-            <span class="badge badge-${item.status == 3 ? "success" : "danger"} p-2">${item.status == 3 ? "Conciliado" : "Divergente"}</span>
+            <span class="badge badge-${item.status == 3 ? "success" : "danger"} p-2" name="span${item.id}">${item.status == 3 ? "Conciliado" : "Divergente"}</span>
         </div>
 
         <div class="col-2 col-lg-1 mt-0 text-center">
@@ -362,9 +362,9 @@ function mostraInfoConciliacao(concilicaocaSelecionada){
     document.getElementById('div-data-conciliacao').innerHTML = concilicaocaSelecionada.data.toLocaleDateString();
 
     alteraStatus(concilicaocaSelecionada.status);
-
     if (concilicaocaSelecionada.status == 3){
         $("#dropdown").removeClass("dropdown-toggle").prop("disabled", true);
+        $("#btnSalvarStatusConcilicao").addClass("d-none");
         $("#rowObservacaoStatus").addClass("d-none");
         concilicaocaSelecionada.valorRecebidoSolucionado ? 
             document.getElementById('span-valor-recebido-solucionado').innerHTML = "R$ " + concilicaocaSelecionada.valorRecebidoSolucionado :
@@ -372,6 +372,7 @@ function mostraInfoConciliacao(concilicaocaSelecionada){
         $("#valor-recebido-solucionado").removeClass("d-none");
         $("#valorRecebidoStatus").addClass("d-none")
     } else {
+        $("#btnSalvarStatusConcilicao").removeClass("d-none");
         $("#dropdown").addClass("dropdown-toggle").prop("disabled", false);
         $("#rowObservacaoStatus").removeClass("d-none");
         $("#valor-recebido-solucionado").addClass("d-none");
@@ -455,11 +456,11 @@ $("#btnSalvarStatusConcilicao").click(() => {
     mostraInfoConciliacao(conciliacao)
     
     showSuccess(conciliacao.adquirente)
-    
+
     if(conciliacao.status == 3){
-        listaConciliacoes = listaConciliacoes.filter(item => item !== conciliacao);
-        criaLinhaTabelaConciliacao(listaConciliacoes);
-        $("#btnSalvarStatusConcilicao").addClass("d-none");
+        $('span[name="span' + conciliacao.id + '"]').removeClass("badge-danger")
+        $('span[name="span' + conciliacao.id + '"]').addClass("badge-success")
+        $('span[name="span' + conciliacao.id + '"]').html("Conciliado")
     }
 
 })
@@ -557,19 +558,7 @@ function showSuccess(nomeAdquirente){
 }
 // FIM CRIAÇÃO TABELA RESULTADO
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Inicio - Função de busca
 
 $('#formBusca').on('submit', function(e) {
     e.preventDefault();
@@ -651,6 +640,7 @@ $('#formBusca').on('submit', function(e) {
     criaLinhaTabelaConciliacao(listaBusca)
 });
 
+// Fim - Função de busca
 
 function converteData(dataString) {
     if (!dataString) return null; // Retorna null se a string estiver vazia
