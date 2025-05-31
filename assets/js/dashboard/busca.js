@@ -169,7 +169,7 @@ conciliacao4.id = Math.random().toString(16).slice(2);
 conciliacao4.data = new Date(2025, 2, 20);
 conciliacao4.status = 1;
 conciliacao4.adquirente = "Rede";
-conciliacao4.banco = "Viacred";
+conciliacao4.banco = "Viacredi";
 conciliacao4.valorEsperado = "R$ 3.000,00";
 conciliacao4.valorRecebido = "R$ 2.700,00";
 conciliacao4.diferenca = "- R$ 300,00";
@@ -251,17 +251,18 @@ conciliacao8.tipo = "Crédito";
 conciliacao8.taxa = "4.5%";
 conciliacao8.observacoes = [];
 listaConciliacoes.push(conciliacao8);
+var listaBusca = listaConciliacoes;
 
 // Inicio - Mostra infos tabela
 
 $(document).ready(function () {    
     listaConciliacoes.sort((a,b) => (a.data > b.data) ? 1 : ((b.data > a.data) ? -1 : 0))
-    criaLinhaTabelaConciliacao()
+    criaLinhaTabelaConciliacao(listaConciliacoes)
 })
 
-function criaLinhaTabelaConciliacao(){
+function criaLinhaTabelaConciliacao(lista){
 
-    const html = listaConciliacoes.map(item => `
+    var html = lista.map(item => `
     <div class="row justify-content-md-center align-items-center mt-2 mb-2">
         <div class="col-6 col-lg-2 mt-0">
             ${item.data.toLocaleDateString()}
@@ -293,6 +294,16 @@ function criaLinhaTabelaConciliacao(){
         </div>
     </div>
     `).join(''); 
+
+    if(lista.length == 0){
+        html = `
+        <div class="row justify-content-md-center mt-3 mb-3">
+            <div class="col-12 col-lg-11 my-0 text-center font-weight-bold text-dark bg-gray py-3">
+                Nenhum dado encontrado.
+            </div>
+        </div>
+        `
+    }
 
     document.getElementById('conteudoTabela').innerHTML = html;
 
@@ -447,7 +458,7 @@ $("#btnSalvarStatusConcilicao").click(() => {
     
     if(conciliacao.status == 3){
         listaConciliacoes = listaConciliacoes.filter(item => item !== conciliacao);
-        criaLinhaTabelaConciliacao();
+        criaLinhaTabelaConciliacao(listaConciliacoes);
         $("#btnSalvarStatusConcilicao").addClass("d-none");
     }
 
@@ -487,42 +498,42 @@ $(".spanOrderBy").click((e) => {
     if(orderUp){
         switch (tipoOrder){
             case "adquirente":
-                listaConciliacoes.sort((a,b) => (a.adquirente.toUpperCase() > b.adquirente.toUpperCase()) ? 1 : ((b.adquirente.toUpperCase() > a.adquirente.toUpperCase()) ? -1 : 0))
+                listaBusca.sort((a,b) => (a.adquirente.toUpperCase() > b.adquirente.toUpperCase()) ? 1 : ((b.adquirente.toUpperCase() > a.adquirente.toUpperCase()) ? -1 : 0))
                 break;
             case "valorEsperado":
-                listaConciliacoes.sort((a,b) => (Number(a.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(b.valorEsperado.replace(/[^0-9-]+/g,""))) ? 1 : ((Number(b.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(a.valorEsperado.replace(/[^0-9-]+/g,""))) ? -1 : 0))
+                listaBusca.sort((a,b) => (Number(a.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(b.valorEsperado.replace(/[^0-9-]+/g,""))) ? 1 : ((Number(b.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(a.valorEsperado.replace(/[^0-9-]+/g,""))) ? -1 : 0))
                 break;
             case "diferenca":
-                listaConciliacoes.sort((a,b) => (Number(a.diferenca.replace(/[^0-9-]+/g,"")) > Number(b.diferenca.replace(/[^0-9-]+/g,""))) ? -1 : ((Number(b.diferenca.replace(/[^0-9-]+/g,"")) > Number(a.diferenca.replace(/[^0-9-]+/g,""))) ? 1 : 0))
+                listaBusca.sort((a,b) => (Number(a.diferenca.replace(/[^0-9-]+/g,"")) > Number(b.diferenca.replace(/[^0-9-]+/g,""))) ? -1 : ((Number(b.diferenca.replace(/[^0-9-]+/g,"")) > Number(a.diferenca.replace(/[^0-9-]+/g,""))) ? 1 : 0))
                 break;
             case "status":
-                listaConciliacoes.sort((a,b) => (a.status > b.status) ? -1 : (b.status > a.status ? 1 : 0))
+                listaBusca.sort((a,b) => (a.status > b.status) ? -1 : (b.status > a.status ? 1 : 0))
                 break;
             default:
-                listaConciliacoes.sort((a,b) => (a.data > b.data) ? 1 : ((b.data > a.data) ? -1 : 0))
+                listaBusca.sort((a,b) => (a.data > b.data) ? 1 : ((b.data > a.data) ? -1 : 0))
                 break
         }
     } else {
         switch (tipoOrder){
             case "adquirente":
-                listaConciliacoes.sort((a,b) => (a.adquirente.toUpperCase() > b.adquirente.toUpperCase()) ? -1 : ((b.adquirente.toUpperCase() > a.adquirente.toUpperCase()) ? 1 : 0))
+                listaBusca.sort((a,b) => (a.adquirente.toUpperCase() > b.adquirente.toUpperCase()) ? -1 : ((b.adquirente.toUpperCase() > a.adquirente.toUpperCase()) ? 1 : 0))
                 break;
             case "valorEsperado":
-                listaConciliacoes.sort((a,b) => (Number(a.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(b.valorEsperado.replace(/[^0-9-]+/g,""))) ? -1 : ((Number(b.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(a.valorEsperado.replace(/[^0-9-]+/g,""))) ? 1 : 0))
+                listaBusca.sort((a,b) => (Number(a.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(b.valorEsperado.replace(/[^0-9-]+/g,""))) ? -1 : ((Number(b.valorEsperado.replace(/[^0-9-]+/g,"")) > Number(a.valorEsperado.replace(/[^0-9-]+/g,""))) ? 1 : 0))
                 break;
             case "diferenca":
-                listaConciliacoes.sort((a,b) => (Number(a.diferenca.replace(/[^0-9-]+/g,"")) > Number(b.diferenca.replace(/[^0-9-]+/g,""))) ? 1 : ((Number(b.diferenca.replace(/[^0-9-]+/g,"")) > Number(a.diferenca.replace(/[^0-9-]+/g,""))) ? -1 : 0))
+                listaBusca.sort((a,b) => (Number(a.diferenca.replace(/[^0-9-]+/g,"")) > Number(b.diferenca.replace(/[^0-9-]+/g,""))) ? 1 : ((Number(b.diferenca.replace(/[^0-9-]+/g,"")) > Number(a.diferenca.replace(/[^0-9-]+/g,""))) ? -1 : 0))
                 break;
             case "status":
-                listaConciliacoes.sort((a,b) => (a.status > b.status) ? 1 : (b.status > a.status ? -1 : 0))
+                listaBusca.sort((a,b) => (a.status > b.status) ? 1 : (b.status > a.status ? -1 : 0))
                 break;
             default:
-                listaConciliacoes.sort((a,b) => (a.data > b.data) ? -1 : ((b.data > a.data) ? 1 : 0))
+                listaBusca.sort((a,b) => (a.data > b.data) ? -1 : ((b.data > a.data) ? 1 : 0))
                 break
         }
     }
 
-    criaLinhaTabelaConciliacao();
+    criaLinhaTabelaConciliacao(listaBusca);
     
 })
 
@@ -545,3 +556,125 @@ function showSuccess(nomeAdquirente){
     });
 }
 // FIM CRIAÇÃO TABELA RESULTADO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$('#teste').on('submit', function(e) {
+    e.preventDefault();
+
+    const dataInicio = $('#dataInicio').val();
+    const dataFim = $('#dataFim').val();
+    const valorInicial = $('#valorInicial').val();
+    const valorFinal = $('#valorFinal').val();
+
+    const adquirentes = Array.from(document.querySelectorAll('#inputAdquirentes input[type="hidden"]')).map(opt => opt.value.toUpperCase());
+    const bancos = Array.from(document.querySelectorAll('#inputBanco input[type="hidden"]')).map(opt => opt.value.toUpperCase());
+    const tipos = Array.from(document.querySelectorAll('#inputTipo input[type="hidden"]')).map(opt => opt.value.toUpperCase());
+    const bandeiras = Array.from(document.querySelectorAll('#inputBandeira input[type="hidden"]')).map(opt => opt.value.toUpperCase());
+
+    const dados = {
+        dataInicio,
+        dataFim,
+        valorInicial,
+        valorFinal,
+        adquirentes,
+        bancos,
+        tipos,
+        bandeiras
+    };
+
+    listaBusca = []
+
+    listaBusca = listaConciliacoes.filter(item => {
+        // Verifica dataInicio
+        if (dados.dataInicio && dados.dataInicio != "" && new Date(item.data) < converteData(dados.dataInicio)) {
+            return false;
+        }
+        
+        // Verifica dataFim
+        if (dados.dataFim && dados.dataFim != "" && new Date(item.data) > converteData(dados.dataFim)) {
+            return false;
+        }
+
+        // Verifica valor difereça minima
+        if (dados.valorInicial && dados.valorInicial != "" && converteNumero(item.diferenca) < converteNumero(dados.valorInicial)) {
+            return false;
+        }
+
+        // Verifica valor difereça maxima
+        if (dados.valorFinal && dados.valorFinal != "" && converteNumero(item.diferenca) > converteNumero(dados.valorFinal)) {
+            return false;
+        }
+
+        // Verifica valor diferença nula
+        if(dados.valorFinal != "" && converteNumero(item.diferenca) == 0){
+            return false;
+        }
+
+        // Verifica adquirentes
+        if (!dados.adquirentes.includes(item.adquirente.toUpperCase())) {
+            return false;
+        } 
+
+        // Verifica bancos
+        if (!dados.bancos.includes(item.banco.toUpperCase())) {
+            console.log(item.banco)
+            return false;
+        } 
+
+        // Verifica tipo
+        if (!dados.tipos.includes(item.tipo.toUpperCase())) {
+            return false;
+        } 
+
+        // Verifica bandeira
+        if (item.bandeira && !dados.bandeiras.includes(item.bandeira.toUpperCase())) {
+            return false;
+        } 
+
+        return true;
+    })
+
+    console.log(listaBusca)
+    criaLinhaTabelaConciliacao(listaBusca)
+});
+
+
+function converteData(dataString) {
+    if (!dataString) return null; // Retorna null se a string estiver vazia
+    
+    const partes = dataString.split('/');
+    if (partes.length !== 3) return null; // Verifica se está no formato dd/mm/yyyy
+    
+    const dia = parseInt(partes[0], 10);
+    const mes = parseInt(partes[1], 10) - 1; // JavaScript usa meses de 0 a 11
+    const ano = parseInt(partes[2], 10);
+    
+    // Validação básica para garantir que é uma data válida
+    if (isNaN(dia) || isNaN(mes) || isNaN(ano)) return null;
+    
+    return new Date(ano, mes, dia);
+}
+
+function converteNumero(num){
+    num = num.replaceAll(".", "")
+    num = num.replace(",", ".");
+    num = num.replace("R$", "")
+    num = num.replace("-", "")
+    num = num.trim()
+
+    // console.log(num)
+    return Number(num)
+}

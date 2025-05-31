@@ -134,19 +134,15 @@ class MultiSelect {
                     headerElement.classList.remove('multi-select-header-active');
                 }
                 this.options.onChange(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
-                console.log(this.selectElement.length)
-                console.log($("#" + this.selectElement.id + " .multi-select-options .multi-select-option.multi-select-selected").length)
                 if (selected) {
                     this.options.onSelect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
                     
                     if (this.selectElement.length === $("#" + this.selectElement.id + " .multi-select-options .multi-select-option.multi-select-selected").length) {
-                        // console.log("selecionou tudo")
                         $("#" + this.selectElement.id + " .multi-select-options .multi-select-all").addClass('multi-select-selected')
                     }
                 } else {
                     this.options.onUnselect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
                     if (this.selectElement.length != $("#" + this.selectElement.id + " .multi-select-options .multi-select-option.multi-select-selected").length) {
-                        console.log("des selecionou")
                         $("#" + this.selectElement.id + " .multi-select-options .multi-select-all").removeClass('multi-select-selected')
                     }
                 }
