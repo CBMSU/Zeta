@@ -571,7 +571,7 @@ function showSuccess(nomeAdquirente){
 
 
 
-$('#teste').on('submit', function(e) {
+$('#formBusca').on('submit', function(e) {
     e.preventDefault();
 
     const dataInicio = $('#dataInicio').val();
