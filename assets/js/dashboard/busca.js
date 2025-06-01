@@ -641,6 +641,7 @@ $('#formBusca').on('submit', function(e) {
 });
 
 // Fim - Função de busca
+// Inicio - Funções conversão
 
 function converteData(dataString) {
     if (!dataString) return null; // Retorna null se a string estiver vazia
@@ -668,3 +669,179 @@ function converteNumero(num){
     // console.log(num)
     return Number(num)
 }
+// Fim - Funções conversão
+
+// Inicio - Funções Exportação
+$("#btnExportar").click(() => {
+    (async() => {
+
+        var listaExportacao = [];
+
+        listaConciliacoes.map(item => {
+            var conciliacao = new Object();
+            conciliacao.data = item.data;
+            conciliacao.adquirente = item.adquirente;
+            conciliacao.banco = item.banco;
+            conciliacao.valorEsperado = item.valorEsperado;
+            conciliacao.valorRecebido = item.valorRecebido;
+            conciliacao.diferenca = item.diferenca;
+            conciliacao.tipo = item.tipo;
+            conciliacao.taxa = item.taxa;
+            conciliacao.bandeira = item.bandeira;
+            conciliacao.parcelaNum = item.parcelaNum;
+            conciliacao.parcelaTotal = item.parcelaTotal;
+            conciliacao.valorRecebidoSolucionado = item.valorRecebidoSolucionado;
+            conciliacao.status = item.status //== 1 ? "Pendente" : item.status == 2 ? "Em andamento" : "Conciliado";
+
+            listaExportacao.push(conciliacao)
+        })
+
+        const headers = [
+            "Data",
+            "Adquirente",
+            "Banco",
+            "Valor Esperado",
+            "Valor Recebido",
+            "Diferença",
+            "Tipo",
+            "Taxa",
+            "Bandeira",
+            "Parcela Atual",
+            "Parcela Total",
+            "Valor Recebido ao Solucionar",
+            "Status"
+        ];
+
+        const headerKeys = [
+            "data",
+            "adquirente",
+            "banco",
+            "valorEsperado",
+            "valorRecebido",
+            "diferenca",
+            "tipo",
+            "taxa",
+            "bandeira",
+            "parcelaNum",
+            "parcelaTotal",
+            "valorRecebidoSolucionado",
+            "status"
+        ];
+
+        exportToXLS(listaExportacao)
+    })();
+})
+
+function exportToXLS(data) {
+    const headers = [
+        "Data",
+        "Adquirente",
+        "Banco",
+        "Valor Esperado",
+        "Valor Recebido",
+        "Diferença",
+        "Tipo",
+        "Taxa",
+        "Bandeira",
+        "Parcela Atual",
+        "Parcela Total",
+        "Valor Recebido ao Solucionar",
+        "Status"
+    ];
+
+    let html = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+              xmlns:x="urn:schemas-microsoft-com:office:excel">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+            <table border="1">
+                <thead><tr>`;
+
+    headers.forEach(header => {
+        html += `<th>${header}</th>`;
+    });
+
+    html += `</tr></thead><tbody>`;
+
+    data.forEach(item => {
+        let statusText = '';
+        let bgColor = '';
+
+        switch (item.status) {
+            case 1:
+                statusText = 'Pendente';
+                bgColor = '#ffcccc';
+                break;
+            case 2:
+                statusText = 'Em andamento';
+                bgColor = '#ffcccc';
+                break;
+            case 3:
+                statusText = 'Conciliado';
+                bgColor = '#ccffcc';
+                break;
+            default:
+                statusText = 'Desconhecido';
+                bgColor = '#ffffff';
+        }
+
+        console.log(item.valorRecebidoSolucionado)
+
+        html += `<tr>
+            <td>${escapeHtml(formataDataDDMMYYYY(item.data))}</td>
+            <td>${escapeHtml(item.adquirente)}</td>
+            <td>${escapeHtml(item.banco)}</td>
+            <td>${escapeHtml(formatCurrency(item.valorEsperado))}</td>
+            <td>${escapeHtml(formatCurrency(item.valorRecebido))}</td>
+            <td>${escapeHtml(formatCurrency(item.diferenca))}</td>
+            <td>${escapeHtml(item.tipo)}</td>
+            <td>${escapeHtml(item.taxa)}</td>
+            <td>${escapeHtml(item.bandeira)}</td>
+            <td>${escapeHtml(item.parcelaNum)}</td>
+            <td>${escapeHtml(item.parcelaTotal)}</td>
+            <td>${escapeHtml(formatCurrency(item.valorRecebidoSolucionado))}</td>
+            <td style="background-color:${bgColor};">${escapeHtml(statusText)}</td>
+        </tr>`;
+    });
+
+    html += `</tbody></table></body></html>`;
+
+    const blob = new Blob([html], {
+        type: 'application/vnd.ms-excel;charset=utf-8;'
+    });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'conciliacoes.xls';
+    link.click();
+}
+
+function escapeHtml(str) {
+    if (str === null || str === undefined || str === '') return '';
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+function formataDataDDMMYYYY(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    if (isNaN(d)) return date; // se não for uma data válida, mantém original
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+function formatCurrency(value) {
+    if (value === null || value === undefined || value === '') return '';
+    const number = parseFloat(value);
+    if (isNaN(number)) return value; // Se não for número, mantém o valor original
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number);
+}
+
+// Fim - Funções Exportação

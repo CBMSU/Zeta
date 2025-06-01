@@ -172,8 +172,20 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mb-lg-3">
-                        <h1 class="h3 mb-0 text-dark">Busca</h1>
+                    <div class="align-items-center justify-content-between mb-2">
+                        <div class="row">
+                            <div class="col-3 col-lg-6 mb-3">
+                                <h1 class="h3 mb-0 text-dark">Busca</h1>
+                            </div>
+
+                            
+                            <div class="col-9 col-lg-6 mb-3">
+                                <button class="btn btn-sm btn-outline-duby py-1 px-3 float-right" data-toggle="modal" data-target="#exportarModal">
+                                    <i class="fas fa-file-export mr-2"></i> 
+                                    <span>Exportar</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Content Row - Filtro busca -->
@@ -551,6 +563,50 @@
         </div>
     </div>
 
+    <!-- Importar Arquivo Modal-->
+    <div class="modal fade" id="exportarModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog my-0" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Exportar para...</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="dadosExportacao" class="font-weight-bold">Dados</label>
+                                <select class="form-control" id="dadosExportacao">
+                                    <option value="0" selected>Todas as conciliações</option>
+                                    <option value="1">Conciliações filtradas</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="tipoExportacao" class="font-weight-bold">Tipo</label>
+                                <select class="form-control" id="tipoExportacao">
+                                    <option value="0" selected>XLS</option>
+                                    <option value="1">PDF</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer mt-3">
+                    <button class="btn btn-sm btn-outline-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-sm btn-save-duby" id="btnExportar" >Exportar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/js/dashboard/jquery.min.js"></script>
     <script src="../assets/js/dashboard/bootstrap.bundle.min.js"></script>
@@ -571,7 +627,10 @@
     <script src="../assets/js/dashboard/sweetalert2_11.js"></script>
 
     <!-- Maks inputs -->
-     <script src="../assets/js/dashboard/jquery.mask.min.js"></script>
+    <script src="../assets/js/dashboard/jquery.mask.min.js"></script>
+
+     <!-- SheetJS -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 
     <!-- SO HELP ME GOD -->
      <script src="../assets/js/dashboard/abridged.js"></script>
