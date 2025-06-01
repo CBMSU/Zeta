@@ -675,58 +675,50 @@ function converteNumero(num){
 $("#btnExportar").click(() => {
     (async() => {
 
+        console.log()
+
+        var tipoDados = $("#dadosExportacao").val();
         var listaExportacao = [];
 
-        listaConciliacoes.map(item => {
-            var conciliacao = new Object();
-            conciliacao.data = item.data;
-            conciliacao.adquirente = item.adquirente;
-            conciliacao.banco = item.banco;
-            conciliacao.valorEsperado = item.valorEsperado;
-            conciliacao.valorRecebido = item.valorRecebido;
-            conciliacao.diferenca = item.diferenca;
-            conciliacao.tipo = item.tipo;
-            conciliacao.taxa = item.taxa;
-            conciliacao.bandeira = item.bandeira;
-            conciliacao.parcelaNum = item.parcelaNum;
-            conciliacao.parcelaTotal = item.parcelaTotal;
-            conciliacao.valorRecebidoSolucionado = item.valorRecebidoSolucionado;
-            conciliacao.status = item.status //== 1 ? "Pendente" : item.status == 2 ? "Em andamento" : "Conciliado";
+        if (tipoDados == "0"){
+            listaConciliacoes.map(item => {
+                var conciliacao = new Object();
+                conciliacao.data = item.data;
+                conciliacao.adquirente = item.adquirente;
+                conciliacao.banco = item.banco;
+                conciliacao.valorEsperado = item.valorEsperado;
+                conciliacao.valorRecebido = item.valorRecebido;
+                conciliacao.diferenca = item.diferenca;
+                conciliacao.tipo = item.tipo;
+                conciliacao.taxa = item.taxa;
+                conciliacao.bandeira = item.bandeira;
+                conciliacao.parcelaNum = item.parcelaNum;
+                conciliacao.parcelaTotal = item.parcelaTotal;
+                conciliacao.valorRecebidoSolucionado = item.valorRecebidoSolucionado;
+                conciliacao.status = item.status;
 
-            listaExportacao.push(conciliacao)
-        })
+                listaExportacao.push(conciliacao)
+            })
+        } else {
+            listaBusca.map(item => {
+                var conciliacao = new Object();
+                conciliacao.data = item.data;
+                conciliacao.adquirente = item.adquirente;
+                conciliacao.banco = item.banco;
+                conciliacao.valorEsperado = item.valorEsperado;
+                conciliacao.valorRecebido = item.valorRecebido;
+                conciliacao.diferenca = item.diferenca;
+                conciliacao.tipo = item.tipo;
+                conciliacao.taxa = item.taxa;
+                conciliacao.bandeira = item.bandeira;
+                conciliacao.parcelaNum = item.parcelaNum;
+                conciliacao.parcelaTotal = item.parcelaTotal;
+                conciliacao.valorRecebidoSolucionado = item.valorRecebidoSolucionado;
+                conciliacao.status = item.status;
 
-        const headers = [
-            "Data",
-            "Adquirente",
-            "Banco",
-            "Valor Esperado",
-            "Valor Recebido",
-            "Diferença",
-            "Tipo",
-            "Taxa",
-            "Bandeira",
-            "Parcela Atual",
-            "Parcela Total",
-            "Valor Recebido ao Solucionar",
-            "Status"
-        ];
-
-        const headerKeys = [
-            "data",
-            "adquirente",
-            "banco",
-            "valorEsperado",
-            "valorRecebido",
-            "diferenca",
-            "tipo",
-            "taxa",
-            "bandeira",
-            "parcelaNum",
-            "parcelaTotal",
-            "valorRecebidoSolucionado",
-            "status"
-        ];
+                listaExportacao.push(conciliacao)
+            })
+        }
 
         exportToXLS(listaExportacao)
     })();
@@ -776,7 +768,7 @@ function exportToXLS(data) {
                 break;
             case 2:
                 statusText = 'Em andamento';
-                bgColor = '#ffcccc';
+                bgColor = '#ccccff';
                 break;
             case 3:
                 statusText = 'Conciliado';
@@ -787,21 +779,19 @@ function exportToXLS(data) {
                 bgColor = '#ffffff';
         }
 
-        console.log(item.valorRecebidoSolucionado)
-
         html += `<tr>
             <td>${escapeHtml(formataDataDDMMYYYY(item.data))}</td>
             <td>${escapeHtml(item.adquirente)}</td>
             <td>${escapeHtml(item.banco)}</td>
-            <td>${escapeHtml(formatCurrency(item.valorEsperado))}</td>
-            <td>${escapeHtml(formatCurrency(item.valorRecebido))}</td>
-            <td>${escapeHtml(formatCurrency(item.diferenca))}</td>
+            <td>${escapeHtml(formataCamposMoeda(item.valorEsperado))}</td>
+            <td>${escapeHtml(formataCamposMoeda(item.valorRecebido))}</td>
+            <td>${escapeHtml(formataCamposMoeda(item.diferenca))}</td>
             <td>${escapeHtml(item.tipo)}</td>
             <td>${escapeHtml(item.taxa)}</td>
             <td>${escapeHtml(item.bandeira)}</td>
             <td>${escapeHtml(item.parcelaNum)}</td>
             <td>${escapeHtml(item.parcelaTotal)}</td>
-            <td>${escapeHtml(formatCurrency(item.valorRecebidoSolucionado))}</td>
+            <td>${escapeHtml(formataCamposMoeda(item.valorRecebidoSolucionado))}</td>
             <td style="background-color:${bgColor};">${escapeHtml(statusText)}</td>
         </tr>`;
     });
@@ -837,7 +827,7 @@ function formataDataDDMMYYYY(date) {
     return `${day}/${month}/${year}`;
 }
 
-function formatCurrency(value) {
+function formataCamposMoeda(value) {
     if (value === null || value === undefined || value === '') return '';
     const number = parseFloat(value);
     if (isNaN(number)) return value; // Se não for número, mantém o valor original
