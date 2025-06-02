@@ -13,15 +13,15 @@ function validateEmail(email) {
 }
 
 buttonLogin.addEventListener("click", function() {
-    window.open("../../login/index.html", "_self");
+    window.open("../../../Zeta/login/index.html", "_self");
     }
 );
 buttonCadastro.addEventListener("click", function() {
     if (validateAdmin(email)) {
-      window.open("../../admview/adm.html", "_self");
+      window.open("../../../Zeta/admview/adm.html", "_self");
     } 
     else if (validateEmail(email)) {
-      window.open("../../dashboard/index.html", "_self");
+      window.open("../../../Zeta/dashboard/index.html", "_self");
     }
   }
 );
