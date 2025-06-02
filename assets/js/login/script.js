@@ -49,7 +49,7 @@ function validateForm(event) {
   if (isValid) {
     console.log(validateAdmin(email))
     if(validateAdmin(email)) {
-      window.open("../../../admview/adm.html", "_self");
+      window.open("../../../Zeta/admview/adm.html", "_self");
     }
     else {
       window.open("../../../dashboard/index.html", "_self");
