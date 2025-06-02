@@ -52,7 +52,7 @@ function validateForm(event) {
       window.open("../../../Zeta/admview/adm.html", "_self");
     }
     else {
-      window.open("../../../dashboard/index.html", "_self");
+      window.open("../../../Zeta/dashboard/index.html", "_self");
     }
   }
 }
