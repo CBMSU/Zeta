@@ -674,9 +674,6 @@ function converteNumero(num){
 // Inicio - Funções Exportação
 $("#btnExportar").click(() => {
     (async() => {
-
-        console.log()
-
         var tipoDados = $("#dadosExportacao").val();
         var listaExportacao = [];
 

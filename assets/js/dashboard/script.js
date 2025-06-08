@@ -556,73 +556,106 @@ $('.arquivoUpload').on('change', (e) => {
     });
 })
 
-function criaTabelaExtratoBancario(conteudo){
-    if(!conteudo[0].includes('date')){
-        // arquivo invalido
-        document.getElementById('extratoBancario').value = ''
-        $('#extratoBancario').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
-        $("#extratoBancarioInvalido").show();
-        $('#previewEB').hide();
-        return false;
+// Função genérica para criar paginador de tabela
+function criaPaginadorTabela({ idTabela, idPreview, idAnterior, idProximo, idPaginaTexto, itensPorPagina, mapearLinha }) {
+    let conteudoCompleto = [];
+    let paginaAtual = 1;
+
+    function render() {
+        const totalPaginas = Math.ceil(conteudoCompleto.length / itensPorPagina);
+        const inicio = (paginaAtual - 1) * itensPorPagina;
+        const fim = inicio + itensPorPagina;
+        const dadosPagina = conteudoCompleto.slice(inicio, fim);
+
+        document.getElementById(idTabela).innerHTML = dadosPagina.map(mapearLinha).join('');
+        document.getElementById(idPreview).style.display = 'block';
+
+        if (idPaginaTexto) {
+            document.getElementById(idPaginaTexto).textContent = `Página ${paginaAtual} de ${totalPaginas}`;
+        }
+
+        document.getElementById(idAnterior).disabled = paginaAtual === 1;
+        document.getElementById(idProximo).disabled = paginaAtual === totalPaginas;
     }
 
-    // tira cabeçalho 
-    conteudo = conteudo.filter(item => item[0] !== 'date');
-    conteudo = conteudo.filter(item => item[0] !== '');
+    function carregarConteudo(conteudo) {
+        conteudoCompleto = conteudo;
+        paginaAtual = 1;
+        render();
+    }
 
-    const html = conteudo.map(item => `
-        <tr>
-            <td>
-                ${item[0]}
-            </td>
+    document.getElementById(idAnterior).onclick = () => {
+        if (paginaAtual > 1) {
+            paginaAtual--;
+            render();
+        }
+    };
 
-            <td>
-                ${converteTipo(item[1])}
-            </td>
+    document.getElementById(idProximo).onclick = () => {
+        if (paginaAtual < Math.ceil(conteudoCompleto.length / itensPorPagina)) {
+            paginaAtual++;
+            render();
+        }
+    };
 
-            <td>
-                ${converteReal(item[2])}
-            </td>
-        </div>
-    `).join(''); 
-
-    document.getElementById('tabelaExtratoBancario').innerHTML = html;
-    $('#previewEB').show();
+    return { carregarConteudo };
 }
 
-function criaTabelaExtratoAdquirente(conteudo){
-    
-    if(!conteudo[0].includes('DOCUMENTO')){
-        // arquivo invalido        
-        document.getElementById('extratoAdquirente').value = ''
+// Criar instância para tabela de Adquirente
+const paginadorAdquirente = criaPaginadorTabela({
+    idTabela: 'tabelaExtratoAdquirente',
+    idPreview: 'previewEA',
+    idAnterior: 'btnAnteriorEA',
+    idProximo: 'btnProximoEA',
+    idPaginaTexto: 'paginaAtualEA',
+    itensPorPagina: 7,
+    mapearLinha: item => `
+        <tr>
+            <td>${item[5]}</td>
+            <td>${converteTipo(item[8])}</td>
+            <td>${converteReal(item[13])}</td>
+        </tr>`
+});
+
+// Criar instância para tabela de Extrato Bancário
+const paginadorBancario = criaPaginadorTabela({
+    idTabela: 'tabelaExtratoBancario',
+    idPreview: 'previewEB',
+    idAnterior: 'btnAnteriorEB',
+    idProximo: 'btnProximoEB',
+    idPaginaTexto: 'paginaAtualEB',
+    itensPorPagina: 7,
+    mapearLinha: item => `
+        <tr>
+            <td>${item[0]}</td>
+            <td>${converteTipo(item[1])}</td>
+            <td>${converteReal(item[2])}</td>
+        </tr>`
+});
+
+// Funções de upload que carregam dados nas tabelas
+function criaTabelaExtratoAdquirente(conteudo) {
+    if (!conteudo[0].includes('DOCUMENTO')) {
+        document.getElementById('extratoAdquirente').value = '';
         $('#extratoAdquirente').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
         $("#extratoAdquirenteInvalido").show();
         $('#previewEA').hide();
-        return false;
+        return;
     }
+    const listaSemCabecalho = conteudo.filter(item => item[0] !== 'DOCUMENTO' && item[0] !== '');
+    paginadorAdquirente.carregarConteudo(listaSemCabecalho);
+}
 
-    // tira cabeçalho 
-    conteudo = conteudo.filter(item => item[0] !== 'DOCUMENTO');
-    conteudo = conteudo.filter(item => item[0] !== '');
-
-    const html = conteudo.map(item => `
-        <tr>
-            <td>
-                ${item[5]}
-            </td>
-
-            <td>
-                ${converteTipo(item[8])}
-            </td>
-
-            <td>
-                ${converteReal(item[13])}
-            </td>
-        </div>
-    `).join(''); 
-
-    document.getElementById('tabelaExtratoAdquirente').innerHTML = html;
-    $('#previewEA').show();
+function criaTabelaExtratoBancario(conteudo) {
+    if (!conteudo[0].includes('date')) {
+        document.getElementById('extratoBancario').value = '';
+        $('#extratoBancario').next('.custom-file-label').html("Procurar arquivo CSV ou OFX..."); 
+        $("#extratoBancarioInvalido").show();
+        $('#previewEB').hide();
+        return;
+    }
+    const listaSemCabecalho = conteudo.filter(item => item[0] !== 'date' && item[0] !== '');
+    paginadorBancario.carregarConteudo(listaSemCabecalho);
 }
 
 function verificaArquivo(arquivo){
