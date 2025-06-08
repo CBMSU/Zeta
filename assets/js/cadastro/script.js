@@ -19,7 +19,7 @@ function validateEmail(emailInput) {
 }
 
 buttonLogin.addEventListener("click", function() {
-    window.open("../../../login/index.html", "_self");
+    window.open("../../../Zeta/login/index.html", "_self");
     }
 );
 
@@ -27,9 +27,9 @@ buttonCadastro.addEventListener("click", function(event) {
   event.preventDefault(); 
 
   if (validateAdmin(emailInput)) {
-    window.open("../../../admview/adm.html", "_self");
+    window.open("../../../Zeta/admview/adm.html", "_self");
   } else if (validateEmail(emailInput)) {
-    window.open("../../../dashboard/index.html", "_self");
+    window.open("../../../Zeta/dashboard/index.html", "_self");
   } else {
     alert("Email inválido.");
   }
