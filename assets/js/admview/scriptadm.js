@@ -51,7 +51,7 @@ function resetarFiltros() {
 function logout() {
     const confirmLogout = confirm("Tem certeza que deseja sair?");
     if (confirmLogout) {
-        window.location.href = "../../../Zeta/login/index.html"; 
+        window.location.href = "../../../Zeta/cadastro/index.html"; 
     }
 }
 
