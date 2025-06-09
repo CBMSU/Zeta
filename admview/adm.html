@@ -13,9 +13,6 @@
             <img src="../assets/imgs/admview/logo-duby-conceito - Copia.png" alt="logoduby" id="logoduby">
         </div>
         <nav>
-        <a href="#">Autorização de Login</a>
-        <a href="#">Gerenciamento de Usuários</a>
-        <a href="#">Gerar Boleto</a>
         <button onclick="logout()" id="Logout">Logout</button>
         </nav>
     </header>
@@ -54,47 +51,75 @@
         </section>
         <section class="tabela">
   <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>CNPJ</th>
-        <th>Celular</th>
-        <th>Status</th>
-        <th>Excluir</th>
-        <th>Alterar Senha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Fulano</td>
-        <td>fulano@email.com</td>
-        <td>12345678910</td>
-        <td>(99) 99999-9999</td>
-        <td><button class="status-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#modalStatus">ATIVO</button></td>
-        <td><button class="excluir">Excluir</button></td>
-        <td><a href="#"><img src="../assets/imgs/admview/pencil-draw.png" alt="Alterar senha" class="icone"></a></td>
-      </tr>
-      <tr>
-        <td>Beltrano</td>
-        <td>beltrano@email.com</td>
-        <td>10987654321</td>
-        <td>(88) 88888-8888</td>
-        <td><span class="status inativo">INATIVO</span></td>
-        <td><button class="excluir">Excluir</button></td>
-        <td><a href="#"><img src="../assets/imgs/admview/pencil-draw.png" alt="Alterar senha" class="icone"></a></td>
-      </tr>
-      <tr>
-        <td>Ciclano</td>
-        <td>ciclano@email.com</td>
-        <td>98765432100</td>
-        <td>(77) 77777-7777</td>
-        <td><button class="status-btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalStatus">PENDENTE</button></td>
-        <td><button class="excluir">Excluir</button></td>
-        <td><a href="#"><img src="../assets/imgs/admview/pencil-draw.png" alt="Alterar senha" class="icone"></a></td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>CNPJ</th>
+      <th>Celular</th>
+      <th>Status</th>
+      <th>Excluir</th>
+      <th>Gerar Boleto</th>
+      <th>Alterar Senha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Nome">Fulano</td>
+      <td data-label="Email">fulano@email.com</td>
+      <td data-label="CNPJ">12345678910</td>
+      <td data-label="Celular">(99) 99999-9999</td>
+      <td data-label="Status">
+        <button class="status-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#modalStatus">ATIVO</button>
+      </td>
+      <td data-label="Excluir">
+        <button class="excluir">Excluir</button>
+      </td>
+      <td data-label="Gerar Boleto">
+        <button class="gerar-boleto">Gerar Boleto</button>
+      </td>
+      <td data-label="Alterar Senha">
+        <a href="#"><img src="../assets/imgs/admview/pencil-draw.png" alt="Alterar senha" class="icone"></a>
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Nome">Beltrano</td>
+      <td data-label="Email">Beltrano@email.com</td>
+      <td data-label="CNPJ">12345678910</td>
+      <td data-label="Celular">(99) 99999-9999</td>
+      <td data-label="Status">
+        <button class="status-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#modalStatus">ATIVO</button>
+      </td>
+      <td data-label="Excluir">
+        <button class="excluir">Excluir</button>
+      </td>
+      <td data-label="Gerar Boleto">
+        <button class="gerar-boleto">Gerar Boleto</button>
+      </td>
+      <td data-label="Alterar Senha">
+        <a href="#"><img src="../assets/imgs/admview/pencil-draw.png" alt="Alterar senha" class="icone"></a>
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Nome">Ciclano</td>
+      <td data-label="Email">Ciclano@email.com</td>
+      <td data-label="CNPJ">12345678910</td>
+      <td data-label="Celular">(99) 99999-9999</td>
+      <td data-label="Status">
+        <button class="status-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#modalStatus">ATIVO</button>
+      </td>
+      <td data-label="Excluir">
+        <button class="excluir">Excluir</button>
+      </td>
+      <td data-label="Gerar Boleto">
+        <button class="gerar-boleto">Gerar Boleto</button>
+      </td>
+      <td data-label="Alterar Senha">
+        <a href="#"><img src="../assets/imgs/admview/pencil-draw.png" alt="Alterar senha" class="icone"></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
     </section>
 </main>
 <div class="modal fade" id="modalStatus" tabindex="-1" aria-labelledby="modalStatusLabel" aria-hidden="true">
