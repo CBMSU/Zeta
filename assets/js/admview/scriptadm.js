@@ -1,66 +1,4 @@
-// funcao de exclusao de uma conciliacao da tabela
 document.addEventListener("DOMContentLoaded", () => {
-  const botoesExcluir = document.querySelectorAll(".excluir");
-
-  botoesExcluir.forEach(botao => {
-    botao.addEventListener("click", function () {
-      const linha = this.closest("tr");
-      linha.remove();
-    });
-  });
-});
-
-// filtrar na tabela
-
-const filtronome = document.getElementById("filtroNome")
-const filtroemail = document.getElementById("filtroEmail")
-const filtrostatus = document.getElementById("filtroStatus")
-
-function filtrarTabela() {
-  const nomeFiltro = filtronome.value.toLowerCase();
-  const emailFiltro = filtroemail.value.toLowerCase();
-  const statusFiltro = filtrostatus.value.toLowerCase();
-
-  const linhas = document.querySelectorAll("table tbody tr");
-
-  linhas.forEach(linha => {
-    const nome = linha.children[0].textContent.toLowerCase();
-    const email = linha.children[1].textContent.toLowerCase();
-    const statusEl = linha.children[4].querySelector('.status');
-    const status = statusEl ? statusEl.textContent.toLowerCase() : "";
-
-    const nomeOk = nome.includes(nomeFiltro);
-    const emailOk = email.includes(emailFiltro);
-    const statusOk = !statusFiltro || status === statusFiltro;
-
-    linha.style.display = (nomeOk && emailOk && statusOk) ? "" : "none";
-  });
-}
-
-filtronome.addEventListener("input", filtrarTabela);
-filtroemail.addEventListener("input", filtrarTabela);
-filtrostatus.addEventListener("change", filtrarTabela);
-
-function resetarFiltros() {
-  filtronome.value = "";
-  filtroemail.value = "";
-  filtrostatus.value = "";
-  filtrarTabela();
-}
-
-function logout() {
-    const confirmLogout = confirm("Tem certeza que deseja sair?");
-    if (confirmLogout) {
-        window.location.href = "../../../Zeta/cadastro/index.html"; 
-    }
-}
-
-
-
-// modal de aceitar e recusar login
-
-
-document.addEventListener('DOMContentLoaded', () => {
   const modalNome = document.getElementById('modalNome');
   const modalEmail = document.getElementById('modalEmail');
   const modalCNPJ = document.getElementById('modalCNPJ');
@@ -71,37 +9,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAceitar = document.getElementById('btnAceitar');
   const btnRecusar = document.getElementById('btnRecusar');
 
+  const logoutIcon = document.getElementById('logoutIcon');
+  const logoutMenu = document.getElementById('logoutMenu');
+
+  const filtronome = document.getElementById("filtroNome");
+  const filtroemail = document.getElementById("filtroEmail");
+  const filtrostatus = document.getElementById("filtroStatus");
+
   let currentRow = null;
 
-  document.querySelectorAll('.status-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const tr = e.target.closest('tr');
-      currentRow = tr; 
-      const nome = tr.cells[0].innerText;
-      const email = tr.cells[1].innerText;
-      const cnpj = tr.cells[2].innerText;
-      const celular = tr.cells[3].innerText;
-      const status = e.target.innerText.trim().toUpperCase();
-
-      modalNome.innerText = nome;
-      modalEmail.innerText = email;
-      modalCNPJ.innerText = cnpj;
-      modalCelular.innerText = celular;
-      modalStatusText.innerText = status;
-
-      btnRevogar.classList.add('d-none');
-      btnAceitar.classList.add('d-none');
-      btnRecusar.classList.add('d-none');
-
-      if(status === 'ATIVO'){
-        btnRevogar.classList.remove('d-none');
-      } else if(status === 'PENDENTE'){
-        btnAceitar.classList.remove('d-none');
-        btnRecusar.classList.remove('d-none');
-      }
-    });
-  });
-
+  // preencher modal
+  function preencherModal(tr) {
+    currentRow = tr;
+    modalNome.innerText = tr.cells[0].innerText;
+    modalEmail.innerText = tr.cells[1].innerText;
+    modalCNPJ.innerText = tr.cells[2].innerText;
+    modalCelular.innerText = tr.cells[3].innerText;
+  }
 
   function fecharModal() {
     const modalEl = document.getElementById('modalStatus');
@@ -109,71 +33,143 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal) modal.hide();
   }
 
-  // atualizar status
   function atualizarStatus(statusNovo) {
-  if(!currentRow) return;
+    if (!currentRow) return;
 
-  const statusCell = currentRow.cells[4];
-  statusCell.innerHTML = '';
+    const statusCell = currentRow.cells[4];
+    statusCell.innerHTML = '';
 
-  if(statusNovo === 'ATIVO'){
-    const btn = document.createElement('button');
-    btn.className = 'status-btn btn btn-success';
-    btn.setAttribute('data-bs-toggle', 'modal');
-    btn.setAttribute('data-bs-target', '#modalStatus');
-    btn.innerText = 'ATIVO';
-    statusCell.appendChild(btn);
+    if (statusNovo === 'ATIVO') {
+      const btn = document.createElement('button');
+      btn.className = 'status-btn btn btn-success';
+      btn.setAttribute('data-bs-toggle', 'modal');
+      btn.setAttribute('data-bs-target', '#modalStatus');
+      btn.innerText = 'ATIVO';
+      statusCell.appendChild(btn);
 
-    btn.addEventListener('click', (e) => {
-      const tr = e.target.closest('tr');
-      currentRow = tr;
+      btn.addEventListener('click', (e) => {
+        const tr = e.target.closest('tr');
+        preencherModal(tr);
+        modalStatusText.innerText = 'ATIVO';
+        btnRevogar.classList.remove('d-none');
+        btnAceitar.classList.add('d-none');
+        btnRecusar.classList.add('d-none');
+      });
 
-      const nome = tr.cells[0].innerText;
-      const email = tr.cells[1].innerText;
-      const cnpj = tr.cells[2].innerText;
-      const celular = tr.cells[3].innerText;
-      const status = e.target.innerText.trim().toUpperCase();
+    } else {
+      const span = document.createElement('span');
+      span.className = 'status inativo';
+      span.innerText = 'INATIVO';
+      statusCell.appendChild(span);
+    }
 
-      modalNome.innerText = nome;
-      modalEmail.innerText = email;
-      modalCNPJ.innerText = cnpj;
-      modalCelular.innerText = celular;
-      modalStatusText.innerText = status;
-
-      btnRevogar.classList.remove('d-none');
-      btnAceitar.classList.add('d-none');
-      btnRecusar.classList.add('d-none');
-    });
-
-  } else if(statusNovo === 'INATIVO'){
-    const span = document.createElement('span');
-    span.className = 'status inativo';
-    span.innerText = 'INATIVO';
-    statusCell.appendChild(span);
+    modalStatusText.innerText = statusNovo;
   }
 
-  modalStatusText.innerText = statusNovo;
-}
+  function filtrarTabela() {
+    const nomeFiltro = filtronome.value.toLowerCase();
+    const emailFiltro = filtroemail.value.toLowerCase();
+    const statusFiltro = filtrostatus.value.toLowerCase();
 
+    document.querySelectorAll("table tbody tr").forEach(linha => {
+      const nome = linha.children[0].textContent.toLowerCase();
+      const email = linha.children[1].textContent.toLowerCase();
+      const statusEl = linha.children[4].querySelector('.status');
+      const status = statusEl ? statusEl.textContent.toLowerCase() : "";
+
+      const nomeOk = nome.includes(nomeFiltro);
+      const emailOk = email.includes(emailFiltro);
+      const statusOk = !statusFiltro || status === statusFiltro;
+
+      linha.style.display = (nomeOk && emailOk && statusOk) ? "" : "none";
+    });
+  }
+
+  // funcoes da tabela
+  document.querySelectorAll(".excluir").forEach(botao => {
+    botao.addEventListener("click", function () {
+      const linha = this.closest("tr");
+      linha.remove();
+    });
+  });
+
+  document.querySelectorAll('.status-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const tr = e.target.closest('tr');
+      preencherModal(tr);
+
+      const status = e.target.innerText.trim().toUpperCase();
+      modalStatusText.innerText = status;
+
+      btnRevogar.classList.add('d-none');
+      btnAceitar.classList.add('d-none');
+      btnRecusar.classList.add('d-none');
+
+      if (status === 'ATIVO') {
+        btnRevogar.classList.remove('d-none');
+      } else if (status === 'PENDENTE') {
+        btnAceitar.classList.remove('d-none');
+        btnRecusar.classList.remove('d-none');
+      }
+    });
+  });
+
+  document.querySelectorAll('.gerar-boleto').forEach(botao => {
+    botao.addEventListener('click', (e) => {
+      const tr = e.target.closest('tr');
+      preencherModal(tr);
+      alert(`Boleto gerado para: ${modalNome.innerText}`);
+    });
+  });
+
+  // modal 
   btnRevogar.addEventListener('click', () => {
-    if(!currentRow) return;
+    if (!currentRow) return;
     atualizarStatus('INATIVO');
     fecharModal();
     alert(`Acesso revogado para: ${modalNome.innerText}`);
   });
 
   btnAceitar.addEventListener('click', () => {
-    if(!currentRow) return;
+    if (!currentRow) return;
     atualizarStatus('ATIVO');
     fecharModal();
     alert(`Acesso aceito para: ${modalNome.innerText}`);
   });
 
   btnRecusar.addEventListener('click', () => {
-    if(!currentRow) return;
+    if (!currentRow) return;
     atualizarStatus('INATIVO');
     fecharModal();
     alert(`Acesso recusado para: ${modalNome.innerText}`);
   });
 
+  // filtro
+  filtronome.addEventListener("input", filtrarTabela);
+  filtroemail.addEventListener("input", filtrarTabela);
+  filtrostatus.addEventListener("change", filtrarTabela);
+
+  window.resetarFiltros = () => {
+    filtronome.value = "";
+    filtroemail.value = "";
+    filtrostatus.value = "";
+    filtrarTabela();
+  };
+
+  // Logout
+  logoutIcon.addEventListener('click', () => {
+    logoutMenu.classList.toggle('hide');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!logoutIcon.contains(e.target) && !logoutMenu.contains(e.target)) {
+      logoutMenu.classList.add('hide');
+    }
+  });
+
+  window.logout = () => {
+    if (confirm("Tem certeza que deseja sair?")) {
+      window.location.href = "../../../Zeta/cadastro/index.html";
+    }
+  };
 });

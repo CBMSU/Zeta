@@ -54,26 +54,38 @@ nav a:hover {
 }
 
 /* Botão logout */
-#logout {
-  cursor: pointer;
-  border: none;
-  background: transparent;
+.menu-logout {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #60b26d;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.menu-logout a {
   color: #fff;
-  font-size: 18px;
-  padding: 8px 14px;
-  border-radius: 8px; /* arredondado */
-  transition: background 0.3s ease;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  cursor: pointer;
 }
-#logout button{
-  background: transparent vb;
+
+.menu-logout a:hover {
+  opacity: 0.8;
 }
-#logout:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.hide{
+  display: none;
+  
 }
+
 /* Filtros */
 .filtros {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row; 
+  align-items: center; 
   gap: 20px;
   padding: 20px;
   max-width: 1000px;
@@ -117,7 +129,10 @@ nav a:hover {
 }
 
 .exportar_lista {
-  left: 500px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
 }
 
 #localizar {
@@ -218,7 +233,7 @@ nav a:hover {
   }
 }
 
-/* Telas até 768px (tablets) */
+/* Telas até 768px */
 @media (max-width: 768px) {
   .tabela table,
   .tabela thead,
@@ -262,7 +277,7 @@ nav a:hover {
   }
 }
 
-/* Telas até 320px (smartphones pequenos) */
+/* Telas até 320px */
 @media (max-width: 320px) {
   body {
     font-size: 14px;
