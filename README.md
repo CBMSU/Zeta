@@ -27,7 +27,7 @@ Se estiver hospedado no GitHub Pages ou outro servidor, insira o link abaixo:
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
-- [Bootstrap] (https://getbootstrap.com/) - framework CSS 
+- [Bootstrap](https://getbootstrap.com/) - framework CSS 
 - [Intro.js](https://introjs.com/) — biblioteca para Tour Interativo
 - [Chart.js](https://www.chartjs.org/) — biblioteca para Criação de Gráficos
 
