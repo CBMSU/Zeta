@@ -20,7 +20,9 @@
     <!-- Styles -->
     <link href="../assets/css/dashboard/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/dashboard/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 
+    <script defer src="/assets/js/dashboard/intro.js"></script>
     <!-- Chart.js-->
      <script src="../assets/js/dashboard/chart.js"></script>
 
@@ -180,7 +182,7 @@
 
                             
                             <div class="col-9 col-lg-6 mb-3">
-                                <button class="btn btn-sm btn-outline-duby py-1 px-3 float-right" data-toggle="modal" data-target="#importarModal">
+                                <button class="btn btn-sm btn-outline-duby py-1 px-3 float-right importar" data-toggle="modal" data-target="#importarModal">
                                     <i class="fas fa-file-import mr-2"></i> 
                                     <span class="d-none d-lg-inline">Importar Arquivo</span>
                                     <span class="d-lg-none">Upload</span>
@@ -195,7 +197,7 @@
                         <!-- Repasses Mensais Card -->
                         <div class="col-12 col-lg-4 mb-4">
                             <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
+                                <div class="card-body first">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="small font-weight-bold mb-1">
@@ -222,7 +224,7 @@
                         <!-- Percentual divergências Card  -->
                         <div class="col-12 col-lg-4 mb-4">
                             <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
+                                <div class="card-body second">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="small font-weight-bold mb-1">
@@ -248,7 +250,7 @@
                         <!-- Repasses divergentes Card  -->
                         <div class="col-12 col-lg-4 mb-4">
                             <div class="card shadow h-100 bg-light-logo-color">
-                                <div class="card-body">
+                                <div class="card-body third">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="small font-weight-bold mb-1">
@@ -650,6 +652,8 @@
 
     <!-- SO HELP ME GOD -->
     <script src="../assets/js/dashboard/abridged.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
 </body>
 
 </html>
