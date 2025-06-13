@@ -67,53 +67,53 @@ document.addEventListener("DOMContentLoaded", function () {
     showStepNumbers: true,
   });
 
-//   intro.onbeforechange(function (targetElement) {
-//     if (
-//       targetElement.classList.contains("cadastroadq") ||
-//       targetElement.classList.contains("consultaadq")
-//     ) {
-//       if (!collapseAdquirentes.classList.contains("show")) {
-//         adquirentesToggle.click();
-//       }
-//     }
+  intro.onbeforechange(function (targetElement) {
+    if (
+      targetElement.classList.contains("cadastroadq") ||
+      targetElement.classList.contains("consultaadq")
+    ) {
+      if (!collapseAdquirentes.classList.contains("show")) {
+        adquirentesToggle.click();
+      }
+    }
 
-//     if (
-//       targetElement.classList.contains("cadastrobanco") ||
-//       targetElement.classList.contains("consultabanco")
-//     ) {
-//       if (!collapseBancos.classList.contains("show")) {
-//         bancosToggle.click();
-//       }
-//     }
-//   });
-// intro.onbeforechange(function (targetElement) {
+    if (
+      targetElement.classList.contains("cadastrobanco") ||
+      targetElement.classList.contains("consultabanco")
+    ) {
+      if (!collapseBancos.classList.contains("show")) {
+        bancosToggle.click();
+      }
+    }
+  });
+intro.onbeforechange(function (targetElement) {
 
-//   if (
-//     targetElement.classList.contains("cadastroadq") ||
-//     targetElement.classList.contains("consultaadq")
-//   ) {
-//     if (!collapseAdquirentes.classList.contains("show")) {
-//       adquirentesToggle.click();
-//     }
+  if (
+    targetElement.classList.contains("cadastroadq") ||
+    targetElement.classList.contains("consultaadq")
+  ) {
+    if (!collapseAdquirentes.classList.contains("show")) {
+      adquirentesToggle.click();
+    }
 
-//     setTimeout(() => {
-//       targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//     }, 400);
-//   }
+    setTimeout(() => {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 400);
+  }
 
-//   if (
-//     targetElement.classList.contains("cadastrobanco") ||
-//     targetElement.classList.contains("consultabanco")
-//   ) {
-//     if (!collapseBancos.classList.contains("show")) {
-//       bancosToggle.click();
-//     }
+  if (
+    targetElement.classList.contains("cadastrobanco") ||
+    targetElement.classList.contains("consultabanco")
+  ) {
+    if (!collapseBancos.classList.contains("show")) {
+      bancosToggle.click();
+    }
 
-//     setTimeout(() => {
-//       targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//     }, 400);
-//   }
-// });
+    setTimeout(() => {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 400);
+  }
+});
 
 
 intro.onbeforechange(async function (targetElement) {
@@ -134,9 +134,11 @@ intro.onbeforechange(async function (targetElement) {
   ) {
     if (!collapseBancos.classList.contains("show")) {
       bancosToggle.click();
+      setInterval(resolve, 130);
+      return;
     }
   }
-    setInterval(resolve, 130);
+  setInterval(resolve, 0);
   });
   
 });
