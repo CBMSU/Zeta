@@ -34,55 +34,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function atualizarStatus(statusNovo) {
-    if (!currentRow) return;
+  if (!currentRow) return;
 
-    const statusCell = currentRow.cells[4];
-    statusCell.innerHTML = '';
+  const statusCell = currentRow.cells[4];
+  statusCell.innerHTML = '';
 
-    if (statusNovo === 'ATIVO') {
-      const btn = document.createElement('button');
-      btn.className = 'status-btn btn btn-success';
-      btn.setAttribute('data-bs-toggle', 'modal');
-      btn.setAttribute('data-bs-target', '#modalStatus');
-      btn.innerText = 'ATIVO';
-      statusCell.appendChild(btn);
+  if (statusNovo === 'ATIVO') {
+    const btn = document.createElement('button');
+    btn.className = 'status-btn ativo';
+    btn.setAttribute('data-bs-toggle', 'modal');
+    btn.setAttribute('data-bs-target', '#modalStatus');
+    btn.setAttribute('type', 'button'); 
+    btn.innerText = 'ATIVO';
+    statusCell.appendChild(btn);
 
-      btn.addEventListener('click', (e) => {
-        const tr = e.target.closest('tr');
-        preencherModal(tr);
-        modalStatusText.innerText = 'ATIVO';
-        btnRevogar.classList.remove('d-none');
-        btnAceitar.classList.add('d-none');
-        btnRecusar.classList.add('d-none');
-      });
+    btn.addEventListener('click', (e) => {
+      const tr = e.target.closest('tr');
+      preencherModal(tr);
+      modalStatusText.innerText = 'ATIVO';
+      btnRevogar.classList.remove('d-none');
+      btnAceitar.classList.add('d-none');
+      btnRecusar.classList.add('d-none');
+    });
 
-    } else {
-      const span = document.createElement('span');
-      span.className = 'status inativo';
-      span.innerText = 'INATIVO';
-      statusCell.appendChild(span);
-    }
-
-    modalStatusText.innerText = statusNovo;
+  } else {
+    const span = document.createElement('span');
+    span.className = 'status-btn inativo';
+    span.innerText = 'INATIVO';
+    statusCell.appendChild(span);
   }
 
+  modalStatusText.innerText = statusNovo;
+}
+
   function filtrarTabela() {
-    const nomeFiltro = filtronome.value.toLowerCase();
-    const emailFiltro = filtroemail.value.toLowerCase();
-    const statusFiltro = filtrostatus.value.toLowerCase();
+  const nomeFiltro = filtronome.value.toLowerCase();
+  const emailFiltro = filtroemail.value.toLowerCase();
+  const statusFiltro = filtrostatus.value.toLowerCase();
 
-    document.querySelectorAll("table tbody tr").forEach(linha => {
-      const nome = linha.children[0].textContent.toLowerCase();
-      const email = linha.children[1].textContent.toLowerCase();
-      const statusEl = linha.children[4].querySelector('.status');
-      const status = statusEl ? statusEl.textContent.toLowerCase() : "";
+  document.querySelectorAll("table tbody tr").forEach(linha => {
+    const nome = linha.children[0].textContent.toLowerCase();
+    const email = linha.children[1].textContent.toLowerCase();
 
-      const nomeOk = nome.includes(nomeFiltro);
-      const emailOk = email.includes(emailFiltro);
-      const statusOk = !statusFiltro || status === statusFiltro;
+    const statusCell = linha.children[4];
+    let status = "";
 
-      linha.style.display = (nomeOk && emailOk && statusOk) ? "" : "none";
-    });
+    if (statusCell.querySelector('.status')) {
+      status = statusCell.querySelector('.status').textContent.toLowerCase();
+    } else if (statusCell.querySelector('.status-btn')) {
+      status = statusCell.querySelector('.status-btn').textContent.toLowerCase();
+    }
+
+    const nomeOk = nome.includes(nomeFiltro);
+    const emailOk = email.includes(emailFiltro);
+    const statusOk = !statusFiltro || status === statusFiltro;
+
+    linha.style.display = (nomeOk && emailOk && statusOk) ? "" : "none";
+  });
   }
 
   // funcoes da tabela
@@ -115,12 +123,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll('.gerar-boleto').forEach(botao => {
-    botao.addEventListener('click', (e) => {
-      const tr = e.target.closest('tr');
-      preencherModal(tr);
-      alert(`Boleto gerado para: ${modalNome.innerText}`);
-    });
+  botao.addEventListener('click', (e) => {
+    const tr = e.target.closest('tr');
+    preencherModal(tr);
+
+    
+    document.getElementById('inputNomeBoleto').value = tr.cells[0].innerText;
+    document.getElementById('inputCNPJBoleto').value = tr.cells[2].innerText;
+
+    
+    const modal = new bootstrap.Modal(document.getElementById('modalBoleto'));
+    modal.show();
   });
+});
+
+
+document.getElementById('btnGerarBoleto').addEventListener('click', () => {
+  const nome = document.getElementById('inputNomeBoleto').value;
+  alert(`Boleto gerado para: ${nome}`);
+});
 
   // modal 
   btnRevogar.addEventListener('click', () => {
@@ -169,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.logout = () => {
     if (confirm("Tem certeza que deseja sair?")) {
-      window.location.href = "../../../Zeta/cadastro/index.html";
+      window.location.href = "../../../../Zeta/cadastro/index.html";
     }
   };
 });

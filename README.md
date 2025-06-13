@@ -7,7 +7,7 @@ Painel administrativo e do usuário com login, validações, máscaras de input 
 # Demonstração
 
 Se estiver hospedado no GitHub Pages ou outro servidor, insira o link abaixo:
-- 🔗 Demo online: https://cbmsu.github.io/Zeta/dashboard/index.html 
+- 🔗 Demo online: https://cbmsu.github.io/Zeta/cadastro/index.html 
 
 ---
 
