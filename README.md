@@ -33,44 +33,126 @@ Se estiver hospedado no GitHub Pages ou outro servidor, insira o link abaixo:
 
 ---
 
-# Estrutura do Projeto
-
-Zeta/
-├── admview/              # Painel do administrador
-│   └── adm.html
-├── cadastro/             # Tela de cadastro
-│   └── index.html
-├── dashboard/            # Painel do usuário comum
-│   ├── index.html
-│   ├── busca.html
-│   ├── perfil.html
-│   └── ... outros
-├── login/                # Tela de login
-│   └── index.html
-├── assets/
-│   ├── css/              # Estilos por módulo
-│   │   ├── admview/
-│   │   ├── cadastro/
-│   │   ├── dashboard/
-│   │   └── login/
-│   ├── js/               # Scripts JS por módulo
-│   │   ├── admview/
-│   │   ├── cadastro/
-│   │   ├── dashboard/
-│   │   └── login/
-│   ├── imgs/             # Imagens por módulo
-│   │   ├── admview/
-│   │   ├── cadastro/
-│   │   ├── dashboard/
-│   │   └── login/
-│   ├── font/             # Fontes utilizadas
-│   │   └── cadastro/
-│   └── csv/              # Arquivos CSV para carga e leitura
-│       └── dashboard/
-├── intro-config.js       # Configuração do tour guiado com Intro.js
-├── style.css             # Estilos globais
-├── README.md             # Manual e instruções do projeto
-
+Zeta/<br/>
+┣ .vscode/ <br/>
+┃ ┗ settings.json <br/>
+┣ admview/ <br/>
+┃ ┗ adm.html <br/>
+┣ assets/ <br/>
+┃ ┣ css/ <br/>
+┃ ┃ ┣ admview/ <br/>
+┃ ┃ ┃ ┗ cssadm.css <br/>
+┃ ┃ ┣ cadastro/ <br/>
+┃ ┃ ┃ ┗ style.css <br/>
+┃ ┃ ┣ dashboard/ <br/>
+┃ ┃ ┃ ┣ webfonts/ <br/>
+┃ ┃ ┃ ┃ ┣ fa-brands-400.eot <br/>
+┃ ┃ ┃ ┃ ┣ fa-brands-400.svg <br/>
+┃ ┃ ┃ ┃ ┣ fa-brands-400.ttf <br/>
+┃ ┃ ┃ ┃ ┣ fa-brands-400.woff <br/>
+┃ ┃ ┃ ┃ ┣ fa-brands-400.woff2 <br/>
+┃ ┃ ┃ ┃ ┣ fa-regular-400.eot <br/>
+┃ ┃ ┃ ┃ ┣ fa-regular-400.svg <br/>
+┃ ┃ ┃ ┃ ┣ fa-regular-400.ttf <br/>
+┃ ┃ ┃ ┃ ┣ fa-regular-400.woff <br/>
+┃ ┃ ┃ ┃ ┣ fa-regular-400.woff2 <br/>
+┃ ┃ ┃ ┃ ┣ fa-solid-900.eot <br/>
+┃ ┃ ┃ ┃ ┣ fa-solid-900.svg <br/>
+┃ ┃ ┃ ┃ ┣ fa-solid-900.ttf <br/>
+┃ ┃ ┃ ┃ ┣ fa-solid-900.woff <br/>
+┃ ┃ ┃ ┃ ┗ fa-solid-900.woff2 <br/>
+┃ ┃ ┃ ┣ bootstrap.css <br/>
+┃ ┃ ┃ ┣ bootstrap.min.css <br/>
+┃ ┃ ┃ ┣ fontawesomefree.css <br/>
+┃ ┃ ┃ ┣ multiSelect.css <br/>
+┃ ┃ ┃ ┗ style.css <br/>
+┃ ┃ ┗ login/ <br/>
+┃ ┃   ┗ styles.css <br/>
+┃ ┣ csv/ <br/>
+┃ ┃ ┗ dashboard/ <br/>
+┃ ┃   ┣ extrato_adquirente.csv <br/>
+┃ ┃   ┗ extrato_banco.csv <br/>
+┃ ┣ font/ <br/>
+┃ ┃ ┗ cadastro/ <br/>
+┃ ┃   ┣ fa-brands-400.eot <br/>
+┃ ┃   ┣ fa-brands-400.svg <br/>
+┃ ┃   ┣ fa-brands-400.ttf <br/>
+┃ ┃   ┣ fa-brands-400.woff <br/>
+┃ ┃   ┣ fa-brands-400.woff2 <br/>
+┃ ┃   ┣ fa-regular-400.eot <br/>
+┃ ┃   ┣ fa-regular-400.svg <br/>
+┃ ┃   ┣ fa-regular-400.ttf <br/>
+┃ ┃   ┣ fa-regular-400.woff <br/>
+┃ ┃   ┣ fa-regular-400.woff2 <br/>
+┃ ┃   ┣ fa-solid-900.eot <br/>
+┃ ┃   ┣ fa-solid-900.svg <br/>
+┃ ┃   ┣ fa-solid-900.ttf <br/>
+┃ ┃   ┣ fa-solid-900.woff <br/>
+┃ ┃   ┗ fa-solid-900.woff2 <br/>
+┃ ┣ imgs/ <br/>
+┃ ┃ ┣ admview/ <br/>
+┃ ┃ ┃ ┣ logo-duby-conceito - Copia.png <br/>
+┃ ┃ ┃ ┣ pencil-draw.png <br/>
+┃ ┃ ┃ ┗ qr-code-plus.webp <br/>
+┃ ┃ ┣ cadastro/ <br/>
+┃ ┃ ┃ ┗ Untitled (1).png <br/>
+┃ ┃ ┣ dashboard/ <br/>
+┃ ┃ ┃ ┣ duby.ico <br/>
+┃ ┃ ┃ ┣ duby2.ico <br/>
+┃ ┃ ┃ ┣ logo-duby-conceito - Copia.png <br/>
+┃ ┃ ┃ ┣ logo-duby-conceito.png <br/>
+┃ ┃ ┃ ┣ undraw_posting_photo.svg <br/>
+┃ ┃ ┃ ┣ undraw_profile.svg <br/>
+┃ ┃ ┃ ┣ undraw_profile_1.svg <br/>
+┃ ┃ ┃ ┣ undraw_profile_2.svg <br/>
+┃ ┃ ┃ ┣ undraw_profile_3.svg <br/>
+┃ ┃ ┃ ┗ undraw_rocket.svg <br/>
+┃ ┃ ┗ login/ <br/>
+┃ ┃   ┣ image.png <br/>
+┃ ┃   ┗ logo-duby-conceito-azul.webp <br/>
+┃ ┗ js/ <br/>
+┃   ┣ admview/ <br/>
+┃ ┃ ┃ ┗ scriptadm.js <br/>
+┃   ┣ cadastro/ <br/>
+┃ ┃ ┃ ┗ script.js <br/>
+┃   ┣ dashboard/ <br/>
+┃ ┃ ┃ ┣ datepicker_files/ <br/>
+┃ ┃ ┃ ┃ ┣ bootstrap-datepicker.min.js <br/>
+┃ ┃ ┃ ┃ ┣ bootstrap-datepicker.pt-BR.min.js <br/>
+┃ ┃ ┃ ┃ ┗ bootstrap-datepicker3.css <br/>
+┃ ┃ ┃ ┣ abridged.js <br/>
+┃ ┃ ┃ ┣ bootstrap.bundle.min.js <br/>
+┃ ┃ ┃ ┣ bootstrap.bundle.min.js.map <br/>
+┃ ┃ ┃ ┣ busca.js <br/>
+┃ ┃ ┃ ┣ buscaAdquirente.js <br/>
+┃ ┃ ┃ ┣ buscaBanco.js <br/>
+┃ ┃ ┃ ┣ cadastraAdquirente.js <br/>
+┃ ┃ ┃ ┣ cadastraBanco.js <br/>
+┃ ┃ ┃ ┣ chart.js <br/>
+┃ ┃ ┃ ┣ comportamento_sidebar.js <br/>
+┃ ┃ ┃ ┣ intro.js <br/>
+┃ ┃ ┃ ┣ jquery.easing.min.js <br/>
+┃ ┃ ┃ ┣ jquery.mask.min.js <br/>
+┃ ┃ ┃ ┣ jquery.min.js <br/>
+┃ ┃ ┃ ┣ multiSelect.js <br/>
+┃ ┃ ┃ ┣ perfil.js <br/>
+┃ ┃ ┃ ┣ script.js <br/>
+┃ ┃ ┃ ┗ sweetalert2_11.js <br/>
+┃   ┗ login/ <br/>
+┃ ┃   ┗ script.js <br/>
+┣ cadastro/ <br/>
+┃ ┗ index.html <br/>
+┣ dashboard/ <br/>
+┃ ┣ busca.html <br/>
+┃ ┣ buscaAdquirente.html <br/>
+┃ ┣ buscaBanco.html <br/>
+┃ ┣ cadastraAdquirente.html <br/>
+┃ ┣ cadastraBanco.html <br/>
+┃ ┣ index.html <br/>
+┃ ┗ perfil.html <br/>
+┣ login/ <br/>
+┃ ┗ index.html <br/>
+┗ README.md <br/>
 
 ---
 
